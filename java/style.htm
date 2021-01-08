@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Java Programming</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#333333" text="#bed593" link="#ff9933" vlink="#cc6633" alink="#ffff00">
+<div align="center"> 
+  <p><font face="Arial, Helvetica, sans-serif"><strong><font color="#ff9933" size="+2">CTEC 
+    396-101: Java Programming</font></strong></font></p>
+  <hr>
+  <div align="left">
+    <p align="center"><font color="#ff9933" face="Arial, Helvetica, sans-serif"><a href="style.pdf">PDF 
+      Version of Style Guide</a> </font></p>
+    <p><font face="Arial, Helvetica, sans-serif"><br>
+      (1) Every .java FILE must include a header comment with this format, as 
+      the first information in the file:</font> </p>
+    <p>/* AUTHOR: Put your name here<br>
+      INSTRUCTOR: Dr. Sharad Sharma<br>
+      COURSE: CTEC 396-101: Java Programming<br>
+      SEMESTER: Fall 2007<br>
+      ASSIGNMENT NO: X<br>
+      PROJECT: Program number or topic<br>
+      DUE DATE: Date specified<br>
+      SUBMISSION DATE: when you handed it in<br>
+      SUMMARY<br>
+      What the code does and what the user should know to understand the program.<br>
+      INPUT<br>
+      Keyboard, file, arguments, etc.<br>
+      OUTPUT<br>
+      Tell what shows up on the screen, what is written to any files, etc.<br>
+      CLASS HIERARCHY <br>
+      Include the full hierarchy starting from the Object class for every class 
+      you define in the file. <br>
+      Object - Component - Container - Panel - Applet - YourAppletClassName<br>
+      Object - YourApplicationClassName<br>
+      ASSUMPTIONS<br>
+      What do you expect the user to know, to do, to NOT do, etc.<br>
+      */</p>
+    <p>(2) All code, comments, and output should fit on the page; i.e., they should 
+      not wrap around or be truncated. Long statements that would run off the 
+      page should be split in a logical manner and should be indented at least 
+      3 spaces.</p>
+    <p>&#8226; Tabs are set every three spaces.<br>
+      &#8226; Variable and method names are lowercase, with occasional upperCase 
+      characters in the middle.<br>
+      &#8226; Class names start with an Uppercase letter<br>
+      &#8226; Constant names are UPPERCASE, with an occasional UNDER_SCORE.<br>
+      &#8226; Braces must line up vertically.<br>
+      &#8226; Every method, except for main and overridden library methods, must 
+      have a comment.<br>
+      &#8226; No continue or break is allowed.<br>
+      &#8226; All non-final variables must be private.</p>
+    <p>(3) Each statement begins on a new line.</p>
+    <p>(4) Identifiers must be meaningful - variable, constant, method, class 
+      names<br>
+      Exceptions: (1) Names that Sun uses (String [] args, Graphics g, etc.)<br>
+      (2) Simple for loop index (i,j, etc.) declared in the loop<br>
+      for (int i = 0; i &lt; maximum; i++)<br>
+      (5) Comment all variables, constants, methods, classes, lines of code, etc. 
+      whose meaning would not be obvious to a beginning programmer. <br>
+      Names like temp and button3 are not meaningful. (Often, a better name for 
+      a variable can be found in the comment. Then you don't need the comment 
+      any more!)</p>
+    <p>(6) Blank lines separate logical blocks of code.</p>
+    <p>(7) Comment logical blocks of code (like chapter titles in a book).</p>
+    <p>(8) Left braces { must appear on a new line right under the first character 
+      of the previous line. Right braces} must line up with the corresponding 
+      left brace and have a comment telling what is ending. Also opening and closing 
+      braces must line up vertically: For example:<br>
+      class Hello<br>
+      {<br>
+      public static void main (String [] args)<br>
+      {<br>
+      System.out.println(&quot;hello world&quot;);<br>
+      } // main<br>
+      } // Hello</p>
+    <p>(9) Indent 3 spaces inside each pair of {} or each control statement.<br>
+      (Use a fixed width font (Monaco, Courier, etc.) so the spaces show up.)</p>
+    <p> while (x &lt; 8)<br>
+      x += 4;</p>
+    <p> while (y &gt; 2)<br>
+      {<br>
+      x++;<br>
+      y += x + z;<br>
+      z = y + x;<br>
+      } // while</p>
+    <p>(10) Put a space before and after all binary operators.</p>
+    <p>(11) In classes, put the variables first, constructors second, other methods 
+      third, inner classes fourth, and methods with no code last.</p>
+    <p>(12) Do not define two variables on the same line: </p>
+    <p> int dimes = 0, nickels = 0; // Don't<br>
+      Instead, use two separate definitions:</p>
+    <p> int dimes = 0; // OK<br>
+      int nickels = 0; </p>
+    <p>(13) Do not use magic numbers! A magic number is a numeric constant embedded 
+      in code, without a constant definition. Any number except -1, 0, 1, and 
+      2 is considered magic: </p>
+    <p> if (p.getX() &lt; 300) // Don't<br>
+      Use final variables instead: </p>
+    <p> final double WINDOW_WIDTH = 300;<br>
+      . . .<br>
+      if (p.getX() &lt; WINDOW_WIDTH) // OK</p>
+    <p>(14) Use blank lines freely to separate parts of a method that are logically 
+      distinct. Use a blank space around every binary operator: </p>
+    <p> x1 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a); // Good</p>
+    <p>x1=(-b-Math.sqrt(b*b-4*a*c))/(2*a);//Bad<br>
+    </p>
+    </div>
+  <hr>
+  <P> </div>
+</body>
+</html>
