@@ -1,0 +1,656 @@
+#VRML V2.0 utf8
+
+# Eng 477 Illustration: Back-Face Culling
+# K.-P. Beier, University of Michigan
+# Last Update: October 21, 2000
+
+##################################################
+# Begin Navigation, Background, Light
+
+Viewpoint { description "Top View" position 0 20 20 orientation 1 0 0 -0.87 }
+
+Viewpoint { description "Front View"  position 0 1.5 24 orientation 1 0 0 -0.15 }
+
+Viewpoint { description "Inside View" position 0 -1.5 7 }
+
+NavigationInfo {type ["EXAMINE" "ANY"] headlight FALSE }
+
+Background { skyColor [ 0.5 0.6 1.0 ] }
+
+DirectionalLight { direction -1 -1.0 -0.5 intensity 0.7 }
+
+DirectionalLight { direction  1  1.0 -0.8 intensity 0.7 }
+
+DirectionalLight { direction  0 -0.5 -1.0 intensity 0.5 }
+
+# End Navigation, Background, Light
+##################################################
+
+
+##################################################
+# Begin of Prototype ControlButton
+
+PROTO ControlButton [
+      	 field  SFNode  fcolor  Color {color [1 1 0]}
+	exposedField  SFInt32 flag    -1		#    0    = show on indicator
+								# 1 or -1 = hide on indicator
+]{
+Transform {
+	children [
+
+		Shape { geometry IndexedFaceSet {			# front face
+			coord Coordinate { point [ 0.06  0.00  0,
+							   0.00  0.06  0,
+							  -0.06  0.00  0,
+							   0.00 -0.06  0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color IS fcolor
+		}}
+
+		Shape { geometry IndexedFaceSet {			# back face
+			coord Coordinate { point [ 0.08  0.00 -0.001,
+							   0.00  0.08 -0.001,
+							  -0.08  0.00 -0.001,
+							   0.00 -0.08 -0.001 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color Color { color [ 0 0 0 ] }
+		}}
+
+		Switch { whichChoice IS flag choice [
+			Shape { geometry IndexedFaceSet {			# on indicator
+				coord Coordinate { point [ 0.08  0.08 -0.002,
+								  -0.08  0.08 -0.002,
+								  -0.08 -0.08 -0.002,
+								   0.08 -0.08 -0.002 ] }
+				coordIndex [ 0 1 2 3 -1 ]
+				colorPerVertex FALSE
+				color Color { color [ 1 1 1 ] }
+				colorIndex [ 0 ]
+			}}
+		]}
+
+	]
+}}
+
+# End of Prototype ControlButton
+##################################################
+
+
+##################################################
+# Begin of Prototype MyObject
+
+PROTO MyObject [
+		 field SFBool   solidSwitch TRUE
+		 field SFBool   ccwSwitch   TRUE
+	exposedField SFFloat  trans	    0.2	# transparency for top face
+	exposedField SFInt32  wswitch     -1	# wire outline switch
+]{
+Group { children [
+	Shape {							# object without top face
+		appearance Appearance {
+			material Material { diffuseColor 0.8 0.25 0 }
+		}
+		geometry IndexedFaceSet {
+			coord DEF POINTS Coordinate { point [
+
+								 3 -4  7,	# points on bottom face
+								 8 -4  5,
+								10 -4  0,
+								 8 -4 -5,
+								 3 -4 -7,
+								-3 -4 -7,
+								-8 -4 -5,
+							     -10 -4  0,
+								-8 -4  5,
+								-3 -4  7,
+
+   								 3  4  7,	# points on top face
+								 8  4  5,
+								10  4  0,
+								 8  4 -5,
+								 3  4 -7,
+								-3  4 -7,
+								-8  4 -5,
+							     -10  4  0,
+								-8  4  5,
+								-3  4  7
+			]}
+			coordIndex [  9  8  7  6  5  4  3  2  1  0 -1,	# bottom face
+					#10 11 12 13 14 15 16 17 18 19 -1,	# top face (not used)
+					  0  1 11 10 -1,				# side faces
+					  1  2 12 11 -1,
+					  2  3 13 12 -1,
+					  3  4 14 13 -1,
+					  4  5 15 14 -1,
+					  5  6 16 15 -1,
+					  6  7 17 16 -1,
+					  7  8 18 17 -1,
+					  8  9 19 18 -1,
+					  9  0 10 19 -1 ]
+			solid IS solidSwitch
+			ccw IS ccwSwitch
+		}
+	}
+	Shape {							# top face only
+		appearance Appearance {
+			material Material { diffuseColor 0.75 0 0.75 transparency IS trans }
+		}
+		geometry IndexedFaceSet {
+			coord USE POINTS
+			coordIndex [ 10 11 12 13 14 15 16 17 18 19 -1 ]	# top face
+			solid IS solidSwitch
+			ccw IS ccwSwitch
+		}
+	}
+	Switch { whichChoice IS wswitch choice [		# switch for wire outline
+		Transform { scale 1.003 1.003 1.003 children [	# to avoid flickering
+			Shape {					# wire outline
+			   geometry IndexedLineSet {
+				coord USE POINTS
+				coordIndex [ 9  8  7  6  5  4  3  2  1  0  9 -1, # bottom wire
+						10 11 12 13 14 15 16 17 18 19 10 -1, # top wire
+						 1 11 -1,					 # edge wires
+						 2 12 -1,
+						 3 13 -1,
+						 4 14 -1,
+						 5 15 -1,
+						 6 16 -1,
+						 7 17 -1,
+						 8 18 -1,
+						 9 19 -1,
+						 0 10 -1 ]
+			   }
+			}
+		]}
+	]}
+]}}
+
+# End of Prototype MyObject 
+##################################################
+
+
+##################################################
+# Begin of Prototype FaceNormal
+
+PROTO FaceNormal [
+		 field SFVec3f     trans	0 0 0
+		 field SFRotation  rot		1 0 0 0
+	exposedField SFInt32	 oi_choice	0	# arrow head: 0 = out, 1 = in
+]{
+Transform {
+	translation IS  trans
+	rotation    IS  rot
+	children [
+		Shape {						# cylinder
+			geometry Cylinder { height 3 radius 0.1 }
+				appearance DEF NORMCOL Appearance {
+					material Material {
+						diffuseColor 0.9 0.9 0
+						specularColor 1 1 1
+						shininess 1.0
+					}
+				}
+		}
+		Shape {						# box at center (by Nick)
+			geometry Box { size 0.5 0.5 0.5 }
+			appearance USE NORMCOL
+		}
+		Switch { whichChoice IS oi_choice choice [
+			Transform {					# arrow head pointing out
+				translation 0 1.5 0 children [
+					DEF HEAD Shape {
+						geometry Cone { bottomRadius 0.3 height 0.7 }
+						appearance USE NORMCOL
+					}
+				]
+			}
+			Transform {					# arrow head pointing in
+				translation 0 -1.5 0
+				rotation 1 0 0 3.14
+				children [ USE HEAD ]
+			}
+		]}
+	]
+}}
+
+# End of Prototype FaceNormal
+##################################################
+
+
+##################################################
+# Begin of Display MyObject
+
+DEF SPINME Transform { children [		# spin object
+
+	DEF OBJECTSW Switch { whichChoice 1 choice [	# the 4 versions of the box
+
+		DEF O1 MyObject { ccwSwitch TRUE   solidSwitch TRUE  }	# choice 0
+
+		DEF O2 MyObject { ccwSwitch TRUE   solidSwitch FALSE }	# choice 1
+
+		DEF O3 MyObject { ccwSwitch FALSE  solidSwitch TRUE  }	# choice 2
+
+		DEF O4 MyObject { ccwSwitch FALSE  solidSwitch FALSE }	# choice 3
+
+	]}
+
+	DEF NONOFF Switch { whichChoice -1 choice [ Group { children [	# the normals
+
+	   DEF N1 FaceNormal {trans 0  4 0}					# top face
+	   DEF N2 FaceNormal {trans 0 -4 0 rot 1 0 0 3.14}		# bottom face
+
+	   DEF N3 FaceNormal {trans 0 0  7 rot 1 0 0  1.57}		# front face
+	   DEF N4 FaceNormal {trans 0 0 -7 rot 1 0 0 -1.57}		# back face
+
+	   DEF N5 FaceNormal {trans  5.5 0 -6 rot -5 0 -2  1.57}	# right of back face
+	   DEF N6 FaceNormal {trans -5.5 0 -6 rot  5 0 -2 -1.57}	# left of back face
+
+	   DEF N7 FaceNormal {trans  5.5 0 6 rot  5 0 -2  1.57}	# right of front face
+	   DEF N8 FaceNormal {trans -5.5 0 6 rot -5 0 -2 -1.57}	# left of front face
+
+	   DEF N9 FaceNormal {trans  9 0 -2.5 rot -2 0 -5  1.57}	# back of right edge
+	   DEF NA FaceNormal {trans -9 0 -2.5 rot  2 0 -5 -1.57}	# back of left edge
+
+	   DEF NB FaceNormal {trans  9 0 2.5 rot -2 0 5 -1.57}	# front of right edge
+	   DEF NC FaceNormal {trans -9 0 2.5 rot  2 0 5  1.57}	# front of left edge
+
+	]}]}
+
+]}
+
+# End of Display MyObject
+##################################################
+
+
+##################################################
+# Begin of Floating Panel
+
+# ProximitySensor to measure the viewer's position and orientation
+DEF PANELPROX ProximitySensor {size 100 100 100}
+
+# Transform to follow the viewer and make the panel appear to be static
+DEF PANELTRANS Transform { children [
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of "spin" Button
+
+Transform { translation -1.7 -1.4 -5  scale 2 2 2 children [
+
+	DEF SPINSENS TouchSensor { }					# touch sensor
+
+	DEF SPINBUT ControlButton {					# geometry
+		fcolor Color { color [ 0.8 0.25 0 ] }
+		flag 1
+	}
+
+	Transform { translation -0.11 0 0  children [		# label
+		Shape {
+			geometry Text {
+				string [ "spin" ]
+				fontStyle DEF LEFTSTYLE FontStyle {
+					style "BOLD"
+					size 0.12
+					justify ["END" "MIDDLE"]
+				}
+			}
+			appearance DEF BLACK Appearance {
+				material Material { diffuseColor 0 0 0 }
+			}
+		}
+	]}
+
+]}
+
+# End of "spin" Button
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of "show normals" Button
+
+Transform { translation -1.2 -1.8 -5  scale 2 2 2 children [
+
+	DEF NSSENS TouchSensor { }					# touch sensor
+
+	DEF NSBUT ControlButton {					# geometry
+		fcolor Color { color [ 0.85 0.85 0 ] }
+		flag -1
+	}
+
+	Transform { translation -0.11 0 0  children [		# label
+		Shape {
+			geometry Text {
+				string [ "show normals" ]
+				fontStyle USE LEFTSTYLE
+			}
+			appearance USE BLACK
+		}
+	]}
+
+]}
+
+# End of "show normals" Button
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of "culling" Button
+
+Transform { translation 1.7 -1.4 -5  scale 2 2 2 children [
+
+	DEF CULLSENS TouchSensor { }					# touch sensor
+
+	DEF CULLBUT ControlButton {					# geometry
+		fcolor Color { color [ 0.8 0.25 0 ] }
+		flag 1
+	}
+
+	Transform { translation 0.11 0 0  children [		# label
+		Shape {
+			geometry Text {
+				string [ "culling" ]
+				fontStyle DEF RIGHTSTYLE FontStyle {
+					style "BOLD"
+					size 0.12
+					justify ["BEGIN" "MIDDLE"]
+				}
+			}
+			appearance USE BLACK
+		}
+	]}
+
+]}
+
+# End of "culling" Button
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of "flip normals" Button
+
+Transform { translation 1.2 -1.8 -5  scale 2 2 2 children [
+
+	DEF NFSENS TouchSensor { }					# touch sensor
+
+	DEF NFBUT ControlButton {					# geometry
+		fcolor Color { color [ 0.85 0.85 0 ] }
+		flag 1
+	}
+
+	Transform { translation 0.11 0 0  children [		# label
+		Shape {
+			geometry Text {
+				string [ "flip normals" ]
+				fontStyle USE RIGHTSTYLE
+			}
+			appearance USE BLACK
+		}
+	]}
+
+]}
+
+# End of "flip normals" Button
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of unlabeled wire outline Button
+
+Transform { translation 0.731 -1.9 -5  scale 1.2 1.2 1.2 children [
+
+	DEF WSENS TouchSensor { }					# touch sensor
+
+	DEF WBUT ControlButton {					# geometry
+		fcolor Color { color [ 0.5 0.6 1 ] }
+		flag 1
+	}
+]}
+
+# End of unlabeled wire outline Button
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin of Slider
+
+Transform {					# begin of slider track
+	translation -0.6 -1.9 -5
+	children [
+		Shape {
+			appearance Appearance {
+				material Material { diffuseColor 0.7 0.15 0 }
+			}
+			geometry IndexedFaceSet {
+				coord Coordinate {point [
+					-0.14 -0.02 0,  1.13 -0.02 0,
+					 1.13  0.02 0, -0.14  0.02 0
+				]}
+				coordIndex [ 0, 1, 2, 3, -1 ]
+			}
+		}
+	]
+}						# end of slider track
+
+Transform {					# begin of slider plane sensor
+	translation -0.6 -1.9 -5
+	children [
+		DEF PSSLIDER PlaneSensor {
+			minPosition 0 0
+			maxPosition 1 0
+			offset 0.2 0 0
+		}
+		DEF SLIDER Transform { translation 0.2 0 0  children [
+			Shape {
+				appearance Appearance {
+					material Material {diffuseColor 0.75 0 0.75 }
+				}
+				geometry Box {size 0.17 0.17 0.17 }
+			}
+		]}
+	]
+}						# end of slider plane sensor
+
+# End of Slider
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+]}
+
+# End of Floating Panel
+##################################################
+
+
+##################################################
+# Begin of Interpolators and Timers
+
+DEF SPIN OrientationInterpolator {
+	key	   [ 0 0.25 0.5 0.75 1 ]
+	keyValue [ 0 1 0 0,
+		     0 1 0 1.57,
+		     0 1 0 3.14,
+		     0 1 0 4.71,
+		     0 1 0 0 ]
+}
+
+DEF TIME TimeSensor {
+	enabled FALSE
+	loop TRUE
+	cycleInterval 25
+}
+
+# End of Interpolators and Timers
+################################################## 
+
+
+##################################################
+# Begin of VRML Script CONTROL
+
+DEF CONTROL Script {
+   eventIn  SFTime   cull_time
+   eventOut SFInt32  cull_flag
+
+   eventIn  SFTime   flip_time
+   eventOut SFInt32  flip_flag
+   eventOut SFInt32  flip_choice
+
+   eventOut SFInt32  obj_choice
+
+   eventIn  SFTime   spin_time
+   eventOut SFInt32  spin_flag
+   eventOut SFBool   spin_enabled
+
+   eventIn  SFTime   show_time
+   eventOut SFInt32  show_flag
+
+   eventIn  SFTime   wire_time
+   eventOut SFInt32  wire_flag
+
+   field    SFInt32  cull_memo  1
+   field	SFInt32  flip_memo  1
+   field    SFInt32  spin_memo -1
+   field    SFInt32  show_memo -1
+   field    SFInt32  wire_memo -1
+
+   url "vrmlscript:
+
+	function initialize ( ) {
+		cull_flag    =  1;
+		flip_flag    =  1;
+            flip_choice  =  0;
+		obj_choice   =  1;
+		spin_flag    = -1;
+		spin_enabled = FALSE;
+		show_flag    = -1;
+	}
+
+	function select_object ( ) {
+		if (flip_memo == 1) obj_choice = cull_memo;
+		else obj_choice = cull_memo + 2;
+	}
+		
+	function cull_time (time, value) {
+		cull_memo = cull_memo + 1;
+		if (cull_memo >= 2) cull_memo = 0;
+		cull_flag = cull_memo;
+		select_object ();
+	}
+
+	function flip_time (time, value) {
+		flip_memo = flip_memo +1;
+		if (flip_memo >= 2) flip_memo = 0;
+		flip_flag = flip_memo;
+		flip_choice = 1 - flip_memo;
+		select_object ();
+	}
+
+	function spin_time (time, value) {
+		spin_memo = spin_memo + 1;
+		if (spin_memo >= 1) spin_memo = -1;
+		if (spin_memo == 0) spin_flag =0,
+					  spin_enabled = TRUE;
+		else spin_flag = -1,
+		     spin_enabled = FALSE;
+	}
+
+	function show_time (time, value) {
+		show_memo = show_memo + 1;
+		if (show_memo >= 1) show_memo = -1;
+		show_flag = show_memo;
+	}
+
+	function wire_time (time, value) {
+		wire_memo = wire_memo + 1;
+		if (wire_memo >= 1) wire_memo = -1;
+		wire_flag = wire_memo;
+	}
+
+   "
+}
+
+# End of VRML Script CONTROL
+##################################################
+
+
+##################################################
+# Begin of VRML Script TRANSL
+
+DEF TRANSL Script {
+   eventIn  SFVec3f change_me
+   eventOut SFFloat transp
+
+   url "vrmlscript:
+	function change_me (value, time) {
+		transp = value.x;
+	}
+   "
+
+} 
+
+# End of VRML Script TRANSL
+##################################################
+
+
+##################################################
+# Begin of Routing Statements
+
+# Routing for floating panel
+ROUTE PANELPROX.position_changed TO PANELTRANS.translation
+ROUTE PANELPROX.orientation_changed TO PANELTRANS.rotation
+
+# Routing for culling control
+ROUTE CULLSENS.touchTime TO CONTROL.cull_time
+ROUTE CONTROL.cull_flag TO CULLBUT.flag
+#ROUTE CONTROL.cull_flag TO OBJECTSW.whichChoice
+
+# Routing for flip normals control
+ROUTE NFSENS.touchTime TO CONTROL.flip_time
+ROUTE CONTROL.flip_flag TO NFBUT.flag
+ROUTE CONTROL.flip_choice TO N1.oi_choice
+ROUTE CONTROL.flip_choice TO N2.oi_choice
+ROUTE CONTROL.flip_choice TO N3.oi_choice
+ROUTE CONTROL.flip_choice TO N4.oi_choice
+ROUTE CONTROL.flip_choice TO N5.oi_choice
+ROUTE CONTROL.flip_choice TO N6.oi_choice
+ROUTE CONTROL.flip_choice TO N7.oi_choice
+ROUTE CONTROL.flip_choice TO N8.oi_choice
+ROUTE CONTROL.flip_choice TO N9.oi_choice
+ROUTE CONTROL.flip_choice TO NA.oi_choice
+ROUTE CONTROL.flip_choice TO NB.oi_choice
+ROUTE CONTROL.flip_choice TO NC.oi_choice
+
+# Routing to select object version
+ROUTE CONTROL.obj_choice TO OBJECTSW.whichChoice
+
+# Routing for show normals control
+ROUTE NSSENS.touchTime TO CONTROL.show_time
+ROUTE CONTROL.show_flag TO NSBUT.flag
+ROUTE CONTROL.show_flag TO NONOFF.whichChoice
+
+# Routing for spin control
+ROUTE SPINSENS.touchTime TO CONTROL.spin_time
+ROUTE CONTROL.spin_flag TO SPINBUT.flag
+ROUTE CONTROL.spin_enabled TO TIME.enabled
+#ROUTE SPINSENS.touchTime TO TIME.stopTime
+ROUTE SPINSENS.touchTime TO TIME.startTime
+ROUTE TIME.fraction_changed TO SPIN.set_fraction
+ROUTE SPIN.value_changed TO SPINME.set_rotation
+
+# Routing for transparency slider
+ROUTE PSSLIDER.translation_changed TO SLIDER.translation
+ROUTE SLIDER.translation TO TRANSL.change_me
+ROUTE TRANSL.transp TO O1.trans
+ROUTE TRANSL.transp TO O2.trans
+ROUTE TRANSL.transp TO O3.trans
+ROUTE TRANSL.transp TO O4.trans
+
+# Routing for wire outline
+ROUTE WSENS.touchTime TO CONTROL.wire_time
+ROUTE CONTROL.wire_flag TO WBUT.flag
+ROUTE CONTROL.wire_flag TO O1.wswitch
+ROUTE CONTROL.wire_flag TO O2.wswitch
+ROUTE CONTROL.wire_flag TO O3.wswitch
+ROUTE CONTROL.wire_flag TO O4.wswitch
+
+# End of Routing Statements
+##################################################

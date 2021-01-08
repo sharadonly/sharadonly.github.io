@@ -1,0 +1,159 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE>Viewing System</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="PlaneVol.html" tppabs="">Previous</A> 
+-- <A HREF="Hidden.html" tppabs="">Next</A> 
+<H2>3D VIEWING SYSTEM<HR></H2>
+
+
+In immersive VR, the center of projection (view point) corresponds to the position of the user's head. The screens inside an HMD or BOOM represent the view planes and are moving with the user's head. This entire system is being moved and oriented in space like a synthetic camera. Position and orientation of the camera can be uniquely described with respect to a fixed coordinate system by six independent parameters, the so called Six Degrees of Freedom.
+
+<BR><BR><BR><BR>
+<CENTER><IMG SRC="DOFvector.gif" tppabs=""></CENTER>
+
+<UL>
+
+<BR><BR>
+<LI><B><FONT SIZE=+1>The Six Degrees of Freedom (DOF)</FONT></B></LI>
+<BR><BR>
+
+Position (x, y, z):<BR>
+     <UL>
+     <BR>
+     Vector from origin of fixed coordinate system to center of projection<BR>
+     (also called Projection Reference Point PRP, camera point, position of viewer, view point)<BR>
+     </UL>
+<BR>
+Orientation (viewing direction, view up vector):<BR>
+     <UL>
+     <BR>
+     Vector from PRP to VRP (View Reference Point, usually center of View Plane VP) defines viewing direction<BR>
+     <BR>
+View Up Vector (VUP) allows to rotate view plane
+     </UL>
+<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Other Parameters of 3D Viewing System</FONT></B></LI>
+<BR><BR>
+
+Size of view plane defines FOV<BR>
+<BR>
+View Plane Normal (VPN) allows to tilt view plane<BR>
+<BR>
+Front and Back Clipping Planes (FCP, BCP) define the Viewing Frustum (part of the view volume). Ultimately, only objects inside viewing frustum are displayed. 3D clipping occurs at the boundaries of the frustum.<BR>
+<BR>
+View plane can lie inside or outside the viewing frustum.<BR>
+
+</UL>
+
+<BR>
+<CENTER><IMG SRC="viewing_system.gif" tppabs=""></CENTER>
+<BR>
+<BR><hr>
+
+<CENTER>
+<BR>
+<b>The semi-infinite Viewing Volume reduced to a finite Viewing Frustum</b><BR>
+(through the introduction of a front and back clipping plane)<BR><BR><BR>
+<IMG SRC="Frustum.gif" tppabs=""></CENTER>
+<BR>
+
+<BR><HR>
+
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Viewing Parameters in VRML</FONT></B></LI>
+<BR><BR>
+The six Degrees of Freedom (DOF):
+<UL>
+	<b>Viewpoint</b> node: field <i>position</i> and field <i>orientation</i>
+</UL>
+<P>Field of View (FOV), size of view plane:
+<UL>
+ 	<b>Viewpoint</b> node: field <i>fieldOfView</i>, default 0.785398 (45 degrees)<br>
+	view plane is always perpendicular to viewing direction (no View Plane Normal)
+</UL>
+<P>Back Clipping Plane (BCP) or far clipping plane:
+<UL>
+	<b>NavigationInfo</b> node: field <i>visibilityLimit</i>, default (0.0) = infinite visibility
+</UL>
+<P>Front Clipping Plane (FCP) or near clipping plane:
+<UL>
+	<b>NavigationInfo</b> node: indirectly given in first value of field <i>avatarSize</i> (default 0.25)<br>
+	The VRML specification recommends that the browser sets the near clipping plane to one-half of <i>avatarSize[0]</i>.<br>
+Note: The first value in <i>avatarSize</i> is the collision radius and can be thought of as the distance between the center of the avatar's body and the shoulders. The radius defines a cylinder surrounding the avatar's body. The cylinder defines the minimum width of an opening through which an avatar can squeeze.
+
+</UL>
+
+
+</UL>
+
+<hr><br>
+
+<!-- Viewpoint -->
+
+<center>
+<b>The six DOF in  the VRML Viewpoint Node</b>
+<br><br>
+<table border=0><tr>
+<td width=230><center>
+<a href="../LectureVRML/viewpoint.wrl" tppabs="">
+<IMG SRC="../LectureVRML/3Dvrml2.gif" tppabs="" border=0><br><br>
+Load VRML Application</a><br>
+illustrating the fields<br>
+<i>position</i> and <i>orientation</i><br>
+in the Viewpoint node<br><br>
+<a href="../LectureVRML/viewpoint_expl.html" tppabs="" target="viewing"><b>Explain Application</b></a>
+</center></td>
+<td width = 230><center>
+<IMG SRC="../LectureVRML/viewpoint_sml.jpg" tppabs="" border=1>
+<br>
+<a href="../LectureVRML/viewpoint_web.jpg" tppabs="">web size</a> -- <a href="../LectureVRML/viewpoint_scr.jpg" tppabs="">screen size</a>
+</center></td>
+</tr></table>
+</center>
+
+<!-- End of Viewpoint -->
+
+<br><hr><br>
+
+<!-- Viewing -->
+
+<center>
+<b>Other Viewing Parameters in VRML</b>
+<br><br>
+<table border=0><tr>
+<td width=230><center>
+<a href="../LectureVRML/viewing.wrl" tppabs="">
+<IMG SRC="../LectureVRML/3Dvrml2.gif" tppabs="" border=0><br><br>
+Load VRML Application</a><br>
+illustrating the effect<br>
+of near/far clipping planes<br>
+and field of view (FOV)<br><br>
+<a href="../LectureVRML/viewing_expl.html" tppabs="" target="viewing"><b>Explain Application</b></a>
+</center></td>
+<td width = 230><center>
+<IMG SRC="../LectureVRML/viewing_sml.jpg" tppabs="" border=1>
+<br>
+<a href="../LectureVRML/viewing_web.jpg" tppabs="">web size</a> -- <a href="../LectureVRML/viewing_scr.jpg" tppabs="">screen size</a>
+</center></td>
+</tr></table>
+</center>
+
+<!-- End of Viewing -->
+
+<BR><HR>
+<A HREF="PlaneVol.html" tppabs="">Previous</A> 
+-- <A HREF="Hidden.html" tppabs="">Next</A> 
+<!-- Last Update: November 1, 2002 by KPB -->
+</BODY>
+
+</HTML>

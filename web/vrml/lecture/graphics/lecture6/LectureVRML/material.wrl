@@ -1,0 +1,508 @@
+#VRML V2.0 utf8
+
+#Eng 477 Illustration: Reflection Properties - Material Node
+#K.-P. Beier, University of Michigan
+#Last Update: November 11, 2002
+
+
+############################################################
+##### Begin of Overall Parameters
+
+Background {skyColor [ 0.4 0.4 0.4 ]}
+
+NavigationInfo {
+	type ["EXAMINE" "ANY"]
+	headlight FALSE
+}
+
+Viewpoint { description "Front" }
+
+Viewpoint {
+	position 0 0 -10
+	orientation 0 1 0 3.14
+	description "Rear"
+}
+
+DirectionalLight {
+	ambientIntensity 0.6
+}
+
+##### End of Overall Parameters
+############################################################
+
+
+############################################################
+##### Begif of Prototype Object
+
+PROTO Object [
+
+            field SFColor diffcol 0 0 0
+            field SFColor speccol 0 0 0
+     exposedField SFFloat shiny   0.0
+     exposedField SFFloat ambient 0.0
+            field SFColor emiss   0 0 0
+     exposedField SFInt32 switch  0  # 0: show sphere, 1: show scripted shpere, 2: show box
+
+	field SFFloat rad   1.4  # radius of sphere
+	field SFInt32 numLat 26  # number of longitudes (parallel to equator)
+	field SFInt32 numLng 26  # number of latitudes  (passing through poles)
+	field SFFloat cra  3.14  # crease angle
+ 
+]{
+
+Switch { whichChoice IS switch choice [
+
+	Shape {					# choice 0: default sphere
+		appearance DEF APR Appearance { material Material {
+			diffuseColor     IS diffcol
+			specularColor    IS speccol
+			shininess        IS shiny
+			ambientIntensity IS ambient
+			emissiveColor    IS emiss	
+		}}
+		geometry Sphere {radius 1.4}
+	}
+
+ 	Shape {					# choice 1: scripted sphere
+		appearance USE APR
+		geometry DEF IFS IndexedFaceSet {
+			coord DEF C Coordinate { }
+			texCoord DEF TC TextureCoordinate { }
+			creaseAngle IS cra
+		}
+	}
+
+	Shape {					# choice 2: box
+		appearance USE APR
+		geometry Box {size 1.7 1.7 1.7 }
+	}
+
+]}
+
+DEF S Script {		# script to create scripted sphere
+        field SFFloat rad IS rad
+        field SFInt32 numLat IS numLat
+        field SFInt32 numLng IS numLng
+        eventOut MFVec3f c_changed
+        eventOut MFVec2f t_changed
+        eventOut MFInt32 ci_changed
+        url "vrmlscript:
+                function initialize () {
+                        var r, angle, x, y, z;
+                        var i, j, polyIndex;
+                        for (i = 0; i < numLat; i++) {
+                           angle = i * ( Math.PI / (numLat-1) ) - ( 0.5 * Math.PI );
+                           y = Math.sin(angle);
+                           r = rad * Math.sqrt ( 1 - y*y );
+                           y = y * rad;
+                           for (j = 0; j < numLng; j++) {
+                                angle = 2 * Math.PI * j / numLng;
+                                x = -Math.sin(angle) * r;
+                                z = -Math.cos(angle) * r;
+                                c_changed [i*numLng+j] = new SFVec3f (x,y,z);
+                                t_changed [i*numLng+j] = new SFVec2f (j/numLng, i/(numLat-1));
+                           }
+                        }
+                        for (i = 0; i < numLat-1; i++) {
+                           for (j = 0; j < numLng; j++) {
+                                polyIndex = 5 *( i * numLng + j );
+                                ci_changed [polyIndex+0] = i * numLng + j;
+                                ci_changed [polyIndex+1] = i * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+2] = (i+1) * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+3] = (i+1) * numLng + j;
+                                ci_changed [polyIndex+4] = -1;
+                           }
+                        }
+                }
+        "
+}
+
+ROUTE S.c_changed TO C.point
+ROUTE S.t_changed TO TC.set_point
+ROUTE S.ci_changed TO IFS.set_coordIndex
+
+}
+
+##### End of Prototype Object
+############################################################
+
+
+############################################################
+##### Begin of Scene
+
+# Object at center: all combined
+Transform { translation 0 0 0 rotation 1 1 1 1.57 children [
+	DEF CT Transform { children [
+		DEF CTO Object {
+			diffcol 1 0 0
+			speccol 0 1 0
+			shiny   0.2
+			ambient 0.8
+			emiss   0 0 1
+		}
+	]}
+]}
+Transform { translation 0 -1.8 0 children [
+	Billboard { axisOfRotation 0 0 0 children [
+		Shape {
+			geometry Text {
+		   		string "all combined"
+		   		fontStyle DEF FONT FontStyle {
+					style "BOLD"
+					size 0.5
+					justify ["MIDDLE" "MIDDLE"]
+		   		}
+			}
+			appearance DEF APPEAR Appearance {
+				material Material { diffuseColor 0 0 0 }
+			}
+		}
+	]}
+]}
+
+# Object upper left: diffuse
+Transform { translation -3.4 1.6 0 rotation 1 1 1 1.57 children [ 
+	DEF UL Transform { children [
+		DEF ULO Object { diffcol 1 0 0 }
+	]}
+]}
+Transform { translation -3.4 3.4 0 children [
+	Billboard { axisOfRotation 0 0 0 children [
+		Shape {
+			geometry Text {
+		   		string "diffuse"
+		   		fontStyle USE FONT
+			}
+			appearance USE APPEAR
+		}
+	]}
+]}
+
+# Object upper right: diffuse & ambient
+Transform { translation 3.4 1.6 0 rotation 1 1 1 1.57 children [
+	DEF UR Transform { children [
+		DEF URO Object { diffcol 1 0 0 ambient 0.8 }
+	]}
+]}
+Transform { translation 3.4 3.4 0 children [
+	Billboard { axisOfRotation 0 0 0 children [
+		Shape {
+			geometry Text {
+		   		string "diffuse & ambient"
+		   		fontStyle USE FONT
+			}
+			appearance USE APPEAR
+		}
+	]}
+]}
+
+# Object lower left: specular
+Transform { translation -3.4 -1.6 0 rotation 1 1 1 1.57 children [
+	DEF LL Transform { children [
+		DEF LLO Object { speccol 0.0 1.0 0.0  shiny 0.2}
+	]}
+]}
+Transform { translation -3.4 -3.4 0 children [
+	Billboard { axisOfRotation 0 0 0 children [
+		Shape {
+			geometry Text {
+		   		string "specular"
+		   		fontStyle USE FONT
+			}
+			appearance USE APPEAR
+		}
+	]}
+]}
+
+# Object lower right: emissive
+Transform { translation 3.4 -1.6 0 rotation 1 1 1 1.57 children [
+	DEF LR Transform { children [
+		DEF LRO Object { emiss 0.0 0.0 1.0 }
+	]}
+]}
+Transform { translation 3.4 -3.4 0 children [
+	Billboard { axisOfRotation 0 0 0 children [
+		Shape {
+			geometry Text {
+		   		string "emissive"
+		   		fontStyle USE FONT
+			}
+			appearance USE APPEAR
+		}
+	]}
+]}
+
+##### End of Scene
+############################################################
+
+
+############################################################
+##### Begin of Floating Panel
+
+# ProximitySensor to measure the viewer's position and orientation
+DEF PANELPROX ProximitySensor {size 1000 1000 1000}
+
+# Transform to follow the viewer and make the panel appears to be static
+DEF PANELTRANS Transform { children [
+
+# Touch Sensor to switch Object
+
+	Transform { translation 0 -0.7 -2 children [
+		DEF CLICK TouchSensor { }
+		Shape { geometry IndexedFaceSet {	# front face
+			coord Coordinate { point [ 0.06  0.00  0,
+							   0.00  0.06  0,
+							  -0.06  0.00  0,
+							   0.00 -0.06  0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color Color {color [0.75 0.75 0]}
+		}}
+		Shape { geometry IndexedFaceSet {	# back face
+			coord Coordinate { point [ 0.08  0.00 -0.001,
+							   0.00  0.08 -0.001,
+							  -0.08  0.00 -0.001,
+							   0.00 -0.08 -0.001 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color Color { color [ 0 0 0 ] }
+		}}
+	]}
+
+# Slider for Shininess
+
+	Transform {		# begin of sh-slider track & label
+		translation -3.0 -1.4 -5 rotation 0 0 1 1.57 children [
+			Shape { geometry DEF SLTR IndexedFaceSet {
+				coord Coordinate { point [
+							-0.18  -0.025  0,
+							 1.18  -0.025  0,
+							 1.18   0.025  0,
+							-0.18   0.025  0 ]}
+				coordIndex [ 0 1 2 3 -1 ]
+				colorPerVertex FALSE
+				color Color { color [ 0.7 0.7 0 ] }
+			}}
+			Transform {translation 0.5 0.4 0 children [ Shape {
+				geometry Text {
+					string "shininess"
+		   			fontStyle DEF FONT2 FontStyle {
+						style "BOLD"
+						size 0.27
+						justify ["MIDDLE" "MIDDLE"]
+		   			}
+				}
+				appearance USE APPEAR
+			}]}			
+		]
+	}			# end of sh-slider track & label
+
+	Transform {		# begin of sh-slider plane sensor
+		translation -3.0 -1.4 -5 rotation 0 0 1 1.57 children [
+			DEF PSSLIDER PlaneSensor {
+				minPosition 0 0
+				maxPosition 1 0
+				offset 0.2 0 0
+			}
+			DEF SSLIDER Transform { translation 0.2 0 0 children [
+				Shape { geometry IndexedFaceSet {		# front face
+					coord DEF COD Coordinate { point [
+							 0.00 -0.17  0.001,
+							 0.12  0.00  0.001,
+							 0.00  0.17  0.001,
+							-0.12  0.00  0.001 ]}
+					coordIndex [ 0 1 2 3 -1 ]
+					colorPerVertex FALSE
+					color Color { color [ 0 0.9 0 ] }
+				}}
+				Shape { geometry DEF BACK IndexedFaceSet { # back face
+					coord Coordinate { point [
+							 0.00 -0.22  0.0005,
+							 0.17  0.00  0.0005,
+							 0.00  0.22  0.0005,
+							-0.17  0.00  0.0005 ]}
+					coordIndex [ 0 1 2 3 -1 ]
+					colorPerVertex FALSE
+					color Color { color [ 0 0 0 ] }
+				}}
+			]}
+		]
+	}			# end of sh-slider plane sensor
+
+
+	Transform {		# begin of sh-slider numerical output
+		translation -3.0 -1.8 -5 children [ Shape {
+			geometry DEF BBB Text {
+				string ".20"
+		   		fontStyle USE FONT2
+			}
+			appearance USE APPEAR
+			
+		}]
+	}			# end of sh-slider numerical output
+		
+# Slider for AmbientIntesity
+
+	Transform {		# begin of am-slider track & label
+		translation 3.0 0.3 -5 rotation 0 0 1 1.57 children [
+			Shape { geometry USE SLTR }
+			Transform {translation 0.5 -0.4 0 children [ Shape {
+				geometry Text {
+					string "ambientIntensity"
+		   			fontStyle USE FONT2
+				}
+				appearance USE APPEAR
+			}]}			
+		]
+	}			# end of am-slider track & label
+
+	Transform {		# begin of am-slider plane sensor
+		translation 3.0 0.3 -5 rotation 0 0 1 1.57 children [
+			DEF PSASLIDER PlaneSensor {
+				minPosition 0 0
+				maxPosition 1 0
+				offset 0.8 0 0
+			}
+			DEF ASLIDER Transform { translation 0.8 0 0 children [
+				Shape { geometry IndexedFaceSet {
+					coord USE COD
+					coordIndex [ 0 1 2 3 -1 ]
+					colorPerVertex FALSE
+					color Color { color [ 0.9 0 0 ] }
+				}}
+				Shape { geometry USE BACK }
+			]}
+		]
+	}			# end of am-slider plane sensor
+
+
+	Transform {		# begin of am-slider numerical output
+		translation 3.0 1.7 -5 children [ Shape {
+			geometry DEF CCC Text {
+				string ".80"
+		   		fontStyle USE FONT2
+			}
+			appearance USE APPEAR
+			
+		}]
+	}			# end of sh-slider numerical output
+
+]}
+
+# Routing for floating panel
+
+ROUTE PANELPROX.position_changed TO PANELTRANS.translation
+ROUTE PANELPROX.orientation_changed TO PANELTRANS.rotation
+
+##### End of Floating Panel
+############################################################
+
+
+############################################################
+##### Interpolator and Time Sensor
+
+DEF ROTATE OrientationInterpolator {
+	key [ 0.0 0.3333 0.6667 1.0 ]
+	keyValue [ 0 1 0.6 0 , 0 1 0 2.0944 , 0 1 0.5 4.1888 , 0 1 0.2 0 ]
+}
+DEF TS TimeSensor { loop TRUE cycleInterval 8.0 }
+
+##### End of Interpolator and Time Sensor
+############################################################
+
+
+###########################################################
+##### Begin of VRML Scripts
+
+# Begin of VRML Script DCH
+      # this script handles the display choice for the Object
+
+DEF DCH Script {
+	eventIn  SFTime  click
+	eventOut SFInt32 bs
+	field    SFInt32  oldbs 0
+
+	url "vrmlscript:
+
+		function initialize ( ) {
+			bs = 0
+		}
+
+		function click (value, time){
+			oldbs = oldbs + 1;
+			if (oldbs == 3) oldbs = 0, bs = 0;	
+			else bs = oldbs;
+		}
+	"
+}
+
+# End of VRML Script DCH
+
+# Begin of VRML Script SLIDE
+      # this script handles the two sliders
+
+DEF SLIDE Script {
+	eventIn  SFVec3f  sxin
+	eventOut SFFloat  spar
+	eventOut MFString snum
+	eventIn  SFVec3f  axin
+	eventOut SFFloat  apar
+	eventOut MFString anum
+
+	url "vrmlscript:
+
+		function trim (value) {
+			return Math.round (value * 100)/ 100;
+		}
+
+		function sxin (value,time){
+			spar = value.x;
+			snum [0] = trim (value.x);
+		}
+
+		function axin (value,time){
+			apar = value.x;
+			anum [0] = trim (value.x);
+		}
+
+	"
+}
+
+# End of VRML Script SLIDE
+
+##### End of VRML Scripts
+###########################################################
+
+
+###########################################################
+##### Routing Statements
+
+# Routing for Object Rotation
+ROUTE TS.fraction_changed TO ROTATE.set_fraction
+ROUTE ROTATE.value_changed TO UL.set_rotation
+ROUTE ROTATE.value_changed TO UR.set_rotation
+ROUTE ROTATE.value_changed TO LL.set_rotation
+ROUTE ROTATE.value_changed TO LR.set_rotation
+ROUTE ROTATE.value_changed TO CT.set_rotation
+
+# Routing for Switching Object
+ROUTE CLICK.touchTime TO DCH.click
+ROUTE DCH.bs TO CTO.switch
+ROUTE DCH.bs TO ULO.switch
+ROUTE DCH.bs TO URO.switch
+ROUTE DCH.bs TO LLO.switch
+ROUTE DCH.bs TO LRO.switch
+
+# Routing for shininess slider
+ROUTE PSSLIDER.translation_changed TO SSLIDER.translation
+ROUTE PSSLIDER.translation_changed TO SLIDE.sxin
+ROUTE SLIDE.spar TO LLO.shiny
+ROUTE SLIDE.spar TO CTO.shiny
+ROUTE SLIDE.snum TO BBB.string
+
+# Routing for ambientIntensity slider
+ROUTE PSASLIDER.translation_changed TO ASLIDER.translation
+ROUTE PSASLIDER.translation_changed TO SLIDE.axin
+ROUTE SLIDE.apar TO URO.ambient
+ROUTE SLIDE.apar TO CTO.ambient
+ROUTE SLIDE.anum TO CCC.string

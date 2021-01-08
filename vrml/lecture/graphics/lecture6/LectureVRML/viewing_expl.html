@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<title>Explain Viewing</title>
+</head>
+
+<body bgcolor="#FFFF99">
+
+<b><font size=+1>VRML Illustration: Viewing Parameters in VRML</font></b>
+<p><hr>
+ 
+<br>
+The 3D viewing system in VRML uses a viewing frustum as described in the lecture notes.<br>
+<br>
+Position and orientation of the frustum in 3D space (i.e., the 6 DOF's of 3D viewing) are controlled by the current viewpoint ( fields <i>position</i> and <i>orientation</i> in the Viewpoint node). In addition, the navigation tools of the VRML browser allow for the interactive manipulation of position and orientation.<br>
+
+<br>
+This VRML application illustrates the effect of the additional viewing parameters near clipping plan, far clipping plan, and field of view (FOV). <br>
+
+<ul>
+
+<br><li>
+The <b>near slider</b> moves the near clipping plane away from the current viewpoint and into the object, thereby, slicing the object open.<br>
+<br>
+The initial default position of the near clipping plan (very close to the viewpoint) has been changed to very close to the front of the object in this VRML application.<br>
+
+<br><br><li>
+The <b>far slider</b> moves the far clipping plan closer to the viewpoint, thereby, slicing into the object from the rear. In most cases, this effect becomes only visible after the front of the object has been opened up.<br>
+<br>
+The initial default position of the far clipping plan (at infinity) has been set to very close to the rear of the object in this VRML application.<br>
+
+<br><br><li>
+A similar slicing effect occurs when moving the viewpoint using the browser's navigation tools. In this case, near and far clipping plane are moved in parallel while maintaining their current (constant) distance from the viewpoint.<br>
+
+<br><br><li>
+The <b>spin button</b> rotates the object and illustrates continuos, real-time clipping at the boundaries of the viewing frustum.<br>
+
+<br><br><li>
+Three <b>pre-defined viewpoints</b> (Front View, Tilted View, Top View) allow for changing the overall position and orientation of the frustum. Note that the clipping planes are always perpendicular to the viewing direction and change their orientation accordingly.<br>
+
+<br><br><li>
+The <b>FOV slider</b> changes the field of view from its default value of 45 degrees to a maximum of 73.6 degrees (wide-angle) or a minimum of 32.4 degrees (zoom). This causes the frustum to widen or to narrow, respectively. To reset the default, click on the green triangle marker. Changing the FOV has no effect on the current position of the near and far clipping planes.<br>
+
+</ul>
+
+<br>
+Note: Some VRML browsers may use different techniques to handle near and far clipping plans and FOV. This VRML applications has been developed for the CosmoPlayer 2.1.1 for Windowsxx/NT.
+
+
+<p><hr>
+Viewing 
+<!-- Last Update: October 29, 2000 by KPB -->
+</body>
+</html>

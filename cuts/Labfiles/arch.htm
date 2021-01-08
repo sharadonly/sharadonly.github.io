@@ -1,0 +1,91 @@
+<html><head><title>Bowie State University</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<style>
+A { TEXT-DECORATION: none; color:#FFFFFF; }
+A.white { COLOR: white; }
+all.clsMenuItemNS { COLOR: white; FONT: small Verdana, Arial; TEXT-DECORATION: none }
+.clsMenuItemIE { COLOR: white; CURSOR: hand; FONT: x-small Verdana, Arial; TEXT-DECORATION: none }
+A:hover { COLOR: #FCD800 }
+div { font-family: Verdana, Arial; }
+	TD {font-size: 12pt; font-family: Arial, Helvetica, sans-serif; color:#006699}
+	.A2 {text-align: right}
+	.A1 {text-align: left; vertical-align: middle}
+</style>
+
+</head>
+<body bgcolor="#333333" text="#bed593" link="#bed5cc" vlink="#cc6633" alink="#ffff00">
+<h1 align="center"><font face="Arial, Helvetica, sans-serif">Architecture Overview</font></h1>
+<table style="border-collapse: collapse;" id="AutoNumber5" border="0" bordercolor="#111111" cellpadding="0" cellspacing="0" height="143" width="772">
+  <tbody>
+    <tr> 
+      <td style="border-style: none; border-width: medium;" height="100" width="126"> 
+        <p align="center">&nbsp; </p></td>
+      <td style="border-style: none; border-width: medium;" height="100" width="456"> 
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="565">
+          <tbody>
+            <tr> 
+              <td class="A2" width="69"> <p style="text-align: left;"><a href="../cuts2.jpg"><img src="../cuts2.jpg" width="330" height="247" border="0"></a></p>
+                <p style="text-align: left;"><br>
+                  &nbsp;</p></td>
+              <td style="font-size: 12pt; font-family: Arial,Helvetica,sans-serif; color: rgb(0, 102, 153);" width="20"> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class="A1" nowrap="wrap" width="476"><div align="justify">The 
+                  CU is a secure overlay network (see Figure 1). That is, it is 
+                  an independent, logical network that runs over existing physical 
+                  network facilities between participating sites. It employs a 
+                  number of security appliances (one at each participating site) 
+                  that create and maintain the CU network. The appliance, termed 
+                  the CyberWATCH Underground Tunnel Server (CUTS), is a modest 
+                  computer. Each CUTS will be sent to the participating site preconfigured,fully 
+                  ready to drop into the site's network. The CUTS runs the Linux 
+                  operating system and creates the CU network through either a 
+                  Layer 3 or Layer 4 secure tunnel. The CUTS also provides network 
+                  health information via SNMP to a health monitoring server. The 
+                  CU is a separate logical network, but uses the campus/ISP (physical) 
+                  connection of the local site. Ideally, the CUTS will be placed 
+                  in the lab of a CyberWATCH member. </div></td>
+            </tr>
+            <tr> 
+              <td style="font-size: 12pt; font-family: Arial,Helvetica,sans-serif; color: rgb(0, 102, 153);" width="69">&nbsp; 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+    <tr> 
+      <td colspan="2" bordercolor="#FFFFFF" height="20" width="745"><div align="justify">
+          <p>Each site determines which of its resources, if any, it will connect 
+            to the CU, when they will connect and for how long. The CU requires 
+            no dedicated computing resources except for the CUTS and an ISP connection. 
+            The network behind the CUTS may be as simple or as complex as desired.While 
+            the CU runs over existing physical network connections at each site 
+            and through the Internet, it is designed to be a closed network. It 
+            does not and will not provide connectivity to the Internet and is 
+            not designed. Note that the CUTS does not coopt the Internet connection 
+            at its placement site. The CUTS operates in parallel with existing 
+            network connections.</p>
+          <p><strong>The CyberWATCH Underground Tunnel Server (CUTS)</strong><br>
+            <br>
+            Operating System: Linux (RHEL 5), iptables (firewall), iproute2 (traffic 
+            shaping/policing)<br>
+            Tunnel Software: IPSec (or OpenVPN, if necessary)<br>
+            Health Monitoring Software: NetSNMP, Nagios. Cacti, RRDtool</p>
+          <p>&nbsp;</p>
+        </div></td>
+    </tr>
+    <tr> 
+      <td colspan="2" bordercolor="#000080" style="border-style: solid; border-width: 1px;" align="center" bgcolor="#96adc5" height="23" width="757"> 
+        <font color="#000000" face="Times New Roman"><em><font face="Arial, Helvetica, sans-serif">For 
+        further details contact:</font></em> </font> <font face="Times New Roman, Times, serif"><font color="#000000"><br>
+        <b> <a target="_blank" href="http://www.cs.bowiestate.edu/Faculty_Pages/Dr._Srivastava/Srivastava_Page.htm"> 
+        <font face="Arial, Helvetica, sans-serif">Dr. Mark Matties and Dr. Sharad Sharma<br>
+        Department of Computer Science<br>
+		Bowie State University, Bowie, MD 20715 <br>
+        Office Phone: (301) 860 - 3974 </font></a></b></font></font></td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

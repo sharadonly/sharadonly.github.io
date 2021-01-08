@@ -1,0 +1,116 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE>Light</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="Illumination.html" tppabs="">Previous</A> 
+-- <A HREF="Reflection.html" tppabs="">Next</A> 
+<H2>LIGHT SOURCES<HR></H2>
+
+
+<UL>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Point Light Source</FONT></B></LI>
+<BR><BR>
+
+- radiates light energy equally in all directions (omnidirectional)<BR>
+- defined by position in space and light intensity<BR>
+- incident rays strike surface with varying angles<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Spot Light Source</FONT></B></LI>
+<BR><BR>
+
+- creates a beam or cone of directed light<BR>
+- defined by position, light intensity, direction, and spot angle<BR>
+- intensity may vary across beam<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Directional or Parallel Light</FONT></B></LI>
+<BR><BR>
+
+- source is assumed to be far away<BR>
+- all rays are parallel<BR>
+- defined by direction and light intensity<BR>
+- incident rays strike surface with constant angles<BR>
+
+</UL>
+<BR>
+<CENTER><IMG SRC="light.gif" tppabs=""></CENTER>
+<BR>
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Ambient Light</FONT></B></LI>
+<BR><BR>
+
+- replaces the effect of inter-object reflections<BR>
+- avoids otherwise 'black' surfaces that receive no direct illumination<BR>
+- can be seen as nondirectional background light present throughout the scene<BR>
+- defined by intensity only<BR>
+- typically 20 to 25% percent of total illumination<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Emissive Light</FONT></B></LI>
+<BR><BR>
+- not an actual light source, but a property of an object (material property)<BR>
+- makes an objects appear to be giving off light<BR>
+- object has an intrinsic intensity (self-luminous object)<BR>
+- defined by light intensity only<BR>
+- has no effect on other objects (not treated as a light source)<BR>
+- used to model a light source like a lamp (note: a light source by itself is invisible)
+<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Other Effects (VRML 2.0)</FONT></B></LI>
+<BR><BR>
+- in VRML 2.0, ambient light is defined as part of a light source (although it is sourceless)<BR>
+- attenuation: light intensity decreases with distance from light source<BR>
+- radius: used to limit the effect of a point or spot light, objects outside radius are not lit
+<BR><BR>
+Note: In VRML 2.0, 'light intensity', as used above, is defined by color (R,G,B) and intensity, a factor applied to the color components (except for emissive light).
+
+</UL>
+
+<hr><br>
+
+<!-- Light Sources -->
+
+<center>
+<b>Light Sources in VRML</b>
+<br><br>
+<table border=0><tr>
+<td width=230><center>
+<a href="../LectureVRML/light.wrl" tppabs="">
+<IMG SRC="../LectureVRML/3Dvrml2.gif" tppabs="" border=0><br><br>
+Load VRML Application</a><br>
+illustrating the light sources<br>
+available in VRML<br><br>
+<a href="../LectureVRML/light_expl.html" tppabs="" target="viewing"><b>Explain Lights</b></a>
+</center></td>
+<td width = 230><center>
+<IMG SRC="../LectureVRML/light_sml.jpg" tppabs="" border=1>
+<br>
+<a href="../LectureVRML/light_web.jpg" tppabs="">web size</a> -- <a href="../LectureVRML/light_scr.jpg" tppabs="">screen size</a>
+</center></td>
+</tr></table>
+</center>
+
+<!-- Light Sources -->
+
+<BR><HR>
+<BR>
+<A HREF="Illumination.html" tppabs="">Previous</A> 
+-- <A HREF="Reflection.html" tppabs="">Next</A> 
+<!-- Last Update: November 3, 2000 by KPB -->
+</BODY>
+
+</HTML>

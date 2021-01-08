@@ -1,0 +1,194 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE> Normals</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="Shading.html" tppabs="">Previous</A> 
+-- <A HREF="Texture.html" tppabs="">Next</A> 
+<H2>SURFACE NORMALS<HR></H2>
+
+
+<UL>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Definition</FONT></B></LI>
+<BR><BR>
+
+A normal is a vector that describes the orientation of a surface at a given point. The normal is perpendicular to the surface's tangential plane at the given point.<BR>
+<BR>
+
+On a smoothly curved surface, the normal direction changes continuously from point to point.<BR>
+<BR>
+
+On a plane, all normals point in the same direction (parallel).<BR>
+<BR>
+
+<BR>
+</UL>
+<CENTER><IMG SRC="normals1.gif" tppabs=""></CENTER>
+<UL>
+<BR>
+
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Front and Back Faces</FONT></B></LI>
+<BR><BR>
+
+The normal direction indicates the 'front face' of a surface or polygon. The front face is visible if the normal points towards the viewer. The opposite side of the polygon is the 'back face'.<BR>
+<BR>
+
+Shading algorithms can render only the front faces (to save time), or can also render both faces (two-sided shading).<BR>
+<BR>
+
+Culling completely removes polygons that face the viewer with their back faces.<BR>
+<BR>
+
+<BR>
+</UL>
+<CENTER><IMG SRC="normals2.gif" tppabs=""></CENTER>
+<UL>
+<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Face Normals and Vertex Normals</FONT></B></LI>
+<BR><BR>
+
+A face normal indicates the average orientation of a polygon.<BR>
+Triangles are always planar and have a constant orientation. Any n-sided polygon with n>3 can be nonplanar (twisted).<BR>
+<BR>
+
+A vertex normal indicates the surface orientation at the vertex of a polygon.<BR>
+<BR>
+
+<BR>
+<CENTER><IMG SRC="normals3.gif" tppabs=""></CENTER>
+<BR>
+
+Face normals<BR>
+     <UL>
+     - are usually calculated as the average of all vertex normals of a polygon<BR>
+     - are used as indicators for single-sided shading, flat shading, culling ..<BR>
+     </UL>
+<BR>
+
+Vertex normals<BR>
+     <UL>
+     - can be provided as part of the geometry (and may be calculated from an analytical surface description)<BR>
+     - if not provided, are derived from the triangular plane defined by the two edges that meet at the vertex<BR>
+     - are used in Gouraud, Phong, and other shading algorithms<BR>
+     </UL>
+<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Vertex Ordering and Normal Direction</FONT></B></LI>
+<BR><BR>
+
+The sequence in which polygon vertices are defined (ordering) can be used to determine back and front face of a polygon and direction of normals.<BR>
+<BR>
+
+Default: front face is visible if vertices appear in counterclockwise order. Normal should point towards viewer.<BR>
+<BR>
+
+Normals provided with geometry should be consistent with vertex ordering (otherwise undesirable rendering results).<BR>
+<BR>
+
+<BR>
+</UL>
+<CENTER><IMG SRC="normals4.gif" tppabs=""></CENTER>
+<UL>
+<BR>
+	
+If normals are not provided, vertex ordering determines the direction of normals and should be consistent throughout.<BR>
+<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Shared Vertex Normals and Smooth Shading</FONT></B></LI>
+<BR><BR>
+
+Smooth surfaces are approximated by a mesh of polygons. Shading results are discontinuous across polygon edges.<BR>
+<BR>
+
+<BR>
+</UL>
+<CENTER><IMG SRC="normals5.gif" tppabs=""></CENTER>
+<UL>
+<BR>
+
+Shared vertex normals average the surface's orientation at a given vertex and combine the face or vertex normals from all polygons that meet at the vertex.<BR>
+<BR>
+
+Result: continuous shading across polygon edges.<BR>
+<BR>
+
+Control parameter for automatic smooth shading: crease angle<BR>
+<BR>
+
+</UL>
+<BR>
+<CENTER><IMG SRC="normals6.gif" tppabs=""></CENTER>
+<BR>
+
+<UL>
+<BR>
+VRML: The field <i>creaseAngle</i> (e.g., in the IndexedFaceSet node) specifies a tolerance angle. If the angle between the separate normals (alpha) is less or equal the value specified in <i>creaseAngle</i>, a shared normal will be used and smooth shading across the edge will be applied.
+
+</UL>
+
+
+<hr><br>
+
+<!-- Crease Angle -->
+
+<center>
+</center>
+
+<hr>
+<br>
+<center>
+<b>Application Example of Crease Angle</b>
+<br><br>
+
+<table border=0><tr>
+
+<td><center><a href="facet.html" tppabs=""><img src="facet_sml.jpg" tppabs="" width=220 height=194 border=1></a><br><br>
+Railing Detail:<br>
+crease angle = 0<br>
+for cylinders and sphere<br>
+(<a href="facet.html" tppabs="">enlarge to screen size</a>)
+</center></td>
+
+<td width=10><td>
+
+<td><center><a href="crease.html" tppabs=""><img src="crease_sml.jpg" tppabs="" width=220 height=194 border=1></a><br><br>
+Railing Detail:<br>
+crease angle = 20 degrees (cylinder)<br>
+crease angle = 45 degrees (sphere)<br>
+(<a href="crease.html" tppabs="">enlarge to screen size</a>)
+</center></td>
+
+</tr></table>
+
+<br>
+Note the excellent result (smooth shading) for the cylinders<br>
+and the slightly poorer result for the sphere<br>
+caused by a polygon mesh that requires a larger crease angle.
+</center>
+
+
+
+<BR><HR>
+<A HREF="Shading.html" tppabs="">Previous</A> 
+-- <A HREF="Texture.html" tppabs="">Next</A> 
+<!-- Last Update: January 27, 2002 by KPB -->
+</BODY>
+
+</HTML>

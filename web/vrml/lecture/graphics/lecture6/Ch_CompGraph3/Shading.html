@@ -1,0 +1,108 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE>Shading</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="VRMLReflection.html" tppabs="">Previous</A> 
+-- <A HREF="Normals.html" tppabs="">Next</A> 
+<H2>SHADING ALGORITHMS<HR></H2>
+
+
+<UL>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>General Process</FONT></B></LI>
+<BR><BR>
+
+- polygons are shaded one at a time<BR>
+<BR>
+- for a given point on a polygon, we need to know:<BR>
+     <UL>
+     surface normal at point<BR>
+     direction and intensity of incident light rays<BR>
+     material properties<BR>
+     viewing direction<BR>
+     </UL>
+<BR>
+- using the illumination equation, we can calculate the resulting reflection intensity I in the viewing direction for the given point<BR>
+<BR>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Flat Shading  (constant shading, faceted shading)</FONT></B></LI>
+<BR><BR>
+
+- use averaged normal (face normal) of polygon<BR>
+- find intensity I for center of polygon<BR>
+- fill all pixels of polygon with same intensity I<BR>
+
+</UL>
+<CENTER><IMG SRC="shading_1.gif" tppabs=""></CENTER>
+<UL>
+
+Characteristics of Flat Shading:<BR>
+<BR>
+- constant color for each polygon<BR>
+- different color shade for neighboring polygons if orientation (face normal) varies<BR>
+- requires only 'fill area'<BR>
+- very fast algorithm, low quality results<BR>
+<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Gouraud Shading  (intensity interpolation)</FONT></B></LI>
+<BR><BR>
+
+- use vertex normals (one normal per vertex)<BR>
+- for each vertex, find intensity I  (I1, I2, I3, I4)<BR>
+- interpolate intensities along polygon boundaries  (Il, Ir)<BR>
+- interpolate intensities along scan lines  (Ip)<BR>
+
+</UL>
+<CENTER><IMG SRC="shading_2.gif" tppabs=""></CENTER>
+<UL>
+
+Characteristics of Gouraud Shading:<BR>
+<BR>
+- correct intensity calculation only at vertices<BR>
+- specular highlights can only be caught at vertices<BR>
+- requires linear color interpolation (intensities = colors)<BR>
+- normals can be replaced by given color per vertex for color coding applications<BR>
+- typically used in VR viewing<BR>
+- fast if hardware supported, good quality results<BR>
+<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Phong Shading  (vector interpolation)</FONT></B></LI>
+<BR><BR>
+
+- use vertex normals<BR>
+- interpolate normals along polygon boundaries  (Nl, Nr)<BR>
+- interpolate normals along scan lines  (Np)<BR>
+- for each point on scan line, find intensity Ip from local normal vector Np<BR>
+
+</UL>
+<CENTER><IMG SRC="shading_3.gif" tppabs=""></CENTER>
+<UL>
+
+Characteristics of Phong Shading:<BR>
+<BR>
+- involves linear normal interpolation<BR>
+- correct intensity calculation at each surface point<BR>
+- specular highlights can be caught at any point<BR>
+- not yet common in VR viewing<BR>
+- slow, superior quality, smooth results
+
+<BR>
+</UL>
+
+<BR><HR>
+<A HREF="VRMLReflection.html" tppabs="">Previous</A> 
+-- <A HREF="Normals.html" tppabs="">Next</A> 
+</BODY>
+
+</HTML>

@@ -1,0 +1,70 @@
+<HTML>
+
+<HEAD>
+   <TITLE> Antialiasing</TITLE>
+</HEAD>
+
+<BODY bgcolor="ffffff">
+<A HREF="Bitmap.html" tppabs="">Previous</A> 
+-- <A HREF="FillArea.html" tppabs="">Next</A> 
+<H2>ANTIALIASING<HR></H2>
+
+
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Aliasing</FONT></B></LI>
+<BR><BR>
+Scan conversion (rasterization) of output primitives creates jagged displays, a problem called aliasing.
+
+</UL>
+<CENTER><IMG SRC="Antialiasing.gif" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/Ch_CompGraph1/Antialiasing.gif"></CENTER>
+<BR>
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Antialiasing</FONT></B></LI>
+<BR><BR>
+
+- smoothing of jaggedness by altering pixel color or pixel gray level<BR>
+- requires multiple bits per pixel (multiple bitplanes)<BR>
+- area averaging technique:
+     <UL>
+     assume a line has a given width<BR>
+     pixel intensity is determined by amount of area covered
+     </UL>
+
+</UL>
+<CENTER><IMG SRC="Antialiasing2.gif" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/Ch_CompGraph1/Antialiasing2.gif"></CENTER>
+
+
+<br>
+<center>
+<table border=0><tr>
+<td width=112><img src="image.gif" tppabs="" border=1></td>
+<td width=20></td>
+<td width=123> <img src="detail1.gif" tppabs="" border=1></td>
+<td width=20></td>
+<td width=128><img src="detail2.gif" tppabs="" border=1></td>
+</tr>
+</table>
+<br>
+Antialiased image (left) and pixel patterns in enlarged details (center and right)
+</center>
+
+<UL><BR><BR>
+<LI><B><FONT SIZE=+1>Alternative Solution: Higher Resolution</FONT></B></LI>
+<BR><BR>
+The visual effect of aliasing will be reduced when using output devices with a higher absolute resolution (pixels per inch). The number of jags increases, but each jag is smaller.
+</UL>
+<CENTER><IMG SRC="resol.gif" tppabs=""><BR><BR>
+Rasterized line on a low resolution device (left)<br>and on a device with twice the horizontal and vertical resolution (right)
+
+</CENTER>
+
+<BR><HR>
+<A HREF="Bitmap.html" tppabs="">Previous</A> 
+-- <A HREF="FillArea.html" tppabs="">Next</A> 
+</BODY>
+
+</HTML>

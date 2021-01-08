@@ -1,0 +1,968 @@
+#VRML V2.0 utf8
+
+#Eng 477 Illustration: Viewpoint
+#K.-P. Beier, University of Michigan
+#Last Update: October 31, 2002 - Version 2
+
+
+##################################################
+#####   Overall Parameters and Viewpoints   ######
+
+Background {skyColor [ 0.5 0.6 1.0 ]}
+
+PointLight { location 5 5 5 intensity 0.2 }
+
+NavigationInfo {type ["EXAMINE" "ANY"]}
+
+DEF OUTV Viewpoint {
+	position -11.076 5.453 8.729
+	orientation -0.285 -0.954 -0.092 1.261
+	description "From Outside"
+}
+
+DEF CURRENT Viewpoint {
+	position 0 0 10
+	orientation 0 0 1 0
+	description "From Viewpoint"
+}
+
+
+##################################################
+#####   Prototypes   #############################
+
+##### Prototype ControlButton
+
+PROTO ControlButton [
+	       field  SFColor   scolor  1 1 1		# color of 0/1 indicator
+		 field  MFString  text    [" "]		# text to the right
+	exposedField  SFInt32   flag     0			# display indicator (0 or 1) 
+]{
+
+Group { children [
+
+	Shape {								# white background panel
+		geometry IndexedFaceSet {
+			coord DEF BX Coordinate { point [ 0.12  0.12 0,
+								   -0.12  0.12 0,
+								   -0.12 -0.12 0,
+								    0.12 -0.12 0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+		}
+	}
+
+	Transform { translation 0 0 0.001 children [
+		Shape {							# black panel outline
+			geometry IndexedLineSet {
+				coord USE BX
+				coordIndex [ 0 1 2 3 0 ]
+				colorPerVertex FALSE
+				color Color { color [ 0 0 0 ] }
+			}
+		}
+	]}
+
+	Transform { translation 0.22 0 0 children [
+		Shape {							# text label to the right
+			geometry Text {
+		   		string IS text
+		   		fontStyle FontStyle {
+					style "BOLD"
+					size 0.27
+					justify ["BEGIN" "MIDDLE"]
+		   		}
+			}
+			appearance Appearance {
+				material Material { diffuseColor 0 0 0 }
+			}
+	   	}
+	]}
+
+	Shape {								# invisible face to .. 
+		appearance Appearance {					#.. enlarge sensor area
+			material Material { transparency 1 }
+		}
+		geometry IndexedFaceSet {
+			coord Coordinate { point [  0.36  0.12 0,
+							   -0.12  0.12 0,
+							   -0.12 -0.12 0,
+							    0.36 -0.12 0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+		}
+	}
+
+ 	Transform { translation 0 0 0.004 children [		# switch to display 0 or 1
+		Switch { whichChoice IS flag choice [
+
+			Shape {		# whichChoice = 0
+				geometry Text {
+		   			string [ "0" ]
+		   			fontStyle DEF STYLEN FontStyle {
+						style "BOLD"
+						size 0.288
+						justify ["MIDDLE" "MIDDLE" ]
+		   			}
+				}
+				appearance DEF APR Appearance {
+					material Material { diffuseColor IS scolor }
+				}
+	   		}
+
+			Shape {		# whichChoice = 1
+				geometry Text {
+		   			string [ "1" ]
+		   			fontStyle USE STYLEN
+				}
+				appearance USE APR
+	   		}
+		]}
+
+	]}
+
+]}}
+
+##### End of Prototype ControlButton
+
+
+##################################################
+#####   The 3D Scene   ###########################
+
+##### Viewpoint Representation
+	# The yellow avatar:
+	# Avatar height = 1.6 meter (from center of sphere to bottom of cylinder)
+	# Avatar collision radius = 0.25 meter (radius of cylinder)
+
+DEF VIEWERPOS Transform { translation 0 0 10 children [
+	DEF ONOFF Switch { whichChoice -1 choice [
+		Shape {			# the default viewing direction (black) ..
+			geometry IndexedLineSet {	#.. not visible for alpha = 0
+				coord Coordinate {point [ 0 0 0, 0 0 -5 ]}
+				coordIndex [ 0 1 ]
+				colorPerVertex FALSE
+				color Color { color [ 0 0 0 ] }
+			}
+		}
+	]}
+	DEF VIEWERROT Transform { rotation 0 0 1 0 children [
+
+		Shape {			# the sphere (head)
+			appearance DEF YELLOW Appearance {material Material {diffuseColor 1 1 0}}
+			geometry Sphere {radius 0.14}
+		}
+
+		Transform { translation 0 -0.94 0 children [
+			Shape {		# the cylinder (body)
+				appearance USE YELLOW
+				geometry Cylinder {radius 0.25 height 1.32}
+			}
+		]}
+
+		Shape {			# the current viewing direction (white)
+			geometry IndexedLineSet {
+				coord Coordinate {point [ 0 0 0, 0 0 -18 ]}
+				coordIndex [ 0 1 ]
+			}
+		}
+
+		DEF VVOL Switch { whichChoice 0 choice [
+			Shape {		# the view volume (white)
+				geometry IndexedLineSet {
+					coord Coordinate {point [
+							  -2 -1.3 -5,  # projection plane
+							   2 -1.3 -5,
+							   2  1.3 -5,
+							  -2  1.3 -5,
+
+						  -0.072 -0.0468 -0.18, # begin of pyramid (cannot ..
+						   0.072 -0.0468 -0.18, # .. start at 0 since this ..
+						   0.072  0.0468 -0.18, # .. would deactivate sensors
+						  -0.072  0.0468 -0.18
+
+							-2.4 -1.56 -6,  # end of pyramid
+							 2.4 -1.56 -6,
+							 2.4  1.56 -6,
+							-2.4  1.56 -6
+					]}
+					coordIndex [ 0 1 2 3 0 -1, 4 8 -1 , 5 9 -1 , 6 10 -1, 7 11 -1]
+				}
+			}
+		]}
+
+		Shape {			# the head x-axis (red)
+			geometry IndexedLineSet {
+				coord Coordinate {point [ 0 0 0, 1 0 0 ]}
+				coordIndex [ 0 1 ]
+				colorPerVertex FALSE
+				color DEF REDLINE Color { color [0.7 0 0] }
+			}
+		}
+
+		Shape {			# the head y-axis (green)
+			geometry IndexedLineSet {
+				coord Coordinate {point [ 0 0 0, 0 1 0 ]}
+				coordIndex [ 0 1 ]
+				colorPerVertex FALSE
+				color DEF GRLINE Color { color [0 0.5 0] }
+			}
+		}
+
+		Shape {			# the head z-axis (blue)
+			geometry IndexedLineSet {
+				coord Coordinate {point [ 0 0 0, 0 0 1 ]}
+				coordIndex [ 0 1 ]
+				colorPerVertex FALSE
+				color Color { color [0 0 1] }
+			}
+		}
+
+		Shape {			# the head rotation-axis (yellow)
+			geometry IndexedLineSet {
+				coord DEF ROTAX Coordinate {point [ 0 0 -1.5, 0 0 1.5 ]}
+				coordIndex [ 0 1 ]
+				colorPerVertex FALSE
+				color Color { color [1 1 0] }
+			}
+		}
+	]}
+]}
+
+##### End of Viewpoint Representation
+
+
+##### Coordinate System
+
+# begin of x-axis (red)
+Transform {		# x cylinder
+	rotation 0 0 1 1.57
+	children [
+		Shape {
+			appearance DEF RED Appearance {
+				material Material { diffuseColor 1 0 0 }
+			}
+			geometry DEF AXIS Cylinder {radius 0.04 height 3}
+		}
+	]
+}
+Transform {		# x cone
+      rotation 0 0 1 -1.57
+      translation 1.4 0 0
+	children [
+		Shape {
+			geometry DEF ENDCONE Cone { bottomRadius 0.2 height 0.5 }
+			appearance USE RED
+		}
+	]
+}
+Transform {		# x label
+	translation 1.85 -0.18 0 
+	children [
+		Shape {
+			geometry Text {
+				string ["X"]
+				fontStyle DEF STYLEL FontStyle {
+					style "BOLD"
+					size 0.6
+					justify "MIDDLE"
+				}
+			}
+			appearance DEF BLACK Appearance {
+				material Material {diffuseColor 0 0 0}
+			}
+		}
+	]
+}
+# end of x-axis
+
+# begin of y-axis (green)
+Shape {		# y cylinder
+	appearance DEF FGREEN Appearance {
+		material Material { diffuseColor 0.13 0.65 0.13 }
+	}
+	geometry USE AXIS
+}
+Transform {		# y cone
+	translation 0 1.4 0
+	children [
+		Shape {
+			geometry USE ENDCONE
+			appearance USE FGREEN
+		}
+	]
+}
+Transform {		# y label
+	translation 0 1.7 0 
+	children [
+		Shape {
+			geometry Text {
+				string ["Y"]
+				fontStyle USE STYLEL
+			}
+			appearance USE BLACK
+		}
+	]
+}
+# end of y-axis
+
+# begin of z-axis (blue)
+Transform {		# z cylinder
+	rotation 1 0 0 1.57
+	children [
+		Shape {
+			appearance DEF BLUE Appearance {
+				material Material {diffuseColor 0 0 1}
+			}
+			geometry USE AXIS
+		}
+	]
+}
+Transform {		# z cone
+	rotation 1 0 0 1.57
+	translation 0 0 1.4
+	children [
+		Shape {
+			geometry USE ENDCONE
+			appearance USE BLUE
+		}
+	]
+}
+Transform {		# z label
+	translation 0 -0.18 1.85
+	rotation 0 1 0 -1.57 
+	children [
+		Shape {
+			geometry Text {
+				string ["Z"]
+				fontStyle USE STYLEL 
+			}
+			appearance USE BLACK
+		}
+	]
+}
+# end of z-axis
+
+##### End of Coordinate System
+
+
+##### Objects on Axes
+
+# green cylinder at 5 meter on y-axis
+Transform { translation 0 5 0 children [
+	Shape {
+		appearance USE FGREEN
+		geometry Cylinder { radius 0.5 height 1.0 }
+	}
+]}
+Shape {		# connecting green line
+	geometry IndexedLineSet {
+		coord Coordinate {point [ 0 2.7 0, 0 3.7 0 ]}
+		coordIndex [ 0 1 ]
+		colorPerVertex FALSE
+		color USE GRLINE
+	}
+}
+
+# green box at 10 meter on y-axis
+Transform { translation 0 10 0 children [
+	Shape {
+		appearance USE FGREEN
+		geometry Box {size 0.65 0.65 0.65 }
+	}
+]}
+Shape {		# connecting green line
+	geometry IndexedLineSet {
+		coord Coordinate {point [ 0 6.3 0, 0 8.7 0 ]}
+		coordIndex [ 0 1 ]
+		colorPerVertex FALSE
+		color USE GRLINE
+	}
+}
+
+# red cone at 5 meter on x-axis
+Transform { translation 5 0 0 children [
+	Shape {
+		appearance USE RED
+		geometry Cone { bottomRadius 0.6 height 1.2}
+	}
+]}
+Shape {		# connecting red line
+	geometry IndexedLineSet {
+		coord Coordinate {point [ 2.7 0 0, 3.7 0 0 ]}
+		coordIndex [ 0 1 ]
+		colorPerVertex FALSE
+		color USE REDLINE
+	}
+}
+
+# red sphere at 10 meter on x-axis
+Transform { translation 10 0 0 children [
+	Shape {
+		appearance USE RED
+		geometry Sphere { radius 0.65 }
+	}
+]}
+Shape {		# connecting red line
+	geometry IndexedLineSet {
+		coord Coordinate {point [ 6.3 0 0, 8.7 0 0 ]}
+		coordIndex [ 0 1 ]
+		colorPerVertex FALSE
+		color USE REDLINE
+	}
+}
+
+##### End of Objects on Axes
+
+##### End of 3D Scene
+
+
+##################################################
+#####   Floating Panel   #########################
+
+# ProximitySensor to measure the viewer's position and orientation
+DEF PANELPROX ProximitySensor {size 1000 1000 1000}
+
+# Transform to follow the viewer and make the panel appears to be static
+DEF PANELTRANS Transform { children [
+
+
+##### Position Controls (lower left)
+
+# begin of position label
+	Transform {
+		translation -3.9 -1.0 -5  rotation 0 0 1 1.5708
+		children [
+			Shape {
+				geometry Text {
+		   			string [ "position" ]
+		   			fontStyle DEF LABELST FontStyle {
+						style "BOLD"
+						size 0.27
+						justify ["MIDDLE" "MIDDLE"]
+		   			}
+				}
+				appearance USE BLACK
+	   		}
+		]
+	}
+# end of position label
+	
+# begin of x-slider
+	Transform {		# begin of x-slider track
+		translation -3.5 -1.3 -5
+		children [ DEF SLCYL
+			Shape {
+				appearance USE BLUE
+				geometry Cylinder { radius 0.025 height 1.4 }
+			}
+		]
+	}			# end of x-slider track
+#
+	Transform {		# begin of x-slider label
+		translation -3.5 -0.4 -5 children [
+			Shape {
+				geometry Text {
+		   			string [ "X" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		] 
+	}			# end of x-slider label
+#
+	Transform {		# begin of x-slider plane sensor
+		translation -3.5 -1.8 -5
+		children [
+			DEF PXSLIDER PlaneSensor {
+				minPosition 0 0
+				maxPosition 0 1
+			}
+			DEF XSLIDER Transform {
+				children [ DEF SLBOX Shape {
+					appearance Appearance {material Material {diffuseColor 1 0.72 0.06}}
+					geometry Box {size 0.15 0.15 0.15 }
+				}]
+			}
+		]
+	}			# end of x-slider plane sensor
+# end of x-slider
+
+# begin of y-slider
+	Transform {		# begin of y-slider track
+		translation -3.2 -1.3 -5
+		children [ USE SLCYL ]
+	}			# end of y-slider track
+#
+	Transform {		# begin of y-slider label
+		translation -3.2 -0.4 -5 children [
+			Shape {
+				geometry Text {
+		   			string [ "Y" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		] 
+	}			# end of y-slider label
+#
+	Transform {		# begin of y-slider plane sensor
+		translation -3.2 -1.8 -5
+		children [
+			DEF PYSLIDER PlaneSensor {
+				minPosition 0 0
+				maxPosition 0 1
+			}
+			DEF YSLIDER Transform {
+				children [ USE SLBOX ]
+			}
+		]
+	}			# end of y-slider plane sensor
+# end of y-slider
+
+# begin of z-slider
+	Transform {		# begin of z-slider track
+		translation -2.9 -1.3 -5
+		children [ USE SLCYL ]
+	}			# end of z-slider track
+#
+	Transform {		# begin of z-slider label
+		translation -2.9 -0.4 -5 children [
+			Shape {
+				geometry Text {
+		   			string [ "Z" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		] 
+	}			# end of z-slider label
+#
+	Transform {		# begin of z-slider plane sensor
+		translation -2.9 -0.8 -5
+		children [
+			DEF PZSLIDER PlaneSensor {
+				minPosition 0 -1
+				maxPosition 0  0
+			}
+			DEF ZSLIDER Transform {
+				children [ USE SLBOX ]
+			}
+		]
+	}			# end of z-slider plane sensor
+# end of z-slider
+
+##### End of Position Controls (lower left)
+
+
+##### Orientation Controls (upper right)
+
+# begin of orientation label
+	Transform {
+		translation 3.9 1.3 -5  rotation 0 0 1 1.5708
+		children [
+			Shape {
+				geometry Text {
+		   			string [ "orientation" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		]
+	}
+# end of orientation label
+
+# begin of alpha slider
+	Transform {		# begin of alpha-slider track
+		translation 2.9 1.3 -5
+		children [ USE SLCYL ]
+	}			# end of alpha-slider track
+#
+	Transform {		# begin of alpha-slider plane sensor (sphere)
+		translation 2.9 1.3 -5
+		children [
+			DEF PASLIDER PlaneSensor {
+				minPosition 0 -0.5
+				maxPosition 0  0.5
+			}
+			DEF ASLIDER Transform {
+				children [ Shape {
+					appearance Appearance {material Material {diffuseColor 1 0.72 0.06}}
+					geometry Sphere { radius 0.1 }
+				}]
+			}
+		]
+	}			# end of alpha-slider plane sensor (sphere)
+# end of alpha slider
+
+# zero marker on alpha slider
+	Transform {
+		translation 2.6 1.3 -5
+		children [
+			DEF ZERO TouchSensor { }
+			Shape {
+				geometry IndexedFaceSet {
+					coord Coordinate { point [ 0.00   0.1  0.0,
+									   0.2    0.0  0.0,
+									   0.00  -0.1  0.0 ] }
+					coordIndex [ 0 2 1 -1 ]
+					colorPerVertex FALSE
+					color Color { color [0 0 0.6]}
+				}
+			}
+		]
+	}
+# end of zero marker on alpha slider
+
+# x button
+	Group { children [ DEF PXBUTTON TouchSensor { }
+		Transform { translation 3.25 1.75 -5 children [
+			DEF PX ControlButton { text ["X"] scolor 0.8 0 0 }
+		]}
+	]}
+
+# y button
+	Group { children [ DEF PYBUTTON TouchSensor { }
+		Transform { translation 3.25 1.3 -5 children [
+			DEF PY ControlButton { text ["Y"] scolor 0 0.6 0 }
+		]}
+	]}
+
+# z button
+	Group { children [ DEF PZBUTTON TouchSensor { }
+		Transform { translation 3.25 0.85 -5 children [
+			DEF PZ ControlButton { text ["Z"] scolor 0 0 1 }
+		]}
+	]}
+
+##### End of Orientation Controls (upper right)
+
+
+##### View Volume Switch (upper left)
+
+	Transform { translation -3.2 1.65 -5 scale 1.6 1.6 1 children [
+		DEF VVSW TouchSensor { }
+
+# front face
+		Shape { geometry DEF FF IndexedFaceSet {
+			coord Coordinate { point [ 0.06  0.00  0,
+							   0.00  0.06  0,
+							  -0.06  0.00  0,
+							   0.00 -0.06  0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color Color {color [1 1 0]}
+		}}
+
+# back face
+		Shape { geometry DEF BF IndexedFaceSet {
+			coord Coordinate { point [ 0.08  0.00 -0.001,
+							   0.00  0.08 -0.001,
+							  -0.08  0.00 -0.001,
+							   0.00 -0.08 -0.001 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+			colorPerVertex FALSE
+			color Color { color [ 0 0 0 ] }
+		}}
+
+# on indicator
+		DEF VVI Switch { whichChoice 0 choice [
+			Shape { geometry DEF OI IndexedFaceSet {
+				coord Coordinate { point [ 0.08  0.08 -0.002,
+								  -0.08  0.08 -0.002,
+								  -0.08 -0.08 -0.002,
+								   0.08 -0.08 -0.002 ] }
+				coordIndex [ 0 1 2 3 -1 ]
+				colorPerVertex FALSE
+				color Color { color [ 1 1 1 ] }
+				colorIndex [ 0 ]
+			}}
+		]}
+	]}
+
+# label "ViewVol"
+	Transform {
+		translation -3.2 1.92 -5 scale 0.85 0.85 1
+		children [
+			Shape {
+				geometry Text {
+		   			string [ "ViewVol" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		]
+	}
+
+##### End of View Volume Switch
+
+
+##### View Point Switch (lower right)
+
+	Transform { translation 3.5 -1.65 -5 scale 1.6 1.6 1 children [
+		DEF VPSW TouchSensor { }
+
+# front face
+		Shape { geometry USE FF }
+
+# back face
+		Shape { geometry USE BF }
+
+# on indicator
+		DEF VPI Switch { whichChoice -1 choice [
+			Shape { geometry USE OI }
+		]}
+	]}
+
+# label "from ViewPnt"
+	Transform {
+		translation 3.4 -1.92 -5 scale 0.85 0.85 1
+		children [
+			Shape {
+				geometry Text {
+		   			string [ "from ViewPnt" ]
+		   			fontStyle USE LABELST
+				}
+				appearance USE BLACK
+	   		}
+		]
+	}
+
+##### End of View Point Switch (lower right)
+
+]}
+
+# Routing for floating panel
+
+ROUTE PANELPROX.position_changed TO PANELTRANS.translation
+ROUTE PANELPROX.orientation_changed TO PANELTRANS.rotation
+
+##### End of Floating Panel
+
+
+##################################################
+#####   Scripts   ################################
+
+##### Begin of VRML Script XYZ
+	# this script handles changes in the position field
+
+DEF XYZ Script {
+	eventIn  SFVec3f xin
+	eventIn  SFVec3f yin
+	eventIn  SFVec3f zin
+	eventOut SFVec3f trans
+
+	url "vrmlscript:
+
+		function initialize ( ) {
+			trans.x = 0;
+			trans.y = 0;
+			trans.z = 10;
+		}
+
+		function xin (value, time) {
+			trans.x = 10 * value.y;
+		}
+
+		function yin (value, time) {
+			trans.y = 10 * value.y;
+		}
+
+		function zin (value, time) {
+			trans.z = 10 * (1 + value.y);
+		}
+	"
+}
+##### End of VRML Script XYZ
+
+
+##### Begin of VRML Script VVS
+      # this script handles the display of the View Volume
+
+DEF VVS Script {
+
+	eventIn  SFTime  click
+	eventOut SFInt32 onoff
+
+	field    SFInt32  old 0
+
+	url "vrmlscript:
+
+		function initialize ( ) {
+			onoff = 0
+		}
+
+		function click (value, time){
+			if (old == 0) old = -1, onoff = -1;	
+			else old = 0, onoff = 0;
+		}
+	"
+}
+
+##### End of VRML Script VVS
+
+
+##### Begin of VRML Script ALPHA
+	# this script handles changes in the orientation field
+
+DEF ALPHA Script {
+
+	eventIn  SFVec3f    alpha
+	eventOut SFRotation orient
+	eventOut SFInt32    onoff
+
+	eventIn  SFTime	  zero
+	eventOut SFVec3f    org
+
+	eventIn  SFTime  xClick
+	eventOut SFInt32 xChoice
+
+	eventIn  SFTime  yClick
+	eventOut SFInt32 yChoice
+
+	eventIn  SFTime  zClick
+	eventOut SFInt32 zChoice
+
+	eventOut MFVec3f rotax
+
+	field    SFInt32 oldx   0
+	field    SFInt32 oldy   0
+	field    SFInt32 oldz   1
+
+	url "vrmlscript:
+
+		function initialize ( ) {
+			orient [0] = 0;
+			orient [1] = 0;
+			orient [2] = 1;
+			orient [3] = 0;
+			zChoice = 1;
+			rotax [0] [0] = 0;
+			rotax [0] [1] = 0;
+			rotax [0] [2] = -1.5;
+			rotax [1] [0] = 0;
+			rotax [1] [1] = 0;
+			rotax [1] [2] = 1.5;
+			onoff  = -1;
+		}
+
+		function alpha (value, time) {
+			orient [3] = 3.14159 * value.y;
+			onoff = 0;
+		}
+
+		function zero (value, time) {
+			orient [3] = 0;
+			org.x = 0;
+			org.y = 0;
+			org.z = 0;
+                  onoff = -1;
+		}
+
+		function xClick (value, time){
+			if (oldx == 0) oldx = 1, xChoice = 1, orient [0] = 1,
+						rotax [0] [0] = -1.5, rotax [1] [0] = 1.5;
+			else 		   oldx = 0, xChoice = 0, orient [0] = 0,
+						rotax [0] [0] =  0.0, rotax [1] [0] = 0;
+			zero ( );
+		}
+
+		function yClick (value, time){
+			if (oldy == 0) oldy = 1, yChoice = 1, orient [1] = 1,
+						rotax [0] [1] = -1.5, rotax [1] [1] = 1.5;
+			else 		   oldy = 0, yChoice = 0, orient [1] = 0,
+						rotax [0] [1]=   0.0, rotax [1] [1] = 0;
+			zero ( );
+		}
+
+		function zClick (value, time){
+			if (oldz == 0) oldz = 1, zChoice = 1, orient [2] = 1,
+						rotax [0] [2] = -1.5, rotax [1] [2] = 1.5;
+			else 		   oldz = 0, zChoice = 0, orient [2] = 0,
+						rotax [0] [2] =  0.0, rotax [1] [2] = 0;
+			zero ( );
+		}
+	"
+}
+
+##### End of VRML Script ALPHA
+
+
+##### Begin VRML Script SWITCHME
+      # this script switches between the two Viewpoints ..
+      # .. "From Outside" and "From Viewpoint"
+
+DEF SWITCHME Script {
+
+   eventIn  SFTime  switchTime
+   eventOut SFBool  outview
+   eventOut SFBool  vptview
+   eventOut SFInt32 flag    
+
+   url "vrmlscript:
+
+	function initialize ( ) {
+		outview = TRUE;
+		vptview = FALSE;
+		flag = -1;
+	}
+
+	function switchTime (value,time) {
+		if (flag == -1) vptview = TRUE, flag = 0;
+		else outview = TRUE, flag = -1;  
+	}
+
+   "
+}
+
+##### End of VRML Script SWITCHME
+
+##### End of Scripts
+
+
+##################################################
+#####   Routing     ##############################
+
+##### Routing for View Point Switch
+
+ROUTE VPSW.touchTime TO SWITCHME.switchTime
+ROUTE SWITCHME.outview TO OUTV.set_bind
+ROUTE SWITCHME.vptview TO CURRENT.set_bind
+ROUTE SWITCHME.flag TO VPI.whichChoice
+
+##### Routing for View Volume Switch
+
+ROUTE VVSW.touchTime TO VVS.click
+ROUTE VVS.onoff TO VVI.whichChoice
+ROUTE VVS.onoff TO VVOL.whichChoice
+
+##### Routing for orientation vector Click
+
+ROUTE ZERO.touchTime TO ALPHA.zero
+ROUTE ALPHA.org TO ASLIDER.translation
+ROUTE ALPHA.org TO PASLIDER.offset
+ROUTE ALPHA.onoff TO ONOFF.whichChoice
+
+ROUTE PXBUTTON.touchTime TO ALPHA.xClick
+ROUTE ALPHA.xChoice TO PX.flag
+
+ROUTE PYBUTTON.touchTime TO ALPHA.yClick
+ROUTE ALPHA.yChoice TO PY.flag
+
+ROUTE PZBUTTON.touchTime TO ALPHA.zClick
+ROUTE ALPHA.zChoice TO PZ.flag
+
+ROUTE ALPHA.rotax TO ROTAX.point
+
+##### Routing for XYZ and ALPHA sliders
+
+ROUTE PXSLIDER.translation_changed TO XSLIDER.translation
+ROUTE PYSLIDER.translation_changed TO YSLIDER.translation
+ROUTE PZSLIDER.translation_changed TO ZSLIDER.translation
+ROUTE PASLIDER.translation_changed TO ASLIDER.translation
+
+ROUTE PXSLIDER.translation_changed TO XYZ.xin
+ROUTE PYSLIDER.translation_changed TO XYZ.yin
+ROUTE PZSLIDER.translation_changed TO XYZ.zin
+ROUTE PASLIDER.translation_changed TO ALPHA.alpha
+
+ROUTE XYZ.trans TO VIEWERPOS.translation
+ROUTE XYZ.trans TO CURRENT.position
+ROUTE ALPHA.orient TO VIEWERROT.rotation
+ROUTE ALPHA.orient TO CURRENT.orientation
