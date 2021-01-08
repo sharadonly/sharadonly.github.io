@@ -1,0 +1,665 @@
+#VRML V2.0 utf8
+
+# Eng 477 Illustration: RGB Cube
+# K.-P. Beier, University of Michigan
+# Last Update: October 14, 2000
+
+##################################################
+# Begin Navigation and Background
+
+Viewpoint { description "Reset View" position 0 -0.2 3.6 }
+
+NavigationInfo {type ["EXAMINE" "ANY"]}
+
+Background { skyColor [ 0.85 0.75 1.0 ] }
+
+# End Navigation and Background
+##################################################
+
+
+##################################################
+# Begin of Prototype ControlButton
+ 
+PROTO ControlButton [
+	       field  SFColor   scolor  1 1 1		# sphere color
+		 field  MFString  text    [" "]		# text to the right
+	exposedField  SFInt32   flag     -1			# on indicator 
+]{
+Transform {  children [
+
+	Shape {									# sphere
+		appearance Appearance {
+			material Material { diffuseColor IS scolor }
+		}
+		geometry Sphere {radius 0.04}
+	}
+
+	Transform { translation 0.07 0 0 children [
+		Shape {								# text label
+			geometry Text {
+		   		string IS text
+		   		fontStyle FontStyle {
+					style "BOLD"
+					size 0.1
+					justify ["BEGIN" "MIDDLE"]
+		   		}
+			}
+			appearance Appearance {
+				material Material { diffuseColor 0 0 0 }
+			}
+	   	}
+	]}
+
+	Shape {						# invisible face enlarging sensor area
+		appearance Appearance {
+			material Material { transparency 1 }
+		}
+		geometry IndexedFaceSet {
+			coord Coordinate { point [  0.90  0.05 0,
+							   -0.05  0.05 0,
+							   -0.05 -0.05 0,
+							    0.90 -0.05 0 ] }
+			coordIndex [ 0 1 2 3 -1 ]
+		}
+	} 
+
+	Switch { whichChoice IS flag choice [
+		Shape {								# on indicator
+			geometry IndexedFaceSet {
+				coord Coordinate { point [  0.05  0.05 0.005,
+								   -0.05  0.05 0.005,
+								   -0.05 -0.05 0.005,
+								    0.05 -0.05 0.005 ] }
+				coordIndex [ 0 1 2 3 -1 ]
+				colorPerVertex FALSE
+				color Color { color [ 0.55 0.55 0.55 ] }
+			}
+		}
+	]}
+
+]}}
+
+# End of Prototype ControlButton
+##################################################
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# Begin Overall Rotation
+
+Transform { rotation 1 1 0.2647 0.833 children [
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+##################################################
+# Begin of Cube Outline
+
+# Begin of R-axis
+Transform {
+	rotation 0 0 1 1.57
+	translation 0.05 -0.5 0.5
+	children [
+		Shape {
+			appearance DEF RED Appearance {
+				material Material { diffuseColor 1 0 0 }
+			}
+			geometry DEF CYL Cylinder { height 1.19 radius 0.01 }
+		}
+	]
+}
+Transform {
+	rotation 0 0 1 -1.57
+	translation 0.65 -0.5 0.5
+	children [
+		Shape {
+			appearance USE RED
+			geometry DEF CON Cone { bottomRadius 0.04 height 0.1 }
+		}
+	]
+}
+# End of R-axis
+
+# Begin of G-axis
+Transform {
+	rotation 1 0 0 1.57
+	translation -0.5 -0.5 -0.05
+	children [ 
+		Shape {
+			appearance DEF GREEN Appearance {
+				material Material { diffuseColor 0 1 0 }
+			}
+			geometry USE CYL
+		}
+	]
+}
+Transform {
+	rotation 1 0 0 -1.57
+	translation -0.5 -0.5 -0.65
+	children [ Shape { appearance USE GREEN geometry USE CON } ]
+}
+
+# End of G-axis
+
+# Begin of B-axis
+Transform {
+	translation -0.5 0.05 0.5
+	children [ Shape {
+		appearance DEF BLUE Appearance {
+			material Material { diffuseColor 0 0 1 }
+		}
+		geometry USE CYL
+	} ]
+}
+Transform {
+	translation -0.5 0.65 0.5
+	children [ Shape { appearance USE BLUE geometry USE CON } ]
+}
+
+# End of B-axis
+
+# Begin of Edge Outline
+Shape {
+	geometry IndexedLineSet {
+		coord DEF RGBCUBE Coordinate {
+			point [  0.5  0.5 -0.5,		# point 0 white
+				  -0.5  0.5 -0.5,		# point 1 cyan
+				  -0.5  0.5  0.5,		# point 2 blue
+				   0.5  0.5  0.5,		# point 3 magenta
+
+				   0.5 -0.5 -0.5,		# point 4 yellow
+				  -0.5 -0.5 -0.5,		# point 5 green
+				  -0.5 -0.5  0.5,		# point 6 black
+				   0.5 -0.5  0.5 ]	# point 7 red
+
+		}
+		coordIndex [ 0 1 2 3 0 -1,	# top face edges
+				 5 4 7     -1,	# half bottom edges
+				 4 0       -1,	# yellow to white
+				 5 1       -1,	# green to cyan
+				 7 3       -1 ]	# red to magenta
+		colorPerVertex FALSE
+		color Color {
+			color [ 0 0 0, 0 0 0, 0 0 0, 0 0 0, 0 0 0 ]
+		}
+	}
+}
+
+# End of Edge Outline
+
+# Begin of Origin
+Transform { translation -0.5 -0.5 0.5 children [
+	Shape {								# black corner
+		appearance DEF BLACK Appearance {
+			material Material { diffuseColor 0 0 0 }
+		}
+		geometry DEF MARK Sphere { radius 0.03}
+	}
+]}
+
+# End of Origin
+
+# Begin of other Corners
+
+Transform { translation 0.5 -0.5 0.5 children [
+	Shape { appearance USE RED  geometry USE MARK }		# red corner
+]}
+
+Transform { translation -0.5 -0.5 -0.5 children [
+	Shape { appearance USE GREEN  geometry USE MARK }	# green corner
+]}
+
+Transform { translation -0.5 0.5 0.5 children [
+	Shape { appearance USE BLUE  geometry USE MARK }	# blue corner
+]}
+
+Transform { translation 0.5 -0.5 -0.5 children [
+	Shape {								# yellow corner
+		appearance DEF YELLOW Appearance {
+			material Material { diffuseColor 1 1 0 }
+		}
+		geometry USE MARK
+	}
+]}
+
+Transform { translation -0.5 0.5 -0.5 children [
+	Shape {								# cyan corner
+		appearance DEF CYAN Appearance {
+			material Material { diffuseColor 0 1 1 }
+		}
+		geometry USE MARK
+	}
+]}
+
+Transform { translation 0.5 0.5 0.5 children [
+	Shape {								# magenta corner
+		appearance DEF MAGENTA Appearance {
+			material Material { diffuseColor 1 0 1 }
+		}
+		geometry USE MARK
+	}
+]}
+
+Transform { translation 0.5 0.5 -0.5 children [
+	Shape {								# white corner
+		appearance DEF WHITE Appearance {
+			material Material { diffuseColor 1 1 1 }
+		}
+		geometry USE MARK
+	}
+]}			
+# End of other Corners
+
+# End of Cube Outline
+##################################################
+
+
+##################################################
+# Switch: Display Cube Faces
+
+DEF FACES Switch { whichChoice -1 choice [ Group { children [
+
+# Begin of Cube Faces
+
+Shape {
+	geometry IndexedFaceSet {
+		coord USE RGBCUBE
+		coordIndex [ 0 1 2 3 -1,	# top
+				 4 7 6 5 -1,	# bottom
+				 0 3 7 4 -1,	# right
+				 1 5 6 2 -1,	# left
+				 0 4 5 1 -1,	# rear
+				 3 2 6 7 -1 ]	# front
+		colorPerVertex TRUE
+		color Color {
+			color [ 1 1 1,	# point 0 white
+				  0 1 1,	# point 1 cyan
+				  0 0 1,	# point 2 blue
+				  1 0 1,	# point 3 magenta
+				  1 1 0,	# point 4 yellow
+				  0 1 0,	# point 5 green
+				  0 0 0,	# point 6 black
+				  1 0 0 ]	# point 7 red
+		}
+	}
+}
+
+# End of Cube Faces
+
+]}]}
+
+# End of Switch: Display Cube Faces
+##################################################
+
+
+##################################################
+# Switch: Display Primary Colors
+
+DEF PRLABEL Switch { whichChoice -1 choice [ Group { children [
+
+# Begin of Red Billboard
+
+Transform { translation 0.65 -0.65 0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord DEF PANEL Coordinate {
+						point [  0.1  0.09 -0.01,
+							  -0.1  0.09 -0.01,
+							  -0.1 -0.09 -0.01,
+							   0.1 -0.09 -0.01 ]
+					}
+					coordIndex [ 0 1 2 3 ]
+					colorPerVertex FALSE
+					color Color { color [ 1 0 0 ] }
+				}
+			}
+			Shape {
+				geometry Text {
+					string [ "R" ]
+					fontStyle DEF STYLE FontStyle {
+						style "BOLD"
+						size 0.15
+						justify ["MIDDLE" "MIDDLE"]
+					}
+				}
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Red Billboard
+
+# Begin of Green Billboard
+
+Transform { translation -0.65 -0.65 -0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3 ]
+					colorPerVertex FALSE
+					color Color { color [ 0 1 0 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "G" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Green Billboard
+
+# Begin of Blue Billboard
+
+Transform { translation -0.65 0.65 0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 0 0 1 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "B" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Blue Billboard
+
+]}]}
+
+# End of Switch: Display Primary Colors
+##################################################
+
+
+##################################################
+# Switch: Display Complementary Colors
+
+DEF COLABEL Switch { whichChoice -1 choice [ Group { children [
+
+# Begin of Yellow Billboard
+
+Transform { translation 0.65 -0.65 -0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 1 1 0 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "y" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Yellow Billboard
+
+# Begin of Cyan Billboard
+
+Transform { translation -0.65 0.65 -0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 0 1 1 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "c" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Cyan Billboard
+
+# Begin of Magenta Billboard
+
+Transform { translation 0.65 0.65 0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 1 0 1 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "m" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of Magenta Billboard
+
+]}]}
+
+# End of Switch: Display Complementary Colors
+##################################################
+
+##################################################
+# Switch: Display Black & White
+
+DEF BWLABEL Switch { whichChoice -1 choice [ Group { children [
+
+# Begin of White Billboard
+
+Transform { translation 0.65 0.65 -0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 1 1 1 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "W" ]  fontStyle USE STYLE }
+				appearance USE BLACK
+			}
+		]
+	}
+]}
+
+# End of White Billboard
+
+# Begin of Black Billboard
+
+Transform { translation -0.65 -0.65 0.65 children [
+	Billboard {
+		axisOfRotation 0 0 0 
+		children [
+			Shape {
+				geometry IndexedFaceSet {
+					coord USE PANEL
+					coordIndex [ 0 1 2 3]
+					colorPerVertex FALSE
+					color Color { color [ 0 0 0 ] }
+				}
+			}
+			Shape {
+				geometry Text { string [ "B" ]  fontStyle USE STYLE }
+				appearance USE WHITE
+			}
+		]
+	}
+]}
+
+# End of White Billboard
+
+]}]}
+
+# End of Switch: Display Black & White
+##################################################
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# End of Overall Rotation
+
+]}
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+##################################################
+# Begin of Floating Panel (control buttons)
+
+#This sensor measures the viewers position and viewing direction
+DEF PANELPROX ProximitySensor {size 100 100 100}
+
+#This transform follows the viewer, the panel appears to be static
+DEF PANELTRANS Transform { children [
+
+# Begin of control buttons
+
+	Group { children [ DEF PRBUTTON TouchSensor { }			# primary colors
+		Transform { translation -0.9 -0.62 -2 children [
+			DEF PRIN ControlButton { text ["Primary Colors"] scolor 1 0 0 }
+		]}
+	]}
+
+	Group { children [ DEF COBUTTON TouchSensor { }			# complementary colors
+ 		Transform { translation -0.9 -0.74 -2 children [
+			DEF COIN ControlButton { text ["complementary colors"] scolor 1 1 0 }
+		]}
+	]}
+
+	Group { children [ DEF BWBUTTON TouchSensor { }			# black & white
+ 		Transform { translation 0.32 -0.62 -2 children [
+			DEF BWIN ControlButton { text ["Black & White"] }
+		]}
+	]}
+
+	Group { children [ DEF FACEBUTTON TouchSensor { }		# faces
+ 		Transform { translation 0.52 -0.74 -2 children [
+			DEF FACEIN ControlButton { text ["Faces"] scolor 0 1 1 }
+		]}
+	]}
+
+# End of control buttons
+
+]}
+
+# End of Floating Panel (control buttons)
+##################################################
+
+
+##################################################
+# Begin of VRML Script SWITCHCONTROL
+
+DEF SWITCHCONTROL Script {
+
+   eventIn  SFTime  faceClick
+   eventOut SFInt32 faceChoice
+   eventIn  SFTime  prClick
+   eventOut SFInt32 prChoice
+   eventIn  SFTime  coClick
+   eventOut SFInt32 coChoice
+   eventIn  SFTime  bwClick
+   eventOut SFInt32 bwChoice
+
+   field    SFInt32 oldFace -1
+   field    SFInt32 oldPr   -1
+   field    SFInt32 oldCo   -1
+   field    SFInt32 oldBw   -1
+
+   url "vrmlscript:
+
+	function faceClick (value, time){
+		if (oldFace == 0) oldFace    = -1,
+					faceChoice = -1;
+		else oldFace    = 0,
+		     faceChoice = 0;
+	}
+
+	function prClick (value, time){
+		if (oldPr == 0) oldPr    = -1,
+				    prChoice = -1;
+		else oldPr    = 0,
+		     prChoice = 0;
+	}
+
+	function coClick (value, time){
+		if (oldCo == 0) oldCo    = -1,
+				    coChoice = -1;
+		else oldCo    = 0,
+		     coChoice = 0;
+	}
+
+	function bwClick (value, time){
+		if (oldBw == 0) oldBw    = -1,
+				    bwChoice = -1;
+		else oldBw    = 0,
+		     bwChoice = 0;
+	}
+
+   "
+}
+
+# End of VRML Script SWITCHCONTROL
+##################################################
+
+
+##################################################
+# Begin of Routing Statements
+
+# Routing for floating panel
+ROUTE PANELPROX.position_changed TO PANELTRANS.set_translation
+ROUTE PANELPROX.orientation_changed TO PANELTRANS.set_rotation
+
+# Routing for Faces
+ROUTE FACEBUTTON.touchTime     TO SWITCHCONTROL.faceClick
+ROUTE SWITCHCONTROL.faceChoice TO FACEIN.flag
+ROUTE SWITCHCONTROL.faceChoice TO FACES.whichChoice
+
+# Routing for Primary Colors
+ROUTE PRBUTTON.touchTime TO SWITCHCONTROL.prClick
+ROUTE SWITCHCONTROL.prChoice TO PRIN.flag
+ROUTE SWITCHCONTROL.prChoice TO PRLABEL.whichChoice
+
+# Routing for Complementary Colors
+ROUTE COBUTTON.touchTime TO SWITCHCONTROL.coClick
+ROUTE SWITCHCONTROL.coChoice TO COIN.flag
+ROUTE SWITCHCONTROL.coChoice TO COLABEL.whichChoice
+
+# Routing for Black & White
+ROUTE BWBUTTON.touchTime TO SWITCHCONTROL.bwClick
+ROUTE SWITCHCONTROL.bwChoice TO BWIN.flag
+ROUTE SWITCHCONTROL.bwChoice TO BWLABEL.whichChoice
+
+# End of Routing Statements
+##################################################

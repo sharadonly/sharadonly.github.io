@@ -1,0 +1,222 @@
+#VRML V2.0 utf8
+
+# Eng 477 Illustration: Shadow Simulation in VRML
+# by Bert Schoenwaelder and Lars Schumann
+# University of Michigan Virtual Reality Laboratory, 1997
+# modified by K.-P. Beier, May 17, 2001
+
+##################################################
+# Background and Navigation
+
+Background {
+  skyColor [ 1 1 1 , 0.4 0.68 1 , 0 0 1]
+  skyAngle [ 1.57 , 3.14 ]
+}
+
+Viewpoint {description "Reset View"
+  position    0 3.39 5.05
+  orientation -1 0 0  0.53
+}
+
+NavigationInfo {
+  type ["EXAMINE", "ANY"]
+}
+
+##################################################
+# Groundplate
+
+Shape {
+  appearance Appearance {
+    material Material {
+      diffuseColor  .9 .8 .0
+      specularColor .5 .5 .5
+      shininess     1
+      emissiveColor .2 .15 .1
+    }
+  }
+  geometry Box { size 4 0.1 4 }
+}
+
+##################################################
+# The floating object (a 'great icosahedron')
+
+Transform {
+  translation 0 1.5 0
+  children [
+    DEF OBJECTSPHERESENSOR SphereSensor {}
+    
+    Transform {
+      children DEF OBJECTSENSORTRANSFORM Transform {
+	  children DEF OBJECTTIMERTRANSFORM Transform {
+	    children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor  .0 .6 .4
+                  specularColor .5 .5 .5
+                  shininess     1
+                  emissiveColor .1 .2 .15
+                }
+              }
+              geometry DEF GEOMETRY IndexedFaceSet {
+                ccw   FALSE
+                coord DEF COORD Coordinate {
+                  point [
+                     0.000000  0.000000  1.000000,
+                     0.894427  0.000000 -0.447214,
+                    -0.723607  0.525731 -0.447214,
+                     0.276393 -0.850651 -0.447214,
+                     0.276393  0.850651 -0.447214,
+                    -0.723607 -0.525731 -0.447214,
+                    -0.276393 -0.850651  0.447214,
+                    -0.276393  0.850651  0.447214,
+                     0.723607  0.525731  0.447214,
+                    -0.894427  0.000000  0.447214,
+                     0.723607 -0.525731  0.447214,
+                     0.000000 -0.000000 -1.000000
+                  ]
+                }
+                coordIndex [
+                  2, 1, 0, -1,
+                  3, 2, 0, -1,
+                  4, 3, 0, -1,
+                  5, 4, 0, -1,
+                  0, 1, 5, -1,
+                  7, 5, 1, -1,
+                  1, 6, 7, -1,
+                  1, 2, 6, -1,
+                  8, 6, 2, -1,
+                  2, 3, 8, -1,
+                  9, 8, 3, -1,
+                  3, 4, 9, -1,
+                 10, 9, 4, -1,
+                  4, 5,10, -1,
+                  5, 7,10, -1,
+                 11, 7, 6, -1,
+                  6, 8,11, -1,
+                 11,10, 7, -1,
+                  8, 9,11, -1,
+                  9,10,11, -1
+                ]
+              }
+            }
+
+##################################################
+# Wire frame outline of edges
+
+            Transform {
+              scale 1.001 1.001 1.001
+              children Shape {
+                appearance Appearance {
+                  material Material { emissiveColor 1 1 0 }
+                }
+                geometry IndexedLineSet {
+                  coord USE COORD
+                  coordIndex [ 4, 5,10, 4, 0, 2, -1,
+                              10, 7, 5, 1, 0, 3, 9, 4, 3, -1,
+                               1, 6, 7, 1, 2, 6,11, 9, 8, 3, 2, 8, -1,
+                               6, 8,11, -1,
+                               9,10,11, 7, -1,
+                               0, 5, -1 ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+
+##################################################
+# The shadow object
+    
+Transform {
+  scale        1.5 0.000001 1.5		# make it flat
+  translation  0.0 0.08    0.0		# place it on groundplate
+  children DEF SHADOWSENSORTRANSFORM Transform {
+    children DEF SHADOWTIMERTRANSFORM Transform {
+      children Shape {
+        appearance Appearance {
+          material Material { diffuseColor  0 0 0 emissiveColor .2 .15 .1 }
+        }
+        geometry USE GEOMETRY
+      }
+    }
+  }
+}
+
+##################################################
+# Interpolator and Timer
+
+DEF ANIMINT OrientationInterpolator {
+  key        [0, 0.25, 0.5, 0.75, 1]
+  keyValue   [1 1 0  0, 1 1 0  1.57, 1 1 0  3.14, 1 1 0  4.71, 1 1 0  0]
+}
+
+DEF TIMER TimeSensor {
+  cycleInterval 5
+  loop          TRUE
+}
+
+##################################################
+# VRML Script to control user interactions
+
+DEF S Script {
+  field    SFTime doubleClickTime  0.3
+  eventIn  SFBool dragging
+  eventOut SFBool enableTimer
+  eventOut SFTime startTimer
+  field    SFTime lastStart        0  
+  field    SFTime lastStop         0
+  field    SFTime lastClick        0
+  field    SFBool doAnim           TRUE
+
+  url "vrmlscript:
+
+  function initialize() {
+    enableTimer = doAnim;
+  }
+
+  function animate(enable, time) {
+    if (enableTimer == enable) return; 
+    enableTimer = enable;
+    if (enable) {
+      startTimer = lastStart = time - (lastStop - lastStart);
+    }
+    else {
+      lastStop = time;
+    }
+  }
+
+  function dragging(drag, time) {
+    if (drag) {
+      if (time - lastClick < 0.3) {
+        doAnim = !doAnim;
+        animate(doAnim, time);
+      }
+      lastClick = time;
+    }
+    if (doAnim) {
+      animate(!drag, time);
+    }
+  }
+
+  "
+
+}
+
+##################################################
+# Routing statements
+
+ROUTE TIMER.fraction_changed TO ANIMINT.set_fraction
+ROUTE ANIMINT.value_changed  TO OBJECTTIMERTRANSFORM.set_rotation
+ROUTE ANIMINT.value_changed  TO SHADOWTIMERTRANSFORM.set_rotation
+
+ROUTE OBJECTSPHERESENSOR.rotation_changed TO OBJECTSENSORTRANSFORM.set_rotation
+ROUTE OBJECTSPHERESENSOR.rotation_changed TO SHADOWSENSORTRANSFORM.set_rotation
+
+ROUTE OBJECTSPHERESENSOR.isActive TO S.dragging
+ROUTE S.enableTimer TO TIMER.set_enabled
+ROUTE S.startTimer  TO TIMER.startTime
+

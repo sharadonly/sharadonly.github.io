@@ -1,0 +1,72 @@
+#VRML V2.0 utf8
+
+
+############################################################
+# Begin of Prototype MySphere
+#
+# This prototype creates a sphere of radius 'rad' with a variable
+# number of polygons controlled by 'numLat' (number of latitude
+# circles) and 'numLng' (number of longitude circles). The sphere
+# is centered around (0,0,0).
+#
+# The sphere is generated as an IndexedFaceSet node by defining
+# the fields coord, coordIndex, texCoord, and creaseAngle.
+#
+# Adapted from Carey, Bell: "The Annotated VRML 2.0 Reference
+# Manual," Addison-Wesley, 1997, pp. 286-287.
+# by K.-P. Beier, University of Michigan, January 27, 2002
+
+PROTO MySphere [
+        field SFFloat rad    1  # radius of sphere
+        field SFInt32 numLat 4  # number of longitudes (parallel to equator)
+        field SFInt32 numLng 4  # number of latitudes  (passing through poles)
+        field SFFloat cra  3.14 # crease angle 
+]{
+DEF IFS IndexedFaceSet {
+        coord DEF C Coordinate { }
+        texCoord DEF TC TextureCoordinate { }
+        creaseAngle IS cra
+}
+DEF S Script {
+        field SFFloat rad IS rad
+        field SFInt32 numLat IS numLat
+        field SFInt32 numLng IS numLng
+        eventOut MFVec3f c_changed
+        eventOut MFVec2f t_changed
+        eventOut MFInt32 ci_changed
+        url "vrmlscript:
+                function initialize () {
+                        var r, angle, x, y, z;
+                        var i, j, polyIndex;
+                        for (i = 0; i < numLat; i++) {
+                           angle = i * ( Math.PI / (numLat-1) ) - ( 0.5 * Math.PI );
+                           y = Math.sin(angle);
+                           r = rad * Math.sqrt ( 1 - y*y );
+                           y = y * rad;
+                           for (j = 0; j < numLng; j++) {
+                                angle = 2 * Math.PI * j / numLng;
+                                x = -Math.sin(angle) * r;
+                                z = -Math.cos(angle) * r;
+                                c_changed [i*numLng+j] = new SFVec3f (x,y,z);
+                                t_changed [i*numLng+j] = new SFVec2f (j/numLng, i/(numLat-1));
+                           }
+                        }
+                        for (i = 0; i < numLat-1; i++) {
+                           for (j = 0; j < numLng; j++) {
+                                polyIndex = 5 *( i * numLng + j );
+                                ci_changed [polyIndex+0] = i * numLng + j;
+                                ci_changed [polyIndex+1] = i * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+2] = (i+1) * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+3] = (i+1) * numLng + j;
+                                ci_changed [polyIndex+4] = -1;
+                           }
+                        }
+                }
+        "
+}
+ROUTE S.c_changed TO C.point
+ROUTE S.t_changed TO TC.set_point
+ROUTE S.ci_changed TO IFS.set_coordIndex
+}
+# End of Prototype MySphere
+############################################################

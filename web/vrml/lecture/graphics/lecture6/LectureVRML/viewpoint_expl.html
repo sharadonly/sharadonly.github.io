@@ -1,0 +1,92 @@
+<html>
+
+<head>
+<title> Explain Viewpoint</title>
+</head>
+
+<body bgcolor="#FFFF99">
+
+<b><font size=+1>VRML Illustration: The six DOF in the VRML Viewpoint Node</font></b>
+<p><hr>
+ 
+<br>
+The fields <i>position</i> and <i>orientation</i> in the VRML Viewpoint node define the position of the viewer and the viewing direction. These parameters control the six degrees of freedom (DOF) in VRML's 3D-viewing system.<br>
+<br>
+The 3D scene in this application shows the VRML coordinate system with x-axis (red), y-axis (green), z-axis (blue), and corresponding labels. A few objects are placed along the x and y-axis. The viewer (or avatar) is represented by a sphere and a cylinder (yellow). The white wire outline of an assumed view volume is attached to the avatar's viewpoint.<br>
+<br>
+Initially, the viewer (yellow avatar) is positioned on the z-axis at 10 meters from the origin (default position) and is looking in the negative z-direction (default orientation). From this initial viewpoint, the x-axis extends to the right and the y-axis points straight up.<br>
+
+<ul>
+
+<br><li>
+Using <b>Next Viewpoint</b> in the browser's control panel, the scene can be observed from the outside or from the current position of the avatar. The button labeled "<b>from ViewPnt</b>" at the lower right provides another quick way to switch to the avatar's viewpoint and back. <br>
+
+<br><br><li>
+The <b>position</b> control sliders on the lower left allow for changing the x, y, and z-coordinate of the viewer's position independently. The initial settings of these sliders correspond to the default values in the <i>position</i> field:<br>
+<ul>
+<br><pre>position 0 0 10            # x y z</pre>
+</ul>
+Each slider covers a range from 0 to 10 meters along the corresponding axis.<br>
+
+<br><br><li>
+The <b>orientation</b> control panel on the upper right allows for changing the viewing direction via a slider (angle control) and three toggle buttons labeled X, Y, and Z, respectively. The initial settings in this panel correspond to the default values in the <i>orientation</i> field:
+<br>
+<ul>
+<br><pre>orientation 0 0 1 0        # x y z angle</pre>
+</ul>
+The first three numbers define the x, y, and z component of a rotation vector that emanates from the viewer's position (avatar's head). The avatar is rotated about this vector by the angle alpha, the last of the four number.<br>
+<br>
+The slider controls this angle and covers a range from -90 to +90 degrees (-1.57 to +1.57 in radians). The blue triangle marks the zero position and can be clicked to reset the slider.<br>
+<br>
+The three buttons toggle the x, y, and z component of the rotation vector between 0 and 1. This allows for selecting eight different vectors (out of an infinite number of possible vectors).<br>
+<br>
+To gain a better understanding of the <i>orientation</i> field, try the following settings for the rotation vector first and change the angle for each setting using the slider:<br>
+<ul>
+<br>
+Looking up/down: set x=1, y=0, z=0 (rotation vector is parallel to the x-axis)<br>
+<br>
+Looking left/right: set x=0, y=1, z=0 (vector is parallel to the y-axis)<br>
+<br>
+Tilt/roll the head: set x=0, y=0, z=1 (this default vector is parallel to the z-axis)
+</ul>
+
+<br>
+If more than one of the three vector components is set to non-zero, the rotation vector becomes more difficult to understand.<br>
+
+<br><br><li>
+The <b>yellow avatar</b> is represented by a sphere and a cylinder. The center of the sphere is the viewpoint's position.<br>
+<br>
+Attached to the avatar is the wire frame outline of an assume view volume. It can be turn off using the button "<b>ViewVol</b>" in the upper left corner.<br>
+<br>
+The long white line indicates the current viewing direction. If the angle alpha in the <i>orientation</i> field is not zero, a shorter black line appears indicating the original (default) viewing direction. Alpha is always measured as the difference between these two directions (from default to current).<br>
+<br>
+A local coordinate system is attached to the sphere's center (red line for x, green for y, and blue for z-direction). The rotation vector in the <i>orientation</i> field is defined within this system and the vector's direction is displayed as a yellow line passing through the origin. When changing alpha, rotation occurs about this yellow line.<br>
+<br>
+
+<table><tr>
+<td><center>
+<a href="viewpoint_avatar.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/viewpoint_avatar.jpg"><img src="viewpoint_avatar_sml.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/viewpoint_avatar_sml.jpg" border=2><br>click on image to enlarge</a></center>
+</td>
+<td>
+General view of avatar (view volume turned off), line colors:<br><br>
+- white: current viewing direction<br>
+- black: default viewing direction<br>
+- red-green-blue: local coordinates x-y-z<br>
+- yellow: direction of rotation vector (shown for x=y=z=1)
+</td>
+</tr></table>
+
+<br>
+Two additional parameters from the VRML NavigationInfo node (field <i>avatarSize</i>) are illustrated in this application. The avatar's default height (1.6 meter) is the distance from the bottom of the cylinder to the sphere's center. The radius of the cylinder (0.25 meter) corresponds to the default allowable distance between the avatar's centerline and collision geometry and is used for collision detection.<br>
+
+</ul>
+
+<br>
+Note: This VRML application illustrates the <i>position</i> and <i>orientation</i> fields in the Viewpoint node. Another field in this node, called <i>fieldOfView</i>, is also related to 3D-viewing and explained in the next VRML application "Other Viewing Parameters in VRML".
+
+
+<p><hr>
+Viewpoint 
+<!-- Last Update: November 1, 2002 by KPB -->
+</body>
+</html>

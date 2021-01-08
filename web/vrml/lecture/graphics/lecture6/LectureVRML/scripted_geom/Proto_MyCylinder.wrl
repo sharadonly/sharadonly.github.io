@@ -1,0 +1,66 @@
+#VRML V2.0 utf8
+
+
+############################################################
+# Begin of Prototype MyCylinder
+#
+# This prototype creates a cylinder with a variable number
+# of polygons controlled by 'numPol' (number of rectangles
+# defining the side of the cylinder).
+#
+# Additional fields available to control the geometry of the
+# cylinder are radius, height, top and bottom cap, solid,
+# and crease angle 'cra'.
+#
+# The definition is similar to the VRML Cylinder node, e.g.,
+# the cylinder extends in the y direction and is centered
+# around (0,0,0). The additional fields numPol, solid, and
+# and cra (crease angle) are not available in the VRML
+# Cylinder node and provide greater modeling flexibility.
+#
+# The cylinder is generated as an Extrusion node.
+#
+# K.-P. Beier, University of Michigan, February 10, 2002
+
+PROTO MyCylinder [
+   field   SFInt32   numPol     10   # number of polygons
+   field   SFFloat   radius      1   # radius of cylinder
+   field   SFFloat   height      2   # height of cylinder
+   field   SFBool    top      TRUE   # top cap of cylinder
+   field   SFBool    bottom   TRUE   # bottom cap of cylinder
+   field   SFBool    solid   FALSE   # back faces invisible
+   field   SFFloat   cra      1.57   # crease angle
+]{
+
+DEF CYL Extrusion {
+   endCap      IS bottom
+   beginCap    IS top
+   solid       IS solid
+   creaseAngle IS cra
+}
+
+DEF S Script {
+   field    SFInt32 numPol IS numPol
+   field    SFFloat rad    IS radius
+   field    SFFloat ht     IS height
+   eventOut MFVec3f spine
+   eventOut MFVec2f cross
+   url "vrmlscript:
+      function initialize () {
+         var j, angle, x, z;
+         for (j = 0; j < numPol+1; j++) {
+           angle = 2 * Math.PI * j / numPol;
+           x = Math.sin(angle) * rad;
+           z = -Math.cos(angle) * rad;
+           cross [ j ] = new SFVec2f (x,z);
+         }
+         spine [ 0 ] = new SFVec3f (0,  0.5 * ht , 0);
+         spine [ 1 ] = new SFVec3f (0, -0.5 * ht , 0);
+      }
+   "
+}
+ROUTE S.cross TO CYL.crossSection
+ROUTE S.spine TO CYL.spine
+}
+# End of Prototype MyCylinder
+############################################################

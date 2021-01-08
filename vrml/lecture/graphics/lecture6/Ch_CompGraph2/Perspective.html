@@ -1,0 +1,56 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE>Perspective Projection</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="Projection.html" tppabs="">Previous</A> -- <A HREF="Parallel.html" tppabs="">Next</A> 
+<H2>PERSPECTIVE PROJECTION<HR></H2>
+
+
+<UL>
+
+
+
+<BR>
+<LI>3D objects are projected onto a 2D projection plane via a perspective transformation.</LI><BR>
+
+<BR>
+<LI>The 3D objects are defined in a 3D world coordinate system (x-y-z).</LI><BR>
+
+<BR>
+<LI>The projected image is defined in the 2D coordinate system of the projection plane (u-v).</LI><BR>
+
+<BR>
+<LI>The projection of any given 3D point (vertex) is found by drawing a line from that point to the center of projection and by finding the intersection of the line with the projection plane. The line is called 'projection ray' or 'projector'.</LI><BR>
+
+<BR>
+<LI>Straight lines in the 3D world system (e.g., polygon edges) are transformed into straight lines in the 2D projection plane.</LI><BR>
+
+<BR>
+<LI>To transform a line segment: project both end points and connect the projected points by a straight line in u-v plane.</LI><BR>
+
+<BR>
+<LI>3D polygons transform into 2D polygons with same number of points/edges, but different shape.</LI><BR>
+
+<BR>
+<LI>Defining parameters:</LI><BR>
+- Center of Projection or Projection Reference Point (defined as a 3D point)<BR>
+- Projection Plane or View Plane (defined by position, orientation, and size)<BR>
+
+</UL>
+<BR>
+<CENTER><IMG SRC="perspective.gif" tppabs=""></CENTER>
+<BR>
+
+
+
+<BR><HR>
+<A HREF="Projection.html" tppabs="">Previous</A> 
+-- <A HREF="Parallel.html" tppabs="">Next</A> 
+</BODY>
+
+</HTML>

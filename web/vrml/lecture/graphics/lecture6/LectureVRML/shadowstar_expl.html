@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<title>Explain Shadow Simulation</title>
+</head>
+
+<body bgcolor="#FFFF99">
+
+<b><font size=+1>VRML Illustration: Shadow Simulation in VRML</font></b>
+<p><hr>
+ 
+
+<br>
+<b>Credits:</b> <font size=-1>This VRML animation was developed by Bert Schoenwaelder 
+and Lars Schumann at the University of Michigan Virtual Reality Laboratory.</font><br>
+<br>
+
+<hr>
+
+<br>
+The animation uses a regular polyhedron known as the 'Great Icosahedron' which has been modeled using an IndexedFaceSet node. The object spins, but can also be rotated manually using the mouse. Double clicking the object toggles the spin animation.<br>
+<br>
+An invisible light source seems to cast a shadow of the object on the groundplate. This simulated shadow is being created as follows:<br>
+<br>
+
+<ul>
+<br><li>
+While the object spins, a copy of the object is being scaled continuously using<br>
+<ul>
+<pre>scale   1.5   0.000001   1.5</pre>
+</ul>
+in a corresponding Transform node. This scaling operation reduces the y-extension of the object to almost zero (a scale factor of zero is illegal in VRML) and enlarges the x- and z- extension by a factor of 1.5.<br>
+<br><br><li>
+The resulting 'flat' object is placed on the groundplate (separated by a small amount to avoid flickering caused by z-buffer tearing) and colored black.<br>
+<br><br><li>
+Before flattening the shadow object, the current rotation of the original object is being applied to the shadow object, thereby, modifying the shadow outline continuously.
+
+</ul>
+
+<br>
+The enlargement of the shadow object in x- and z-direction makes it appear as if it is being cast by a point light located above the object. However, this shadow is physically not correct. A point light would require a different scale factor for each vertex depending on the original height of the vertex above the groundplate.<br>
+<br>
+Setting the scale factors for the x- and z-direction to 1.0 would create a smaller, physically correct shadow cast by a directional (parallel) light shining straight down on the groundplate.<br>
+<br>
+Correct shadow calculations for a general scenario (especially casting upon an arbitrary geometry and not a simple, flat groundplate) is very difficult and usually accomplished using ray tracing techniques.
+
+
+<p><hr>
+Shadow Simulation 
+<!-- Last Update: May 17, 2001 by KPB -->
+</body>
+</html>

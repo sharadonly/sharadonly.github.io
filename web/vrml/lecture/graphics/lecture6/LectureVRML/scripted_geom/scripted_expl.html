@@ -1,0 +1,489 @@
+<html>
+
+<head>
+<title>Eng 477: Explain Scripted Geometry</title>
+</head>
+
+<body bgcolor="#FFFF99">
+
+<b><font size=+1>VRML Illustration: Scripted Geometry in VRML - Sample Prototypes</font></b>
+<p><hr>
+ 
+<br>
+Several of the VRML geometry nodes (like Sphere or Cylinder) do not allow to control the number of polygons used to approximate the mathematical shape during rendering. Using the scripting capability of VRML, one can create an approximation of these shapes with a variable, user-controllable polygon count. In a similar way, a polygonal representation of any other shape can be created by a VRML script if an algorithm for calculating the geometry can be defined.<br>
+<br>
+The following examples illustrate how to write VRML scripts that generate simple geometry with controllable polygon count. Using the prototyping capability of VRML, each script is embedded in a VRML Prototype that defines a new geometry node type. This new node can be utilized within a Shape node like any other geometry node.<br>
+
+<br>
+<a href="#SPHERE">Prototype MySphere</a> creates a sphere with a variable number of polygons
+<br><br>
+<a href="#WIRE">Prototype MyWireSphere</a> creates a wire frame outline of a sphere with a variable number of line segments
+<br><br>
+<a href="#CYL">Prototype MyCylinder</a> creates a cylinder with a variable number of polygons and several other useful options
+<br><br>
+
+
+<!-- PROTOTYPE MySphere -->
+
+<a name="SPHERE"><hr></a>
+<p>
+<b>Definition of Prototype MySphere:</b><br><br>
+(also available in file <a href="Proto_MySphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MySphere.wrl">Proto_MySphere.wrl</a>)
+<p>
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+
+############################################################
+# Begin of Prototype MySphere
+#
+# This prototype creates a sphere of radius 'rad' with a variable
+# number of polygons controlled by 'numLat' (number of latitude
+# circles) and 'numLng' (number of longitude circles). The sphere
+# is centered around (0,0,0).
+#
+# The sphere is generated as an IndexedFaceSet node by defining
+# the fields coord, coordIndex, texCoord, and creaseAngle.
+#
+# Adapted from Carey, Bell: "The Annotated VRML 2.0 Reference
+# Manual," Addison-Wesley, 1997, pp. 286-287.
+# by K.-P. Beier, University of Michigan, January 27, 2002
+
+PROTO MySphere [
+        field SFFloat rad    1  # radius of sphere
+        field SFInt32 numLat 4  # number of longitudes (parallel to equator)
+        field SFInt32 numLng 4  # number of latitudes  (passing through poles)
+        field SFFloat cra  3.14 # crease angle 
+]{
+DEF IFS IndexedFaceSet {
+        coord DEF C Coordinate { }
+        texCoord DEF TC TextureCoordinate { }
+        creaseAngle IS cra
+}
+DEF S Script {
+        field SFFloat rad IS rad
+        field SFInt32 numLat IS numLat
+        field SFInt32 numLng IS numLng
+        eventOut MFVec3f c_changed
+        eventOut MFVec2f t_changed
+        eventOut MFInt32 ci_changed
+        url "vrmlscript:
+                function initialize () {
+                        var r, angle, x, y, z;
+                        var i, j, polyIndex;
+                        for (i = 0; i < numLat; i++) {
+                           angle = i * ( Math.PI / (numLat-1) ) - ( 0.5 * Math.PI );
+                           y = Math.sin(angle);
+                           r = rad * Math.sqrt ( 1 - y*y );
+                           y = y * rad;
+                           for (j = 0; j < numLng; j++) {
+                                angle = 2 * Math.PI * j / numLng;
+                                x = -Math.sin(angle) * r;
+                                z = -Math.cos(angle) * r;
+                                c_changed [i*numLng+j] = new SFVec3f (x,y,z);
+                                t_changed [i*numLng+j] = new SFVec2f (j/numLng, i/(numLat-1));
+                           }
+                        }
+                        for (i = 0; i < numLat-1; i++) {
+                           for (j = 0; j < numLng; j++) {
+                                polyIndex = 5 *( i * numLng + j );
+                                ci_changed [polyIndex+0] = i * numLng + j;
+                                ci_changed [polyIndex+1] = i * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+2] = (i+1) * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+3] = (i+1) * numLng + j;
+                                ci_changed [polyIndex+4] = -1;
+                           }
+                        }
+                }
+        "
+}
+ROUTE S.c_changed TO C.point
+ROUTE S.t_changed TO TC.set_point
+ROUTE S.ci_changed TO IFS.set_coordIndex
+}
+# End of Prototype MySphere
+############################################################</pre></td></tr></table></center>
+
+<a name="use"></a>
+<br><br>
+<b>Using Prototype MySphere:</b>
+<p>
+There are basically two ways for using this Prototype.
+<p>
+
+<ol>
+<li>
+Copy the Prototype Definition (the code given above) into your VRML code at the beginning of the file. Use the new node MySphere later in the code as, for example, in</pre>
+
+<ul>
+<pre>Shape {
+      appearance Appearance { material Material { } }
+      geometry MySphere { rad 2.5 numLat 30 numLng 30 }
+      }</pre>
+</ul>
+
+This will create a gray sphere of radius 2.5 defined by 30 latitude and 30 longitude circles.
+</li>
+
+<p>
+
+<li>
+Save the Prototype Definition in an external file, for example in "<a href="Proto_MySphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MySphere.wrl">Proto_MySphere.wrl</a>.", and refer to that definition using EXTERNPROTO in your VRML file as shown below. Note that EXTERNPROTO declares the interface without the default values (they have been added as comments only).
+<br><br>
+
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+#Eng 477 Illustration: Scripted Geometry - Use of Prototype MySphere
+#K.-P. Beier, University of Michigan
+#Last Update: October 24, 2002
+
+
+############################################################################
+# Declare Prototype MySphere (defined in external file "Proto_MySphere.wrl")
+# (for more details see the comments in file "Proto_MySphere.wrl")
+
+EXTERNPROTO MySphere [
+        field SFFloat rad     # default: 1  # radius of sphere
+        field SFInt32 numLat  # default: 4  # number of longitudes (parallel to equator)
+        field SFInt32 numLng  # default: 4  # number of latitudes  (passing through poles)
+        field SFFloat cra     # default: 3.14  # crease angle 
+]
+"Proto_MySphere.wrl"
+
+
+############################################################################
+# Sample Use of Prototype MySphere
+
+NavigationInfo { type ["EXAMINE" "ANY"] }
+
+Transform { translation -2 0 0 children [
+        Shape {
+                appearance Appearance { material Material { diffuseColor 1 1 0 } }
+                geometry MySphere {rad 1.5 numLat 25 numLng 25 cra 1}
+        }
+]}
+
+Transform { translation 2 0 0 children [
+        Shape {
+                appearance Appearance { material Material { diffuseColor 1 1 0 } }
+                geometry MySphere {rad 1.5 numLat 4 numLng 5 cra 0}
+        }
+]}</pre></td></tr></table></center>
+
+<br><br>
+The above VRML file illustrates two different uses of MySphere:
+<br><br>
+
+<center><table border=0><tr>
+<td><a href="sphere.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/sphere.jpg"><img src="sphere_sml.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/sphere_sml.jpg" border=3></a></td>
+<td width=120 bgcolor=#FFFFFF><center>
+<a href="TestMySphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/TestMySphere.wrl"><img src="3Dvrml2.gif" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/3Dvrml2.gif" border=0><br><br>
+Load VRML File</a>
+</center></td>
+</tr></table></center>
+
+</li>
+</ol>
+
+
+<!-- PROTOTYPE MyWireSphere -->
+
+<a name="WIRE"><hr></a>
+<p>
+<b>Definition of Prototype MyWireSphere:</b><br><br>
+(also available in file <a href="Proto_MyWireSphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MyWireSphere.wrl">Proto_MyWireSphere.wrl</a>)
+<p>
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+
+############################################################
+# Begin of Prototype MyWireSphere
+#
+# This prototype creates a wire-frame outline of a sphere with
+# radius 'rad' and with a variable number of latitude and
+# longitude circles. The sphere is centered around (0,0,0).
+#
+# The sphere is generated as an IndexedLineSet node.
+#
+# K.-P. Beier, University of Michigan, February 11, 2002
+
+PROTO MyWireSphere [
+        field SFFloat rad        1       # radius of sphere
+        field SFInt32 numLat     4       # number of longitudes (passing through poles)
+        field SFInt32 numLng     4       # number of latitudes  (parallel to equator)
+        field MFColor lcol   [ 1 1 1 ] # line color
+]{
+DEF ILS IndexedLineSet {
+        coord DEF C Coordinate { }
+        coordIndex [ ]
+        color DEF LC Color { }
+        colorIndex [ ]
+        colorPerVertex FALSE
+}
+DEF S Script {
+        field SFFloat rad IS rad
+        field SFInt32 numLat IS numLat
+        field SFInt32 numLng IS numLng
+        field MFColor linecol IS lcol
+        eventOut MFVec3f c_changed
+        eventOut MFInt32 ci_changed
+        eventOut MFColor col_set
+        eventOut MFInt32 colind
+        url "vrmlscript:
+                function initialize () {
+                        var r, angle, x, y, z;
+                        var i, j, polyIndex, plc;
+                        for (i = 0; i < numLat; i++) {
+                           angle = i * ( Math.PI / (numLat-1) ) - ( 0.5 * Math.PI );
+                           y = Math.sin(angle);
+                           r = rad * Math.sqrt ( 1 - y*y );
+                           y = y * rad;
+                           for (j = 0; j < numLng; j++) {
+                                angle = 2 * Math.PI * j / numLng;
+                                x = -Math.sin(angle) * r;
+                                z = -Math.cos(angle) * r;
+                                c_changed [i*numLng+j] = new SFVec3f (x,y,z);
+                           }
+                        }
+                        plc = -1;
+                        for (i = 0; i < numLat-1; i++) {
+                           for (j = 0; j < numLng; j++) {
+                                polyIndex = 5 *( i * numLng + j );
+                                ci_changed [polyIndex+0] = i * numLng + j;
+                                ci_changed [polyIndex+1] = i * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+2] = (i+1) * numLng + (j+1)%numLng;
+                                ci_changed [polyIndex+3] = (i+1) * numLng + j;
+                                ci_changed [polyIndex+4] = -1;
+                                plc = plc + 1;
+                                colind [plc] = 0;
+                           }
+                        }
+                        col_set = linecol;
+                }
+        "
+}
+ROUTE S.c_changed TO C.point
+ROUTE S.ci_changed TO ILS.set_coordIndex
+ROUTE S.col_set TO LC.color
+ROUTE S.colind TO ILS.set_colorIndex
+}
+# End of Prototype MyWireSphere
+############################################################</pre></td></tr></table></center>
+
+<br><br>
+<b>Using Prototype MyWireSphere:</b>
+<p>
+Assuming the above Prototype Definition is available in file "<a href="Proto_MyWireSphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MyWireSphere.wrl">Proto_MyWireSphere.wrl</a>", a VRML file can refer to that definition via EXTERNPROTO as shown below.<br><br>
+(for more information on using Prototypes see <a href=#use>Using Prototype MySphere</a>)
+<br><br>
+
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+#Eng 477 Illustration: Scripted Geometry - Use of Prototype MyWireSphere
+#K.-P. Beier, University of Michigan
+#Last Update: October 24, 2002
+
+
+############################################################################
+# Declare Prototype MyWireSphere (defined in external file "Proto_MyWireSphere.wrl")
+# (for more details see the comments in file "Proto_MyWireSphere.wrl")
+
+EXTERNPROTO MyWireSphere [
+        field SFFloat rad     # default: 1  # radius of sphere
+        field SFInt32 numLat  # default: 4  # number of longitudes (passing through poles)
+        field SFInt32 numLng  # default: 4  # number of latitudes  (parallel to equator)
+        field MFColor lcol    # default: [ 1 1 1 ]  # line color
+]
+"Proto_MyWireSphere.wrl"
+
+
+############################################################################
+# Sample Use of Prototype MyWireSphere
+
+NavigationInfo { type ["EXAMINE" "ANY"] }
+
+Transform { translation -2 0 0 children [
+        Shape {
+                geometry MyWireSphere {rad 1.5 numLat 25 numLng 25 lcol [1 1 0] }
+        }
+]}
+
+Transform { translation 2 0 0 children [
+        Shape {
+                geometry MyWireSphere {rad 1.5 numLat 4 numLng 5 lcol [1 0 1] }
+        }
+]}</pre></td></tr></table></center>
+
+<br><br>
+The above VRML file illustrates two different uses of MyWireSphere:
+<br><br>
+
+<center><table border=0><tr>
+<td><a href="wire.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/wire.jpg"><img src="wire_sml.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/wire_sml.jpg" border=3></a></td>
+<td width=120 bgcolor=#FFFFFF><center>
+<a href="TestMyWireSphere.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/TestMyWireSphere.wrl"><img src="3Dvrml2.gif" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/3Dvrml2.gif" border=0><br><br>
+Load VRML File</a>
+</center></td>
+</tr></table></center>
+
+
+<!-- PROTOTYPE MyCylinder -->
+
+<a name="CYL"><hr></a>
+<p>
+<b>Definition of Prototype MyCylinder:</b><br><br>
+(also available in file <a href="Proto_MyCylinder.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MyCylinder.wrl">Proto_MyCylinder.wrl</a>)
+<p>
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+
+############################################################
+# Begin of Prototype MyCylinder
+#
+# This prototype creates a cylinder with a variable number
+# of polygons controlled by 'numPol' (number of rectangles
+# defining the side of the cylinder).
+#
+# Additional fields available to control the geometry of the
+# cylinder are radius, height, top and bottom cap, solid,
+# and crease angle 'cra'.
+#
+# The definition is similar to the VRML Cylinder node, e.g.,
+# the cylinder extends in the y direction and is centered
+# around (0,0,0). The additional fields numPol, solid, and
+# and cra (crease angle) are not available in the VRML
+# Cylinder node and provide greater modeling flexibility.
+#
+# The cylinder is generated as an Extrusion node.
+#
+# K.-P. Beier, University of Michigan, February 10, 2002
+
+PROTO MyCylinder [
+   field   SFInt32   numPol     10   # number of polygons
+   field   SFFloat   radius      1   # radius of cylinder
+   field   SFFloat   height      2   # height of cylinder
+   field   SFBool    top      TRUE   # top cap of cylinder
+   field   SFBool    bottom   TRUE   # bottom cap of cylinder
+   field   SFBool    solid   FALSE   # back faces invisible
+   field   SFFloat   cra      1.57   # crease angle
+]{
+
+DEF CYL Extrusion {
+   endCap      IS bottom
+   beginCap    IS top
+   solid       IS solid
+   creaseAngle IS cra
+}
+
+DEF S Script {
+   field    SFInt32 numPol IS numPol
+   field    SFFloat rad    IS radius
+   field    SFFloat ht     IS height
+   eventOut MFVec3f spine
+   eventOut MFVec2f cross
+   url "vrmlscript:
+      function initialize () {
+         var j, angle, x, z;
+         for (j = 0; j < numPol+1; j++) {
+           angle = 2 * Math.PI * j / numPol;
+           x = Math.sin(angle) * rad;
+           z = -Math.cos(angle) * rad;
+           cross [ j ] = new SFVec2f (x,z);
+         }
+         spine [ 0 ] = new SFVec3f (0,  0.5 * ht , 0);
+         spine [ 1 ] = new SFVec3f (0, -0.5 * ht , 0);
+      }
+   "
+}
+ROUTE S.cross TO CYL.crossSection
+ROUTE S.spine TO CYL.spine
+}
+# End of Prototype MyCylinder
+############################################################</pre></td></tr></table></center>
+
+<br><br>
+<b>Using Prototype MyCylinder:</b>
+<p>
+Assuming the above Prototype Definition is available in file "<a href="Proto_MyCylinder.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/Proto_MyCylinder.wrl">Proto_MyCylinder.wrl</a>", a VRML file can refer to that definition via EXTERNPROTO as shown below.<br><br>
+(for more information on using Prototypes see <a href=#use>Using Prototype MySphere</a>)
+<br><br>
+
+<center><table border="1"  cellspacing="0">
+<tr><td bgcolor=#FFFFFF><pre>#VRML V2.0 utf8
+
+#Eng 477 Illustration: Scripted Geometry - Use of Prototype MyCylinder
+#K.-P. Beier, University of Michigan
+#Last Update: October 24, 2002
+
+
+############################################################################
+# Declare Prototype MyCylinder (defined in external file "Proto_MyCylinder.wrl")
+# (for more details see the comments in file "Proto_MyCylinder.wrl")
+
+EXTERNPROTO MyCylinder [
+   field   SFInt32   numPol  # default:   10   # number of polygons
+   field   SFFloat   radius  # default:    1   # radius of cylinder
+   field   SFFloat   height  # default:    2   # height of cylinder
+   field   SFBool    top     # default: TRUE   # top cap of cylinder
+   field   SFBool    bottom  # default: TRUE   # bottom cap of cylinder
+   field   SFBool    solid   # default: FALSE  # back faces invisible
+   field   SFFloat   cra     # default: 1.57   # crease angle
+]
+"Proto_MyCylinder.wrl"
+
+
+############################################################################
+# Sample Use of Prototype MyCylinder
+
+NavigationInfo { type ["EXAMINE" "ANY"] }
+
+Transform { translation -2 0 0 rotation 1 0 0 0.8 children [
+        Shape {
+        appearance Appearance { material Material { diffuseColor 1 1 0 } }
+        geometry MyCylinder {
+                numPol 30
+                radius 1.5
+                height 1.5
+                top FALSE
+                bottom FALSE
+                }
+        }
+]}
+
+Transform { translation 2 0 0 rotation 1 0 0 0.8 children [
+        Shape {
+        appearance Appearance { material Material { diffuseColor 1 1 0 } }
+        geometry MyCylinder {
+                numPol 7
+                radius 1.5
+                height 1.5
+                top FALSE
+                cra 0
+                }
+        }
+]}</pre></td></tr></table></center>
+
+<br><br>
+The above VRML file illustrates two different uses of MyCylinder:
+<br><br>
+
+<center><table border=0><tr>
+<td><a href="cylinder.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/cylinder.jpg"><img src="cylinder_sml.jpg" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/cylinder_sml.jpg" border=3></a></td>
+<td width=120 bgcolor=#FFFFFF><center>
+<a href="TestMyCylinder.wrl" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/TestMyCylinder.wrl"><img src="3Dvrml2.gif" tppabs="http://www.engin.umich.edu/class/eng477/fall2002/docs/Lecture/LectureVRML/scripted_geom/3Dvrml2.gif" border=0><br><br>
+Load VRML File</a>
+</center></td>
+</tr></table></center>
+
+
+<p><hr>
+University of Michigan - Eng 477 - Lecture Notes: VRML Illustration -- Scripted Geometry
+
+<!-- Last Update: October 25, 2002 by KPB -->
+
+</body>
+</html>

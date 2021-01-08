@@ -1,0 +1,154 @@
+#VRML V2.0 utf8
+
+#Eng 477 Illustration: Changing Vertex No. 5
+#K.-P. Beier, University of Michigan
+#Last Update: October 28, 2002
+
+
+##################################################
+# Begin of Viewpoint, Navigation, Background, Light
+
+Viewpoint {
+	description "Reset View"
+	position 3 0.9 4.5
+	orientation 0 1 0 0.5
+}
+
+NavigationInfo {type ["EXAMINE" "ANY"]}
+
+Background {skyColor [ 0.5 0.6 1.0 ]}
+
+PointLight { location 5 5 5 intensity 0.5 }
+
+# End of Viewpoint, Navigation, Background, Light
+##################################################
+
+
+##################################################
+# Begin of Prototype VertexBall
+
+PROTO VertexBall [
+	exposedField  SFVec3f  pos  0 0 0	# translation
+]{
+Transform {
+	translation IS pos
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 0
+				}
+			}
+			geometry Sphere { radius 0.04 }
+		}
+	]
+}}
+
+# End of Prototype VertexBall
+##################################################
+
+
+##################################################
+# Begin of IndexedFaceSet
+
+Shape {
+	appearance Appearance {
+		material Material {
+			diffuseColor 0.8 0.4 0.1
+		}
+	}
+	geometry IndexedFaceSet {
+		coord DEF VERTEX Coordinate {
+			point [ 0.0  0.0  0.0,		# vertex 0
+				  2.0  0.0  0.0,		# vertex 1
+				  1.0  1.5  0.0,		# vertex 2
+				  0.0  0.0  1.5,		# vertex 3
+				  2.0  0.0  1.5,		# vertex 4
+				  1.0  1.5  1.5  ]	# vertex 5
+			}
+		coordIndex [ 3, 4, 5,    -1,		# face 0
+				 0, 2, 1,    -1,		# face 1
+				 2, 5, 4, 1, -1,		# face 2
+				 5, 2, 0, 3, -1,		# face 3
+				 0, 1, 4, 3, -1  ]	# face 4
+	}
+}
+
+# End of IndexedFaceSet
+##################################################
+
+
+##################################################
+# Begin - Display Balls at Vertices
+
+VertexBall { pos 0.0  0.0  0.0 }		# at vertex 0
+VertexBall { pos 2.0  0.0  0.0 }		# at vertex 1
+VertexBall { pos 1.0  1.5  0.0 }		# at vertex 2
+VertexBall { pos 0.0  0.0  1.5 }		# at vertex 3
+VertexBall { pos 2.0  0.0  1.5 }		# at vertex 4
+DEF BV5 VertexBall { pos 1.0  1.5  1.5 }	# at vertex 5
+
+# End - Display Balls at Vertices
+#################################################
+
+
+#################################################
+# Begin - Animate Ball at Vertex 5
+
+DEF MOVEBALL PositionInterpolator {
+	key 	[ 0 0.5 1 ]
+	keyValue [ 1.0  1.5  1.5,
+		     1.0  1.8  2.1,
+		     1.0  1.5  1.5 ]
+}
+
+DEF TIME TimeSensor {
+	loop TRUE
+	cycleInterval 2
+}
+
+ROUTE TIME.fraction_changed TO MOVEBALL.set_fraction
+ROUTE MOVEBALL.value_changed TO BV5.pos
+
+# End - Animate Ball at Vertex 5
+#################################################
+
+
+#################################################
+# Begin - Animate Vertex 5 in IndexedFaceSet
+# Note:
+#     The animation of Vertex 5 is accomplished by
+#     defining the entire IndexedFaceSet three
+#     times (original, changed, and original again)
+#     and by interpolating between these three sets.
+#     Changing only Vertex 5 would require a script.
+
+DEF MOVE CoordinateInterpolator {
+	key 	[ 0 0.5 1 ]
+	keyValue [ 0.0  0.0  0.0
+		     2.0  0.0  0.0
+		     1.0  1.5  0.0
+		     0.0  0.0  1.5
+		     2.0  0.0  1.5
+		     1.0  1.5  1.5,	# vertex 5, original
+
+  		     0.0  0.0  0.0
+		     2.0  0.0  0.0
+		     1.0  1.5  0.0
+		     0.0  0.0  1.5
+		     2.0  0.0  1.5
+		     1.0  1.8  2.1,	# vertex 5, changed
+
+		     0.0  0.0  0.0
+		     2.0  0.0  0.0
+		     1.0  1.5  0.0
+		     0.0  0.0  1.5
+		     2.0  0.0  1.5
+		     1.0  1.5  1.5 ]	# vertex 5, original
+}
+
+ROUTE TIME.fraction_changed TO MOVE.set_fraction
+ROUTE MOVE.value_changed TO VERTEX.point
+
+# End - Animate Vertex 5 in IndexedFaceSet
+#################################################

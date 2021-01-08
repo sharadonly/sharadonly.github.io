@@ -1,0 +1,54 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE>Hardware Presentation</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="Color_Interpolation.html" tppabs="">Previous</A> 
+-- <A HREF="../Ch_CompGraph2/ViewTitle.html" tppabs="">Next</A> 
+<H2>HARDWARE REPRESENTATION<HR></H2>
+
+
+<UL>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Hardware Presentation of Color</FONT></B></LI>
+<BR><BR>
+- RGB model with 0-1 intensities is device independent<BR><BR>
+- intensities must be finally expressed as integers<BR><BR>
+- example:
+     <UL>
+     <BR>
+     8 bits (1 byte) per intensity allows for 256 values<BR>
+     24 bits (3 bytes) are needed for the three intensities<BR>
+     24 bitplanes are required, 8 for each intensity<BR>
+     result: a total of 256 x 256 x 256 = 16.8 million colors can be expressed<BR>
+     </UL>
+<BR>
+
+
+<CENTER><IMG SRC="HardwarePresentation1.gif" tppabs=""></CENTER>
+<BR>
+
+<BR>
+- a lower number of bitplanes requires a Color Table (or Video Look-Up Table)<br>
+- the pixel presentation from the available bitplanes is interpreted as a pointer<br>
+- the pointer points into the Color Table where the color is defined in 24 bits<br>
+<BR>
+
+<CENTER><IMG SRC="HardwarePresentation2.gif" tppabs=""></CENTER>
+
+
+</UL>
+
+
+<BR><HR>
+<A HREF="Color_Interpolation.html" tppabs="">Previous</A> 
+-- <A HREF="../Ch_CompGraph2/ViewTitle.html" tppabs="">Next</A> 
+</BODY>
+
+</HTML>

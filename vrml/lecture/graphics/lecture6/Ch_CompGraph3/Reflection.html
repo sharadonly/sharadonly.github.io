@@ -1,0 +1,105 @@
+<HTML>
+
+
+<HEAD>
+   <TITLE> Reflection</TITLE>
+</HEAD>
+
+
+<BODY bgcolor="ffffff">
+<A HREF="Light.html" tppabs="">Previous</A> 
+-- <A HREF="VRMLReflection.html" tppabs="">Next</A> 
+<H2>REFLECTION MODELS<HR></H2>
+
+
+<UL>
+
+
+<BR>
+<LI><B><FONT SIZE=+1>Symbols</FONT></B></LI>
+<BR><BR>
+
+Is = intensity of ray of incident (from light source)<BR>
+<BR>
+I = intensity of ray of reflection (towards viewer)<BR>
+<BR>
+N = surface normal at point of incident<BR>
+<BR>
+theta = angle between incident ray and surface normal N<BR>
+<BR>
+
+<BR>
+
+
+</UL>
+<CENTER><IMG SRC="reflection_1.gif" tppabs=""></CENTER>
+<UL>
+
+Note: All intensities are 'light intensities' defined by RGB triples<BR>
+<BR>
+
+<BR>
+<LI><B><FONT SIZE=+1>Diffuse Reflection</FONT></B></LI>
+<BR><BR>
+
+- typical for rough or dull looking surfaces<BR>
+- a perfect diffuse surface scatters an incoming light ray equally in all directions<BR>
+- reflected intensity I is a function of theta (Lambert's law)<BR>
+- reflection coefficient kd is a material property (range 0-1)<BR>
+
+</UL>
+<CENTER><IMG SRC="reflection_2.gif" tppabs=""></CENTER>
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Mirror Surface</FONT></B></LI>
+<BR><BR>
+
+- a perfect mirror surface reflects light ray in only one direction (R)<BR>
+- ray of incident and ray of reflection have the same angle theta with normal N and lie in the same plane<BR>
+- reflection ray R can only be seen when viewed from that direction<BR>
+- intensity of incident and reflection ray are equal<BR>
+
+</UL>
+<CENTER><IMG SRC="reflection_3.gif" tppabs=""></CENTER>
+<UL>
+
+<BR>
+<LI><B><FONT SIZE=+1>Specular Reflection</FONT></B></LI>
+<BR><BR>
+
+- shiny surfaces are not perfectly mirror-like<BR>
+- reflected light can be seen from directions close to R<BR>
+ (displacement angle beta between R and viewing direction)<BR>
+- results are 'highlights' or 'specular reflections' indicating a somewhat glossy surface<BR>
+- specular reflection coefficient ks (material property) models the reduced intensity in the direction of R<BR>
+
+</UL>
+<CENTER><IMG SRC="reflection_4.gif" tppabs=""></CENTER>
+<UL>
+
+- the rapid falloff in reflected intensity is modeled by the specular reflection exponent n<BR>
+(range from 1 for gentle falloff to several hundreds for sharp falloff)<BR>
+
+</UL>
+<CENTER><IMG SRC="reflection_5.gif" tppabs=""></CENTER>
+<UL>
+  <BR>
+</UL>
+<ul>
+
+
+</ul>
+
+<hr>
+<UL>
+  <BR>
+</UL>
+
+<BR><HR>
+<A HREF="Light.html" tppabs="">Previous</A> 
+-- <A HREF="VRMLReflection.html" tppabs="">Next</A> 
+<!-- Last Update: November 4, 2001 by KPB -->
+</BODY>
+
+</HTML>
