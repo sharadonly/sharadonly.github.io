@@ -1,0 +1,414 @@
+#VRML V2.0 utf8
+#Stacy D. Reddick
+#Rickey Mouse, the cousin of Mickey Mouse (portrait view)
+NavigationInfo {
+   headlight  FALSE
+}
+
+DirectionalLight {
+  direction  0.0 -1.0 0.0
+  intensity 1.0
+  ambientIntensity 0.3
+}
+
+NavigationInfo {
+  headlight FALSE   
+  type "EXAMINE"
+}
+
+Transform {
+  translation 0  0  -5
+  rotation 0  1  0  0.785
+  children Inline {
+    url "grid3.wrl"
+  }
+}
+
+
+Background { # 
+   skyColor [ 0 .6 1, 0 .4 1, 0 0 1, .5 .1 0, .5 0 0 ] 
+   skyAngle [ 1, 1.57] 
+   groundColor [0 .1 0, 0 .3 0]
+   groundAngle 1.57
+} 
+
+
+Viewpoint { 
+
+  fieldOfView    0.785398  
+  jump           TRUE           
+  orientation    .83 .56 -.05 0.07    
+  position       -.48 .53 7.47       
+  description    "The other side..."        
+}
+
+Viewpoint { 
+
+  fieldOfView    0.785398    
+  jump           TRUE        
+  orientation    0 -1 0 .75  
+  position       -11.83 1.41 3.29    
+  description    "The side of...."   
+}
+
+Viewpoint { 	#Extra Credit
+
+  fieldOfView    0.785398    
+  jump           TRUE        
+  orientation    0 -1 0 .75  
+  position       11.83 2.41 8.29    
+  description    "The right side of...."      
+}
+
+Transform {
+  translation 0 -3 -8 
+  children Shape {
+    geometry Cylinder { radius 1 height 2 }
+    appearance Appearance { 
+      material Material { diffuseColor 1 1 1 } 
+    } 
+  } 
+}
+
+Transform {		   #Extra Credit
+  translation 0 -3 -7.3 
+  children Shape {
+   geometry Cone {
+      bottomRadius 1
+      height 2
+   }
+   appearance Appearance {
+     texture ImageTexture { url "wall.jpg" } 
+		  textureTransform TextureTransform { scale 3 4 }  
+   }
+
+}
+}
+
+Transform {
+   translation 0 0 -8
+   children Shape {
+      geometry Sphere { radius 2.2 }
+      appearance Appearance {
+          material DEF MAT Material {
+            diffuseColor 1 0.7 0.5  #snow white hue					a
+        }
+      }
+   }
+}
+
+Transform {
+   translation -2.2 2.5 -8
+   children Shape {
+      geometry Sphere { radius 1.5 }
+      appearance Appearance {
+         material DEF MAT2 Material {
+            diffuseColor 1 0.7 0.5
+         }
+      }
+   }
+}
+
+Transform {
+   translation 2.2 2.5 -8
+   children Shape {
+      geometry Sphere{ radius 1.5 }
+      appearance Appearance {
+         material DEF MAT3 Material {
+            diffuseColor 1 0.7 0.5
+         }
+      }
+   }
+}
+
+DEF SPHERE Transform {
+   translation 0.95 0.5 -6
+   children Shape {
+      geometry Sphere{ radius 0.2 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+DEF SPHERE2 Transform {
+   translation -0.95 0.5 -6
+   children Shape {
+      geometry Sphere{ radius 0.2 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+DEF BOX Transform {
+  translation 0 -1.1 -6.5
+  children Shape { 
+    geometry Box {size 1 0.2 1} 
+    appearance Appearance { 
+      material Material {diffuseColor 0 0 0} 
+    } 
+  } 
+}
+
+
+Transform {
+   translation 0 0 -5.5
+   children Shape {
+      geometry Sphere{ radius 0.6 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 -2.4 -7.1
+   children Shape {
+      geometry Sphere{ radius 0.45 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 0 0
+         }
+      }
+   }
+}
+Transform {
+   translation -1 0.65 -6.3
+   children Shape {
+      geometry Sphere{ radius 0.45 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+Transform {
+   translation 1 0.65 -6.3
+   children Shape {
+      geometry Sphere{ radius 0.45 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+DEF CI ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0.7 0.5, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+DEF TIME TimeSensor { 
+  loop TRUE 
+  cycleInterval 5 
+} 
+
+ROUTE TIME.fraction_changed TO CI.set_fraction 
+ROUTE CI.value_changed      TO MAT.set_diffuseColor
+
+DEF CI2 ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0.7 0.5, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+ROUTE TIME.fraction_changed TO CI2.set_fraction 
+ROUTE CI2.value_changed      TO MAT2.set_diffuseColor
+
+DEF CI3 ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0.7 0.5, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+ROUTE TIME.fraction_changed TO CI3.set_fraction 
+ROUTE CI3.value_changed      TO MAT3.set_diffuseColor
+
+                            
+DEF PI PositionInterpolator { 
+  key [ 0, 0.5,  1 ] 
+  keyValue [0.95 0.5 -6,  0.95 0.7 -6, 
+             0.95 0.5 -6
+           ] 
+}
+
+ROUTE TIME.fraction_changed TO PI.set_fraction 
+ROUTE PI.value_changed      TO SPHERE.set_translation
+
+                             
+DEF PI2 PositionInterpolator { 
+  key [ 0, 0.5,  1 ] 
+  keyValue [-0.95 0.5 -6,  -0.95 0.7 -6, 
+             -0.95 0.5 -6
+           ]  
+}
+
+ROUTE TIME.fraction_changed TO PI2.set_fraction 
+ROUTE PI2.value_changed      TO SPHERE2.set_translation
+
+DEF OI OrientationInterpolator {
+  key [0, .25, .5, .75, 1.0]
+  keyValue [ 0 0 1 0.00, 0 0 1 1.57,
+             0 0 1 3.14, 0 0 1 4.71,
+             0 0 1 0.00
+           ]
+}
+
+
+ROUTE TIME.fraction_changed TO OI.set_fraction 
+ROUTE OI.value_changed      TO BOX.set_rotation
+
+DEF BOX Transform {
+  translation -5 0 -9
+  children Shape {
+    geometry Box {} 
+    appearance Appearance { 
+      texture ImageTexture { url "flemish.jpg" } 
+		  textureTransform TextureTransform { scale 3 4 } 
+    } 
+  }
+}
+                            
+Transform {
+  translation -3 -3 -5
+  children [
+    Shape {
+      geometry Box { size 0.25 0.25 0.25 } 
+      appearance Appearance { 
+        material Material {diffuseColor 0.5 0 1} 
+      } 
+    }
+    DEF TOS TouchSensor {}
+  ]
+}
+
+
+DEF PI PositionInterpolator { 
+  key [ 0, 0.25, 0.5, 0.75, 1 ] 
+  keyValue [ -5 0 -9,  -5 0 10, 
+             -4 0  -9,  10  0  -7,
+             -5 0 -9, 
+           ] 
+}
+
+                            
+DEF TIME TimeSensor { 
+  loop FALSE 
+  cycleInterval 5 
+} 
+
+
+ROUTE TOS.touchTime         TO TIME.startTime
+ROUTE TIME.fraction_changed TO PI.set_fraction 
+ROUTE PI.value_changed      TO BOX.set_translation
+
+DEF BOX Transform {
+
+  translation 5 0 -9
+
+  children [
+
+    Shape {
+
+      geometry Box { } 
+
+      appearance Appearance { 
+
+       texture ImageTexture { url "blocks.jpg" } 
+		  textureTransform TextureTransform { scale 3 4 }
+
+      } 
+
+    }
+
+  ]
+
+}
+
+
+
+Transform {
+
+  translation 3 -3 -5
+
+  children [
+
+    Shape {
+
+      geometry Sphere { radius 0.25 } 
+
+      appearance Appearance { 
+
+        material Material {diffuseColor 0.5 0 1} 
+
+      } 
+
+    }
+
+    DEF SS SphereSensor {}
+
+  ]
+
+}
+
+
+
+                            
+
+ROUTE SS.rotation_changed TO BOX.set_rotation
+ 
+
+DEF TIME TimeSensor {	  #Extra Credit
+  loop TRUE 
+  cycleInterval 5
+}
+
+
+
+DEF SPHERE3 Transform {	  #Extra Credit 
+   translation -11 5 -8
+   children Shape {
+      geometry Sphere { radius 3 }
+      appearance Appearance {
+          material Material {
+            diffuseColor 1 1 0  #snow white hue
+			shininess 2
+        }
+      }
+   }
+}
+
+DEF SCRIPT Script {
+  eventIn SFFloat set_fraction
+  eventOut SFVec3f translation_changed
+  field    SFVec3f translation 0 0 -12
+
+  url "vrmlscript:
+    function set_fraction(time){
+      t = time * 2 * Math.PI; // time is the time fraction from the time sensor
+                              // here it is converted to radians so that it 
+                              // ranges from 0 to 2Pi.
+      translation.x = 2 * Math.cos(t);
+      translation.y = 2 * Math.sin(t);
+      translation_changed = translation;
+    }
+"
+}
+
+ROUTE TIME.fraction_changed      TO SCRIPT.set_fraction
+ROUTE SCRIPT.translation_changed TO SPHERE3.set_translation

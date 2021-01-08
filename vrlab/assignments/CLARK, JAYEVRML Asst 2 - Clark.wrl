@@ -1,0 +1,479 @@
+#VRML V2.0 utf8
+
+#VRML Assignment #1
+#Jaye Clark
+# 7 Components or more and 
+# 3 Geometrys (Sphere, Cylinder, Cone)
+# The body
+
+
+
+	PointLight {
+		location 5 8 8
+	}
+
+   NavigationInfo {
+	headlight FALSE	
+	type "EXAMINE"
+}
+
+Transform {
+	translation	0 0 0
+	rotation 1 1 0 0.785
+}
+
+#bottom scoop
+DEF BOTTOM Transform {
+   translation 0 -1.2 0
+   children [Shape {
+      geometry Sphere { radius 2.5 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 .8 0.95  
+         }
+      }
+   }
+]
+}
+Transform{
+	 translation -4 -1.5 0
+	 children [
+		 Shape {
+			 geometry Sphere {radius .5 }
+			 appearance	Appearance {
+				 material Material {diffuseColor 1 .8 0.95}
+			 }
+		 }
+		 
+		 DEF SS SphereSensor {}
+	 ]
+ }
+ ROUTE SS.rotation_changed TO BOTTOM.set_rotation
+
+#middle scoop
+Transform {
+   translation 0 1.80 0
+   children Shape {
+      geometry Sphere { radius 2.5 }
+      appearance Appearance {
+         material DEF MAT Material {
+            diffuseColor 1 1 0.85
+         }
+      }
+   }
+}
+  DEF CI ColorInterpolator{
+	   key [ 0, .25, .5, .75, 1]
+	   keyValue [1 0 0, 0 1 0, 0 0 1, 0 1 0 , 1 0 0]
+   }
+
+   DEF TIME TimeSensor{
+	   loop TRUE
+	   cycleInterval 5
+   }
+
+   ROUTE TIME.fraction_changed TO CI.set_fraction
+   ROUTE CI.value_changed TO MAT.set_diffuseColor
+
+   #top scoop
+DEF TOP Transform {
+   translation 0 4.8 0
+   children [ Shape {
+      geometry Sphere { radius 2.5 }
+      appearance Appearance {
+         material  Material {
+            diffuseColor 0.4 0.25 0.15
+         }
+      }
+   }
+]
+ }
+Transform{
+	 translation -4 4.5 0
+	 children [
+		 Shape {
+			 geometry Sphere {radius .5 }
+			 appearance	Appearance {
+				 material Material {diffuseColor 0.4 0.25 0.15}
+			 }
+		 }
+		 
+		 DEF SS2 SphereSensor {}
+	 ]
+ }
+ ROUTE SS2.rotation_changed TO TOP.set_rotation
+   
+ 
+
+#-----------------cherry ---------------------------
+DEF CHERRY Transform {
+   translation 0 7.8 0
+   children Shape {
+      geometry Sphere { radius 1.0 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 0 0
+         }
+      }
+   }
+}
+
+DEF	OI OrientationInterpolator {
+	key	[ 0, .25, .5, .75, 1]
+	keyValue [ 0 1 0 0.00, 0 1 0 1.5,
+			   0 1 0 3.14, 0 1 0 4.71,
+			   0 1 0 0.00]
+		   }
+
+		    DEF TIME2 TimeSensor	{
+			   loop	TRUE
+			   cycleInterval 5
+		   }
+
+		   ROUTE TIME2.fraction_changed TO OI.set_fraction
+		   ROUTE OI.value_changed TO CHERRY.set_rotation
+#stem
+DEF STEM Transform {
+   translation 0 9.0 0
+   rotation	0 0 1 0.26
+   children Shape {
+	   geometry	Cylinder {
+	   radius  .15         # SFFloat
+		height  1.5         # SFFloat
+		bottom  TRUE      # SFBool
+		top     TRUE      # SFBool
+		side    TRUE     } # SFBool      
+  appearance Appearance {
+         material Material {
+            diffuseColor 0 1 0	
+    	 }
+	 }
+   }
+}
+
+ 
+#----------------------cone------------------------
+
+ DEF CONE Transform {
+   translation 0 -6.5 0
+   rotation         1  0  0  3.15
+   children Shape {
+	   geometry Cone {
+      bottomRadius 2.2
+      height 8
+		}
+	appearance Appearance {
+      material Material {diffuseColor .4 .3 .1} 
+	  texture ImageTexture {url	"textureCat6.jpg"}
+	}
+  }	
+}
+DEF ts TouchSensor{}
+DEF	SI3 PositionInterpolator {
+	key	[ 0, .25, .5, .75, 1]
+	keyValue [1 1 1 
+			  .5 .5 .5 
+			  0 0 0
+			  .5 .5 .5
+		      1 1 1]
+}
+
+DEF	TIME3 TimeSensor {
+	loop FALSE
+	cycleInterval 5
+	startTime 0
+}
+
+
+ROUTE  ts.touchTime	TO TIME3.startTime
+ROUTE TIME3.fraction_changed TO	SI3.set_fraction
+ROUTE SI3.value_changed	 TO	CONE.scale
+
+
+
+#---------------------- sprinkles ----------------------------
+ Transform{
+	translation 2.0 5 1.5
+	rotation	0 0 1 0.3
+	children DEF WhiteSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	1 1 1}
+			}
+		}
+
+	}
+
+Transform{
+	translation 0 6 2.2
+	rotation	0 0 1 -0.5
+	children DEF RedSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	1 .2 0}
+			}
+		}
+
+	}
+Transform{
+	translation -.2 5.2 2.4
+	rotation	0 0 1 0.86
+	children DEF YellowSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	1 1 0}
+			}
+		}
+
+	}
+
+Transform{
+	translation 1 6.3 1.7
+	rotation	0 0 1 -1.6
+	children DEF GreenSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	0 1 0.2}
+			}
+		}
+
+	}
+
+Transform{
+	translation .9 4.9 2.3
+	rotation	0 0 1 0.45
+	children DEF OrangeSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	1 .5 0.2}
+			}
+		}
+
+	}
+
+Transform{
+	translation -1.5 5.4 1.9
+	rotation	0 0 1 1.2
+	children DEF PurpleSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	.5 0 0.8}
+			}
+		}
+
+	}
+Transform{
+	translation -1 5.8 2.0
+	rotation	0 0 1 0
+	children DEF BlueSprinkles Shape {
+		geometry Cylinder {
+			radius  .07         # SFFloat
+			height  .25         # SFFloat
+			bottom  TRUE      # SFBool
+			top     TRUE      # SFBool
+			side    TRUE    }  # SFBool
+			appearance Appearance {
+				material Material {diffuseColor	.1 0 1}
+			}
+		}
+
+	}
+
+Transform {
+	translation -1 4.8 2.25
+	rotation	0 0 1 .9
+	children USE RedSprinkles 
+}
+
+Transform {
+	translation -1.8 6.1 1
+	rotation	0 0 1 -.8
+	children USE WhiteSprinkles 
+}
+
+Transform {
+	translation -.25 6.3 1.95
+	rotation	0 0 1 -.35
+	children USE WhiteSprinkles 
+}
+Transform {
+	translation -2 4.5 1.35
+	rotation	0 0 1 -.95
+	children USE GreenSprinkles 
+}
+Transform {
+	translation -2.4 5 .4
+	rotation	1 0 0 1.4
+	children USE RedSprinkles 
+}
+Transform {
+	translation 2.0 5.9 1
+	rotation	0 0 1 .1
+	children USE BlueSprinkles 
+}
+Transform {
+	translation 2.45 5.0 0
+	rotation	1 0 0 1	
+	children USE YellowSprinkles 
+}
+Transform {
+	translation 1.95 6.3 .3
+	rotation	1 0 0 -1.3
+	children USE PurpleSprinkles 
+}
+Transform {
+	translation -1.2 6.3 1.5
+	rotation	0 0 1 0.5
+	children USE OrangeSprinkles 
+}
+#-------------back sprinkles------------------
+# just negate x and z values
+Transform  {
+	translation -.9 4.9 -2.3
+	rotation	0 0 1 0.3
+	children USE WhiteSprinkles
+}
+Transform  {
+	translation 0 6 -2.2
+	rotation	0 0 1 -0.5
+	children USE RedSprinkles
+}
+
+Transform  {
+	translation .2 5.2 -2.4
+	rotation	0 0 1 0.86
+	children USE YellowSprinkles
+}
+Transform  {
+	translation -1 6.3 -1.7
+	rotation	0 0 1 -1.6
+	children USE GreenSprinkles
+}
+Transform  {
+	translation -1 4.5 -2.3
+	rotation	0 0 1 0.45
+	children USE OrangeSprinkles
+}
+Transform  {
+	translation 1.5 5.4 -1.9
+	rotation	0 0 1 1.2
+	children USE PurpleSprinkles
+}
+Transform  {
+	translation -1 5.8 2.0
+	rotation	0 0 1 0
+	children USE BlueSprinkles
+}
+
+Transform {
+	translation 1 4.8 -2.25
+	rotation	0 0 1 .9
+	children USE RedSprinkles 
+}
+
+Transform {
+	translation 1.8 6.1 -1
+	rotation	0 0 1 -.8
+	children USE WhiteSprinkles 
+}
+
+Transform {
+	translation .25 6.3 -1.95
+	rotation	0 0 1 -.35
+	children USE WhiteSprinkles 
+}
+Transform {
+	translation 2 4.5 -1.35
+	rotation	0 0 1 -.95
+	children USE GreenSprinkles 
+}
+Transform {
+	translation 2.4 5 -.4
+	rotation	0 0 1 .9
+	children USE RedSprinkles 
+}
+Transform {
+	translation -2.0 5.9 -1
+	rotation	0 0 1 .1
+	children USE BlueSprinkles 
+}
+Transform {
+	translation -2.45 5.0 0
+	rotation	1 0 0 1	
+	children USE YellowSprinkles 
+}
+Transform {
+	translation -1.95 6.3 -.3
+	rotation	1 0 0 -1.3
+	children USE PurpleSprinkles 
+}
+Transform {
+	translation 1.2 6.3 -1.5
+	rotation	0 0 1 0.5
+	children USE OrangeSprinkles 
+}
+
+#--------------viewpoints-------------
+Viewpoint {
+   position 0 0 30
+   orientation 0 0 0 0
+   description "Front" 
+}
+Viewpoint {
+   position 0 0 -30
+   orientation 0 1 0 3.14
+   description "Back" 
+}
+ 
+Viewpoint {
+   position 2 4 30
+   orientation 1 0 0 -.2
+   description "View1" 
+}
+
+Viewpoint {
+   position 15 4 0
+   orientation 0 1 0 1.57  
+   description "profile" 
+}
+
+Viewpoint {
+   position -10 4 0
+   orientation 0 1 0 -1.57  
+   description "profile2" 
+}
+Viewpoint {
+   position -20 0 -8
+   orientation 0 1 0 -2.32
+   description "View3" 
+}

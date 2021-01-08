@@ -1,0 +1,119 @@
+#VRML V2.0 utf8
+#Author: Dane Morgan
+#This creates an alien planet with the 3 "Spheres of Life" powering the entire planet along with the Sun directly above and snow capped mountains
+
+Viewpoint { 
+
+  fieldOfView    0.785398     
+  jump           TRUE         
+  orientation    0 1 0 0.97  
+  position       11.98 1.41 0.61      
+  description    "Castles in the Sky View"     
+}
+
+Viewpoint { 
+
+  fieldOfView    0.785398      
+  jump           TRUE          
+  orientation    -0.44 0.89 0.12 0.45   
+  position       1.37 4.61 -4.56     
+  description    "Castle and Dark Mountain View"          
+}
+
+
+Background {
+    groundColor [
+        0.1 0.1 0.1,
+        0.1 0.1 0.1,
+        0.1 0.1 0.1,
+    ]
+    groundAngle [ 0.209, 1.571 ]
+   
+    skyColor [
+        1.0 1.2 1.0,
+        0.2 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+    skyAngle [ 0.195, 1.571 ]
+ 
+    frontUrl "front.jpg"
+    backUrl  "front.jpg"
+    leftUrl  "right.jpg"
+    rightUrl "right.jpg"
+
+}
+
+Transform {
+   translation -35 -5 -28
+   children Shape {
+      geometry Sphere { radius 7.5 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 4.3 -20
+   children Shape {
+      geometry Box {size 2 1 2}
+   appearance Appearance { 
+      material Material {diffuseColor 1 0 0}   
+  }
+
+ }
+  
+}
+
+Transform {
+   translation 0 4.3 -20
+   children Shape {
+      geometry Sphere { radius 1.2 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0.1 .5 0.25
+         }
+      }
+   }
+}
+
+Transform {
+         translation -35 -5 -28 
+           children Shape {
+              geometry Cylinder { 
+                height 4
+                radius 10
+              }
+              appearance Appearance {
+                 material Material {
+                   diffuseColor .2 .5 0.5
+                 }
+              }
+          }
+}
+
+Transform {
+    translation 1.7 2.6 0
+    children Shape {
+        appearance Appearance {
+            material Material {diffuseColor 0.2 0 1}
+        }
+        geometry Sphere {radius .5}
+    }
+}
+
+
+Transform {
+   translation 1.7 2.6 0
+   rotation 0 0 0 0
+   children Shape {
+      geometry Cone { bottomRadius 0.4 height 1.7 }
+      appearance Appearance {
+         material Material {
+            diffuseColor .5 0.5 1
+         }
+      }
+   }
+}

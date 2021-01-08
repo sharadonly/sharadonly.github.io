@@ -1,0 +1,55 @@
+#VRML V2.0 utf8
+
+
+
+Shape {
+   geometry Box {size 1 2 0.5}
+   appearance Appearance { 
+      material DEF MAT Material {diffuseColor 1 0 0}   
+  }
+}
+DEF CI ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0 0, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+                            
+DEF TIME TimeSensor { 
+  loop TRUE 
+  cycleInterval 5 
+} 
+
+ROUTE TIME.fraction_changed TO CI.set_fraction 
+ROUTE CI.value_changed      TO MAT.set_diffuseColor
+
+DEF BOX Transform {
+  translation 0 0 0
+  children [
+    Shape {
+      geometry Box { } 
+      appearance Appearance { 
+        material Material {diffuseColor 1 0 0} 
+      } 
+    }
+  ]
+}
+
+DEF CSENSOR Transform {
+  translation 0 -2 2
+  children [
+    Shape {
+      geometry Cylinder { radius 0.25 height 0.25 } 
+      appearance Appearance { 
+        material Material {diffuseColor 0.5 0 1} 
+      } 
+    }
+    DEF CS CylinderSensor {}
+  ]
+}
+
+                            
+ROUTE CS.rotation_changed TO BOX.set_rotation
+ROUTE CS.rotation_changed TO CSENSOR.set_rotation

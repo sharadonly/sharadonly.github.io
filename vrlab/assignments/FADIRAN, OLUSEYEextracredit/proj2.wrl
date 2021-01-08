@@ -1,0 +1,626 @@
+#VRML V2.0 utf8
+
+Group{		   #The CylinderSensor
+  children [
+    DEF cone Transform {
+      children [
+        Shape {
+          appearance Appearance{
+            material Material {
+              diffuseColor 1 .5 .5
+            } # end material
+          } # end appearance
+    
+          geometry Box{size 2 3 1}
+		  appearance Appearance { 
+      material Material {diffuseColor 0 .7 .2}
+	  texture ImageTexture {
+		  url ["exteri2.jpg"]
+
+	  }
+    } 
+          } # end geometry
+         # end Shape
+      ] # end children
+    } # end cone
+
+    DEF cs CylinderSensor{
+      enabled TRUE
+    } # end Sensor
+  ] # end children
+} # end group
+
+ROUTE cs.rotation_changed TO cone.rotation
+	
+Transform {
+	translation	0 -1 0
+	children Shape {
+    geometry Cone {
+      bottomRadius 1.5
+      height 3
+   }
+   appearance Appearance {
+      material Material {diffuseColor 0 1 0}
+      texture ImageTexture {
+		  url ["water2.jpg"]
+	  } 
+   }
+}
+}
+  Transform { 
+  translation 0 -2.5 0 # Move it 3 meters right
+  children Shape { 
+    geometry Box {size 10 .2 10} 
+    appearance Appearance { 
+      material Material {diffuseColor 0 .7 .2}
+	  texture ImageTexture {
+		  url ["exteri2.jpg"]
+	  }
+    } 
+  } 
+}
+
+
+Transform {
+  translation -3.2 -.2 -1.5 # Move it 3 meters left
+                      # And halfway into the cone
+  rotation 1 1.5 1 1.57 # flip the cone 180 degrees
+  children Shape {
+    geometry Cone { bottomRadius .2 height 1}
+    appearance Appearance { 
+      material Material {diffuseColor 0 .2 1}	  
+    } 
+  } 
+}
+
+Transform {
+  translation -3.5 -2.0 -2 # Move it 3 meters left
+  children Shape { 
+    geometry Box {size 2 3 1} 
+    appearance Appearance { 
+      material Material {diffuseColor 0 .2 1} 
+	  texture ImageTexture {
+		  url ["brick1.jpg"] }
+    } #end material
+	 
+  } 
+}
+Transform {
+   translation -3.2 -.6 -2
+   children Shape {
+      geometry Sphere { radius .4 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 .75 0.95  #snow white hue
+         }
+		 texture ImageTexture {
+			 url ["tile1.jpg"]
+		 }
+      }
+   }
+}
+
+   Transform {
+    translation 0 0 0 
+    children DEF CYL Transform {
+        rotation 0 0 0 -1.57
+        scale .75 1 .75
+        children [
+  
+   Shape {
+
+    geometry Cylinder {
+
+    height 5.0
+    radius 0.2
+
+    }
+    appearance Appearance { 
+      material Material {diffuseColor 0 0 1}
+      texture  ImageTexture {
+		  url ["tile4.jpg"]
+	  }
+    }
+
+    }
+	]
+	}
+	}
+    Shape {
+
+    geometry Sphere {}
+    appearance Appearance { 
+      material Material {diffuseColor 0 1 0}
+	  texture ImageTexture { 
+		  url ["tile1.jpg"] }
+    }
+
+    }
+	Transform {
+	translation 0 0 0
+	rotation 3 0 1 -1.57
+	children USE CYL 
+	}
+	Transform {
+	translation 0 0 0
+	rotation 2 0 3 -1.57
+	children USE CYL 
+	}
+	Transform {
+	translation 0 0 0
+	rotation -3 0 1 -1.57
+	children USE CYL 
+	}
+
+
+
+
+
+  Transform {
+    translation 3 -1 0 
+    children DEF BUOY Transform {
+        rotation -4 -3 6 -.5
+        scale .75 1 .75
+        children [
+
+
+        Transform {
+            scale 1 2 1
+            translation 0 1 0
+            children Shape { 
+                geometry Sphere { radius .245 } 
+                appearance Appearance { 
+                    material Material { diffuseColor 1 0 0 } 
+                } 
+            }
+        }
+
+        Shape { 
+            geometry Cylinder { radius .25 height 2 } 
+            appearance Appearance { 
+                material Material {diffuseColor 1 .6 1}
+				texture ImageTexture	{url ["cloth2.jpg"]}
+            } 
+        } 
+
+        Transform {
+            translation 0 -.85 0
+            children Shape { 
+                geometry Cone { bottomRadius .25 height .5 } 
+                appearance Appearance { 
+                    material Material {diffuseColor 1 .8 1} 
+                } 
+            }
+        }
+        ]
+    }
+
+}
+
+  Transform {
+  translation 3.1 -2.0 0 # Move it 3 meters right
+  children Shape { 
+    geometry Box {size 1.5 2 1.2} 
+    appearance Appearance { 
+      material Material {diffuseColor 0 .2 1}
+	  texture ImageTexture {
+		  url ["carpet2.jpg"]
+	  }
+    } 
+  } 
+ }
+
+  Transform {
+	translation 3 -1 -0.38
+	rotation 4 3 -6 -.5
+	children USE BUOY 
+  }
+
+  Transform {
+	translation 3.5 -1 -.38
+	rotation 4 3 -6 -.5
+	children USE BUOY 
+  }
+
+
+
+
+
+Background {
+
+        skyAngle [ 1.2 1.57]
+        skyColor [0 0 1, 0 0 0.6, 1 0 0]
+        groundColor [0.5 0.5 0.0] 
+        backUrl "back4.gif"
+        rightUrl "back4.gif"
+        leftUrl "back4.gif"
+        frontUrl "back4.gif"
+
+    } 
+
+# Here's the creation of the sun.
+
+DEF SUN Transform { 
+    translation -7 3 -9          # <-- We call this transform SUN, for use of the interpolator
+   children [
+      Shape {
+         geometry Sphere { radius 2 }
+         appearance Appearance {
+            material Material {
+               diffuseColor 1.0000 1.0000 0.0000
+               specularColor 1 1 1
+               shininess 1
+            }
+         }
+      }
+   DEF RAY Transform {			# Here's the creation of one ray
+      translation 0 7 0
+      children Shape {
+         geometry Cone { bottomRadius .3 height 2 }
+         appearance Appearance {
+            material Material {
+               diffuseColor 1.0000 0.6471 0.0000
+               specularColor 1 1 0
+               shininess 1
+            }
+         }
+      }
+   }  
+
+   DEF TOS TouchSensor{}        # THIS...is the Touch Sensor!!
+				# These are instances of the rest of the rays, going around the sphere
+   Transform {
+      rotation 0 0 1 0.785
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 1.57
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 2.355
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 3.140
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 3.925
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 4.710
+      children USE RAY
+   }
+
+   Transform {
+      rotation 0 0 1 5.495
+      children USE RAY
+   }
+
+   ]
+}
+
+DEF SUN_TURN OrientationInterpolator {
+  key [0, .25, .5, .75, 1.0]
+  keyValue [ 0 0 1 0.00, 0 0 1 1.57,
+             0 0 1 3.14, 0 0 1 4.71,
+             0 0 1 0.00
+           ]
+}
+
+DEF SUN_TIME TimeSensor { 
+  loop TRUE
+  enabled FALSE
+  cycleInterval 18
+}
+
+ROUTE TOS.isOver            TO SUN_TIME.set_enabled
+ROUTE SUN_TIME.fraction_changed TO SUN_TURN.set_fraction 
+ROUTE SUN_TURN.value_changed      TO SUN.set_rotation                            
+
+
+Viewpoint { 
+
+  fieldOfView    .9 
+  jump           TRUE           
+  orientation    .83 .56 -.05 0.07    
+     
+  description    "Frontview..."        
+}
+
+Viewpoint { 
+
+  fieldOfView   .9   
+  jump           TRUE        
+  orientation    0 -1 0 .75  
+  position       -11.83 1.41 3.29    
+  description    "rightview"          
+}
+
+Viewpoint { 
+
+  fieldOfView    .9    
+  jump           TRUE         
+  orientation    0 1 0 0.97  
+  position       11.98 1.41 0.61      
+  description    "left view"     
+}
+NavigationInfo {headlight FALSE}
+
+PointLight {
+	location 2.5 .25 0
+	ambientIntensity 1
+	intensity 1
+}
+
+PointLight {
+	location 1 .1 0
+	ambientIntensity .5
+}
+
+DEF switchScript Script {
+	eventIn SFBool in2
+	eventOut SFInt32 out
+
+	url "javascript:
+
+		function in2(value, timestamp) {
+
+			if (value)
+				out = 1;
+			else
+				out = 0;
+
+		}"
+}
+
+Transform{ 
+    translation 3.1 -1.6 .3          # <-- We call this transform SUN, for use of the interpolator
+   children [
+Group {	
+	
+	children [
+
+		DEF sw Switch {	
+			whichChoice 0
+			choice [
+				Shape { appearance Appearance { 	
+							material DEF MAT Material {
+								emissiveColor 0.2 0.2 0.2} }
+					geometry Sphere { radius .5 }
+				}
+				Shape { appearance Appearance { 	
+							material DEF MAT Material {
+								emissiveColor 0.5 0.5 0.5} }
+					geometry Sphere {radius .5 }
+				}		
+			]
+		}
+
+		DEF ts TouchSensor {}
+	]
+}
+]
+}
+
+ROUTE ts.isOver TO switchScript.in2
+ROUTE switchScript.out TO sw.set_whichChoice
+
+Transform{ 
+    translation 3 5 -1 # <-- We call this transform SUN, for use of the interpolator
+   children [
+Shape { 
+	geometry DEF texto Text {
+				string ["---- You are Welcome ---"]
+     		
+     			length []
+			    fontStyle DEF myfonstyle FontStyle {
+					spacing	1.0
+					size .35
+					family "italic"
+			
+				}
+
+     			maxExtent 0.0
+   	}
+}
+]
+}
+Transform{ 
+    translation 3 4.7 -1 # <-- We call this transform SUN, for use of the interpolator
+   children [
+Shape { 
+	geometry DEF texto1 Text {
+			
+     			string ["Touch then press the white button..."]
+		
+     			length []
+			    fontStyle DEF myfonstyle1 FontStyle {
+					spacing	1.0
+					size .35
+					family "italic"
+			
+				}
+
+     			maxExtent 0.0
+   	}
+}
+]
+}
+Transform{ 
+    translation 3 4.3 -1 # <-- We call this transform SUN, for use of the interpolator
+   children [
+Shape { 
+	geometry DEF texto2 Text {
+
+				string ["Move close to the sun..."]
+				
+     			length []
+			    fontStyle DEF myfonstyle2 FontStyle {
+					spacing	1.0
+					size .35
+					family "italic"
+			
+				}
+
+     			maxExtent 0.0
+   	}
+}
+]
+}
+Transform{ 
+    translation 3 4 -1 # <-- We call this transform SUN, for use of the interpolator
+   children [
+Shape { 
+	geometry DEF texto3 Text {
+			
+				string ["Move thet pink cone..."]
+						
+     			length []
+			    fontStyle DEF myfonstyle3 FontStyle {
+					spacing	1.0
+					size .35
+					family "italic"
+			
+				}
+
+     			maxExtent 0.0
+   	}
+}
+]
+}
+
+DEF t1 Transform { translation -3 -1.9 -1.7 
+	children [
+		Shape {geometry Box{size 0.5 0.5 0.5}}
+		USE ts TouchSensor {}
+	]
+}
+
+DEF t2 Transform {
+	translation 0 3 0
+	children []
+}
+
+
+DEF bi1 Script {
+
+	eventIn SFBool pressed
+	eventOut MFString outS
+	eventOut MFNode outN
+
+	url "javascript:
+
+	function pressed(value,timeStamp) {
+		outN = Browser.createVrmlFromString('Shape{geometry Sphere{}}');
+	}"
+}
+
+ROUTE ts.isActive TO bi1.pressed
+ROUTE bi1.outS TO texto.set_string
+ROUTE bi1.outN TO t2.addChildren
+
+DEF CI ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0 0, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+                            
+DEF TIME TimeSensor { 
+  loop TRUE 
+  cycleInterval 5 
+} 
+
+ROUTE TIME.fraction_changed TO CI.set_fraction 
+ROUTE CI.value_changed      TO MAT.set_diffuseColor
+
+Group{ 
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 1 1
+        } # end material
+      } # end appearance
+    
+      geometry Sphere { }
+    } # end shape
+  
+    DEF ps ProximitySensor {
+      size 7 7 7
+    } # end 
+  ] # end children
+} # end ball group
+
+DEF blue DirectionalLight {
+  ambientIntensity 0
+  color 0 0 1
+  direction 0 0 -1
+  intensity 1
+  on FALSE
+} # end light
+
+#turn off the headlight.
+NavigationInfo {
+  headlight FALSE
+} # end NavInfo
+
+#add some ambient light (to compensate for no headlight)
+DirectionalLight {
+  ambientIntensity .5
+  color 1 1 1
+  direction 0 0 -1
+  intensity .2
+  on TRUE
+} # end light
+
+ROUTE ps.isActive TO blue.on
+
+
+
+Group{
+  children [
+    DEF cone1 Transform {
+		translation	-3 -2 2
+      children [
+        Shape {
+          appearance Appearance{
+            material Material {
+              diffuseColor 1 .5 .8
+            } # end material
+          } # end appearance
+    
+          geometry Cone{
+            height 1
+            bottomRadius 2
+          } # end geometry
+        } # end Shape
+      ] # end children
+    } # end cone
+
+    DEF ps1 PlaneSensor{
+      enabled TRUE
+    } # end planeSensor
+
+    DEF ss SphereSensor {
+		
+      enabled TRUE
+    } # end sphereSensor
+  ] # end children
+
+
+} # end group
+
+ROUTE ps1.translation_changed TO cone1.translation
+ROUTE ss.rotation_changed TO cone1.rotation
+

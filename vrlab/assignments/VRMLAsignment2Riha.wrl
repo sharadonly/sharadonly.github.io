@@ -1,0 +1,420 @@
+#VRML V2.0 utf8
+
+
+NavigationInfo {
+   headlight  FALSE
+}
+
+PointLight {
+  location 0.0 0.0 6.0
+}
+
+Background { skyColor [0 0 0, 0.2 0 0] skyAngle [3.14] } 
+
+Viewpoint {
+   position -2 7 15
+   orientation -2 -1 0 0.5
+   description "View1" 
+}
+
+Viewpoint {
+   position 9 7 15
+   orientation -1 1.0 0 0.6
+   description "View1" 
+}
+
+
+
+DEF	Object Transform {
+	children[
+
+DEF	leg Transform  {
+	
+	children [	
+	
+  		Transform {
+			translation	-1.9 -1 -0.3
+			center 0 2.5 0
+			rotation 1 0 0 0.30
+			children
+
+				Shape {
+				   	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+					} } 
+
+				   geometry Cylinder {
+					   radius 0.1
+					   height 7.3
+				   }
+				}
+
+		}
+
+
+ 		Transform {
+			translation	-1.9 -1 +0.3
+			center 0 2.5 0
+			rotation -1 0 0 0.30
+			children
+
+				Shape {
+				   	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+					} } 
+				   geometry Cylinder {
+					   radius 0.1
+					   height 7.3
+				   }
+				}
+
+		}
+
+ 		Transform {
+			translation	-1.9 2.5 0
+			children
+
+				Shape {
+				   	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+					} } 
+				   geometry Sphere {
+					   radius 0.2
+					   
+				   }
+				}
+
+		}
+
+
+ 		Transform {
+			translation	-1.9 -4 2
+			children
+
+				Shape {
+				   	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+					} } 
+				   geometry Sphere {
+					   radius 0.2
+					   
+				   }
+				}
+
+		}
+
+
+ 		Transform {
+			translation	-1.9 -4 -2
+			children
+
+				Shape {
+				   	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+					} } 
+				   geometry Sphere {
+					   radius 0.2
+					   
+				   }
+				}
+
+		}
+
+
+
+	]
+}
+
+
+
+
+DEF leg2 Transform {
+	translation 8.0 0 0     
+	children USE leg 
+}
+
+
+
+
+DEF	pod Transform {
+	children [
+	DEF podlozka Transform {
+	translation	2.1 -4 0
+
+	children Shape {
+
+	appearance Appearance { texture ImageTexture { url "textura.jpg" # URL obrazku (muze byt i na jinem serveru) 
+		} } 
+
+#		appearance Appearance {
+#			material DEF MAT Material {diffuseColor 0 0 1}
+#			}
+			geometry Box {
+			  size   8 0.1 4      
+			}
+		}
+	}
+  ]
+}
+
+
+
+DEF	top Transform  {
+children[
+Transform {
+	translation	2 2.5 0
+	children [
+		Shape {
+		   appearance Appearance { 
+    		  material Material { diffuseColor 1 1 1}
+		   }
+		   geometry Box {
+			   size	8 0.2 0.2
+		   }
+		}
+
+		Transform {
+			translation	3 -0.065 0.11
+			children Shape {
+    			appearance Appearance {
+        			material Material { diffuseColor 0 0 0 }
+    			}
+    			geometry Text {
+        			string [ "Lubomir Riha "]
+        			fontStyle FontStyle {
+						size 0.20
+            			family  "TIMES"
+            			style   "ITALIC"
+            			justify "MIDDLE"
+        			}
+    			}
+			}
+		}
+
+
+
+	]
+}
+]
+}
+
+DEF	part Transform  {
+children[
+	
+	Transform {
+	translation	0 0 0
+	children [
+		Shape {
+		   appearance Appearance { 
+    		  material Material { diffuseColor 1 1 1}
+		   }
+		   geometry Cylinder {
+			 height 5
+			 radius 0.015     
+		   }
+		}
+
+		Transform {
+			translation	0 2.4 0
+			children Shape {
+			   appearance Appearance {
+    			  material Material { transparency 0 }
+			   }
+			   geometry Sphere {
+				 radius	0.1
+			 
+			   }
+			}
+		}
+
+
+		Transform {
+			translation	0 -3.0 0
+			children Shape {
+			   appearance Appearance {
+    			  material DEF MAT2 Material {	diffuseColor 1 0 0
+										transparency 0.2 }
+			   }
+			   geometry Sphere {
+				 radius	0.5
+			 
+			   }
+			}
+		}
+
+	]
+}
+]
+}
+
+
+DEF	Balls Transform	{
+children [
+DEF krajni1 Transform {
+	translation -1.0 0 0
+	center 0 2.5 0
+	rotation 0 0 1 -0.05
+	children USE part 
+}
+
+Transform {
+	translation 1.0 0 0
+	center 0 2.5 0
+	children USE part 
+}
+
+Transform {
+	translation 2.0 0 0
+	center 0 2.5 0
+	children USE part 
+}
+
+Transform {
+	translation 3.0 0 0
+	center 0 2.5 0
+	children USE part 
+}
+
+Transform {
+	translation 4.0 0 0
+	center 0 2.5 0
+	children USE part 
+}
+
+DEF krajni2 Transform {
+	translation 5.0 0 0     
+	center 0 2.5 0
+	rotation 0 0 1 0.2
+	children USE part 
+}
+]
+}
+
+
+DEF TOS TouchSensor {}
+]
+}
+
+
+DEF PI PositionInterpolator { 
+  key [ 0, 0.5 1 ] 
+  keyValue [ 0  0  0,  5  0  0, 0  0  0 
+           ] 
+}
+
+
+DEF TIME TimeSensor { 
+  loop TRUE 
+  cycleInterval 3
+} 
+
+DEF TIME2 TimeSensor { 
+  loop FALSE
+  cycleInterval 2 
+} 
+
+
+                            
+#ROUTE TIME.fraction_changed TO PI.set_fraction 
+#ROUTE PI.value_changed		TO Object.set_translation
+
+
+DEF OI OrientationInterpolator {
+  key [0, .25, .5, .75, 1.0]
+  keyValue [ 0 0 1 0.00, 0 0 1 0.4,
+             0 0 1 0.0, 0 0 1 0.0,
+             0 0 1 0.00
+           ]
+}
+
+DEF OI1 OrientationInterpolator {
+  key [0, .25, .5, .75, 1.0]
+  keyValue [ 0 0 1 0, 0 0 1 0,
+             0 0 1 0.00, 0 0 1 -0.4,
+             0 0 1 0
+           ]
+}
+
+
+ROUTE TOS.touchTime         TO TIME2.startTime
+
+ROUTE TIME2.fraction_changed TO OI.set_fraction 
+ROUTE TIME2.fraction_changed TO OI1.set_fraction 
+
+ROUTE OI.value_changed       TO krajni2.set_rotation
+ROUTE OI1.value_changed      TO krajni1.set_rotation
+
+
+DEF CI ColorInterpolator { 
+  key [ 0, .25, .5, .75, 1 ] 
+  keyValue [ 1 0 0, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+ROUTE TIME.fraction_changed TO CI.set_fraction 
+ROUTE CI.value_changed      TO MAT2.set_diffuseColor
+
+
+DEF SI ScalarInterpolator { 
+  key	   [ 0, 0.5, 1] 
+  keyValue [ 0 1 0 ] 
+}
+ROUTE TIME.fraction_changed TO SI.set_fraction 
+ROUTE SI.value_changed      TO MAT2.set_transparency
+
+
+
+DEF CSENSOR Transform {
+  translation 2.5 -5 4
+  children [
+    Shape {
+      geometry Text { 
+	  
+			string [ "Rotate"]	  
+        			fontStyle FontStyle {
+						size 0.50
+            			family  "TIMES"
+            			style   "BOLD"
+            			justify "MIDDLE"
+        			}
+	  
+	  } 
+
+      appearance Appearance { 
+        material Material {diffuseColor 0.5 0 1} 
+      } 
+    }
+    DEF CS CylinderSensor {}
+  ]
+}
+
+                            
+ROUTE CS.rotation_changed TO Object.set_rotation
+#ROUTE CS.rotation_changed TO CSENSOR.set_rotation
+
+
+DEF BOX Transform {
+  translation 1 -5 4
+  children [
+    Shape {
+      geometry Text {
+			string [ "Move"]	  
+        			fontStyle FontStyle {
+						size 0.50
+            			family  "TIMES"
+            			style   "BOLD"
+            			justify "MIDDLE"
+        			}
+	  
+	  } 
+      appearance Appearance { 
+        material Material {diffuseColor 0.5 0 1} 
+	  }
+    }
+    DEF PS PlaneSensor {
+      minPosition -1 -1
+      maxPosition  1  1
+    }
+  ]
+}
+
+                            
+ROUTE PS.translation_changed TO Object.set_translation
+
+

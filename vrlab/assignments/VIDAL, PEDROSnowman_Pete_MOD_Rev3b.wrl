@@ -1,0 +1,433 @@
+#VRML V2.0 utf8
+
+				#VRML V2.0 utf8
+
+#So...this is my rendition of a VRML Evil Snowman.  Hank.  This, if you notice, at the end, shows how to use the Group Node
+#to ease your life.  This way, I didn't have to make two woody arms out of cylinders.  Just one.  Enjoy!!
+
+#Below is my list of viewpoints.  These are very helpful in any VR application.  They make for easy navigation.
+Viewpoint { 
+
+  fieldOfView    1
+  jump           TRUE           
+  orientation    .83 .56 -.05 0.07    
+  position       -.48 .53 9.47       
+  description    "Longshot"        
+}
+
+Viewpoint { 
+
+  fieldOfView    0.785398    
+  jump           TRUE        
+  orientation    0 -1 0 .75  
+  position       -11.83 1.41 3.29    
+  description    "Medium Shot"          
+}
+
+Viewpoint { 
+
+  fieldOfView    0.69     
+  jump           TRUE         
+  orientation    0 1 0 .97  
+  position       15.98 1.41 3.61      
+  description    "Rotate"     
+}
+
+Viewpoint { 
+
+  fieldOfView    0.785398      
+  jump           TRUE          
+  orientation    -0.44 0.89 0.12 0.45   
+  position       1.37 4.61 -4.56     
+  description    "Close Up"          
+}
+
+
+# The body:  I used three simple spheres, colored snow white, to make the body of Hank.
+
+Transform {
+   translation 0 -1.7 -8
+   children Shape {
+      geometry Sphere { radius 2.5 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 1.77 -8
+   children Shape {
+      geometry Sphere { radius 1.8 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 4.3 -8
+   children Shape {
+      geometry Sphere { radius 1.2 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0.95
+         }
+      }
+   }
+}
+
+# The nose:  Pretty self explanatory, it's a simple cone for a carrot nose.
+ 
+Transform {
+   translation 0 4.4 -6.2
+   rotation 1 0 0 1.57
+   children Shape {
+      geometry Cone { 
+         bottomRadius 0.2
+         height 1
+         side TRUE
+         bottom TRUE
+      }
+      appearance Appearance {
+         material Material {
+            diffuseColor .9 .4 0
+         }
+      }
+   }
+}
+
+# The coal:  I used black squares to make coal.  I rotated them each about around Z as to make some random looking shapes.
+
+# The buttons
+
+Transform {
+   translation 0 2.4 -6.2
+   rotation 0 0 1 0.43
+   children Shape {
+      geometry Box { size 0.45 0.45 0.45 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 1
+         }
+      }
+   }
+}												  # The button colors were changed here.
+
+Transform {
+   translation 0 1.4 -6.2
+   rotation 0 0 1 0.03
+   children Shape {
+      geometry Box { size 0.55 0.55 0.55 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 1 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 -0.9 -5.7
+   rotation 0 0 1 0.93
+   children Shape {
+      geometry Box { size 0.6 0.6 0.6 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0 -2.1 -5.7
+   rotation 0 0 1 1.43
+   children Shape {
+      geometry Box { size 0.65 0.65 0.65 }		   
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 1 0
+         }
+      }
+   }
+}
+
+# The evil smile...
+
+Transform {
+   translation 0 3.8 -6.9
+   rotation 0 0 1 0.9
+   children Shape {
+      geometry Box { size 0.15 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0.23 3.9 -6.9
+   rotation 0 0.5 1 0.75
+   children Shape {
+      geometry Box { size 0.15 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation -0.23 3.9 -6.9
+   rotation 0 0 1 0.1
+   children Shape {
+      geometry Box { size 0.15 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation 0.39 4.1 -6.9
+   rotation 0 0 1 1.2
+   children Shape {
+      geometry Box { size 0.15 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+Transform {
+   translation -0.39 4.1 -6.9
+   rotation 0 0 1 2
+   children Shape {
+      geometry Box { size 0.15 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 0 0 0
+         }
+      }
+   }
+}
+
+# The evil red eyes!
+
+Transform {
+   translation -0.5 4.7 -7.0
+   rotation 0 0 1 -0.43
+   children Shape {
+      geometry Box { size 0.55 0.15 0.15 }
+      appearance Appearance {
+         material Material {
+            diffuseColor 1 0 0
+         }
+      }
+   }
+}
+
+ # Eyebrows
+
+Transform {									 
+   translation -0.5 4.9 -7.0
+   rotation 0 0 1 -0.43
+   children Shape {
+      geometry Box { size .9 0.08 0.3 }
+      appearance Appearance {
+         material Material {
+            diffuseColor .1 .1 .1 
+         }
+      }
+   }
+}
+
+  Transform {									 
+   translation 0.5 4.9 -7.0
+   rotation 0 0 1 0.43
+   children Shape {
+      geometry Box { size .9 0.08 0.3 }
+      appearance Appearance {
+         material Material {
+            diffuseColor .1 .1 .1 
+         }
+      }
+   }
+}
+
+
+
+
+Transform {
+	translation	-0.5 4.7 -7.0
+	rotation 0 0 1 0.43
+	children Shape {
+		geometry Sphere	{radius	.10}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0 0 } } } } 
+		Transform {
+		   translation 0.5 4.7 -7.0
+		   rotation 0 0 1 0.43
+		   children Shape {
+    		  geometry Box { size 0.55 0.15 0.15 }
+    		  appearance Appearance {
+        		 material Material {
+            		diffuseColor 1 0 0
+        		}
+    		  }
+		   }
+		}
+
+		Transform {
+			translation	0.5 4.7 -7.0
+			rotation 0 0 1 -0.43 
+			children Shape {
+				geometry Sphere	{radius	.10}
+				appearance Appearance {
+					material Material {
+							diffuseColor 0 0 0 
+						}
+					}
+				}
+			}
+
+
+# The hat:  Very simple, two cylinders. Notice, I made both under one transform, so I can rotate them together.
+
+DEF HAT Transform {
+   translation -0.6 5.95 -8
+   rotation 0 0 1 0.4         # This rotates both pieces together like one.
+   children [
+      Shape {
+         geometry Cylinder { 
+            height 1.6
+            radius 1.0
+         }
+         appearance Appearance {
+            material Material {
+               diffuseColor 1 1 0
+            }
+         }
+      }
+
+      
+      Transform {
+         translation 0 -0.8 0 
+           children Shape {
+              geometry Cylinder { 
+                height 0.3
+                radius 2.1
+              }
+              appearance Appearance {
+                 material Material {
+                   diffuseColor 1 1.5 0
+                 }
+              }
+          }
+      }
+   ]
+}
+
+# The arms: I just made one arm out of cylinders, grouped it, defined a new center, and retransformed it for the other side.
+
+DEF ARM Group {
+   children [
+      Transform {
+         translation 2.5 1.77 -8
+         rotation 0 0 1 1.2
+         children Shape {
+            geometry Cylinder { height 2 radius 0.45526536356 }
+               appearance Appearance {
+                  material Material {
+                     diffuseColor 0.35 0.10 0.68
+                  }
+               }
+         }
+      }
+													# Sleeves because he was cold.(Radius Changed)	    
+														   
+      Transform {
+         translation 3.74 2.19 -8
+         rotation .1 .5 0 2.8
+         children Shape {
+            geometry Cone { height 2 bottomRadius 0.4 }
+               appearance Appearance {
+                  material Material {
+                     diffuseColor 0.35 0.10 0.68
+                  }
+               }
+         }
+      }
+
+	 
+				  
+      Transform {
+         translation 4.14 2.69 -8
+         rotation 0 0 1 2
+         children Shape {
+            geometry Cylinder { height 0.5 radius .10 }
+               appearance Appearance {
+                  material Material {
+                     diffuseColor 0.35 0.10 0.68
+                  }
+               }
+         }
+      }
+
+      Transform {
+         translation 3.64 2.69 -8
+         rotation 0 1 1 .5
+         children Shape {
+             geometry Cylinder {height 0.5 radius 2.69 }
+               appearance Appearance {
+                  material Material {
+                     diffuseColor 0.56 0.2 0.2
+                  }
+               }
+         }
+      }
+   ]
+}
+
+Transform {
+   center 3.64 2.69 -8                  #New center created (at center of right arm) to ease in reusability of piece
+   rotation 0 1 0 3.14
+   children Transform {
+      translation 6.84 0 0                 #Translation rescaled here for new center!
+      rotation 0 0 1 -.3
+      children USE ARM
+   }
+}
+
+
+Shape {
+	appearance Appearance {
+		material Material { diffuseColor .5 0 1 }
+	}
+	 
+    geometry Text {
+    
+	    string [ ""
+			""
+			""
+			"Snowy Petey's Pizza"  ]
+        fontStyle FontStyle {
+            family  "TIMES"
+            style   "ITALIC"
+            justify "MIDDLE"
+		}
+	}
+}

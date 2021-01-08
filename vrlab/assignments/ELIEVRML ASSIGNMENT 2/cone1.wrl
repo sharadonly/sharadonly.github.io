@@ -1,0 +1,80 @@
+#VRML V2.0 utf8
+
+	  Shape {
+   geometry Cone {
+      bottomRadius 0.5
+      height 3
+   }
+   appearance Appearance {
+      material DEF MAT Material {diffuseColor 0 1 0}   
+   }
+}
+DEF CI ColorInterpolator { 
+  key [ 0, 1.25, 1.5, .75, 1 ] 
+  keyValue [ 1 0 0, 0 1 0, 
+             0 0 1, 0 1 0,
+             1 0 0
+           ] 
+}
+
+                            
+DEF TIME TimeSensor { 
+  loop TRUE 
+  cycleInterval 5 
+} 
+
+ROUTE TIME.fraction_changed TO CI.set_fraction 
+ROUTE CI.value_changed      TO MAT.set_diffuseColor
+DEF BOX Transform {
+
+  translation 0 0 0
+
+  children [
+
+    Shape {
+
+      geometry Box { } 
+
+      appearance Appearance { 
+
+        material Material {diffuseColor 1 0 0} 
+
+      } 
+
+    }
+
+  ]
+
+}
+
+
+
+Transform {
+
+  translation 0 -2 2
+
+  children [
+
+    Shape {
+
+      geometry Sphere { radius 0.25 } 
+
+      appearance Appearance { 
+
+        material Material {diffuseColor 0.5 0 1} 
+
+      } 
+
+    }
+
+    DEF SS SphereSensor {}
+
+  ]
+
+}
+
+
+
+                            
+
+ROUTE SS.rotation_changed TO BOX.set_rotation
