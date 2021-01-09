@@ -1,0 +1,1203 @@
+#VRML V2.0 utf8
+
+
+NavigationInfo { headlight TRUE avatarSize [ 1 1 1 ] speed 25}
+
+Viewpoint {
+    position -265 52 4
+    orientation 1.0 0.0 0.0 0.1
+	description	"Entry"
+}
+
+DEF v1 Viewpoint {
+    position -263 50 2
+    orientation .0036 -.999 -.001 .768
+	description	"Background Change"
+}
+
+#-6.23 -.223 6.458
+DEF v2 Viewpoint {
+    position -261 50 -4
+    orientation  .021 -1 0 1.447
+	description	"View"
+}
+
+DEF v3 Viewpoint {
+    position -249 52 -4
+    orientation  .021 -1 0 1.447
+	description	"Outside1"
+}
+
+DEF v4 Viewpoint {
+    position -252 60 -4
+    orientation  .021 -1 0 1.447
+	description	"Top Entrance Room"
+}
+
+DEF v5 Viewpoint {
+    position -152 60 -4
+    orientation  .021 -1 0 1.447
+	description	"Outside 1"
+}
+
+
+DEF v6 Viewpoint {
+    position -130 60 -4
+    orientation  1.0 0.0 0.0 0.1
+	description	"Top Middle Room"
+}
+
+
+DEF v7 Viewpoint {
+    position -120 58  -80
+    orientation  1.0 0.0 0.0 0.1
+	description	"Outside Trap"
+}
+
+DEF v8 Viewpoint {
+    position -120 58  -94
+    orientation  1.0 0.0 0.0 0.1
+	description	"Inside Trap"
+}
+
+
+
+DEF v9 Viewpoint {
+    position -120 58  -90
+    orientation 0 1 0 3.392
+	description	"Back Out"
+}
+
+DEF v10 Viewpoint {
+    position -120 60 -4
+    orientation  0 1 0 3.392
+	description	"Back to Top Middle Room"
+}
+
+  DEF v11 Viewpoint {
+    position -120 56 54
+    orientation  0 1 0 3.392
+	description	"Butterfly Obstacle"
+}
+
+DEF v12 Viewpoint {
+    position -105 50 63
+    orientation  0 1 0 3.392
+	description	"Side Stepping Butterfly Obstacle"
+}
+
+DEF v13 Viewpoint {
+    position -120 58 90
+    orientation  0 1 0 3.392
+	description	"Inside Garden"
+}
+
+ 
+ DEF v14 Viewpoint {
+    position -20 52 -2   
+    orientation  .021 -1 0 1.447
+	description	"Outside Sphere"
+}
+
+ DEF v15 Viewpoint {
+    position 20 52 -2   
+    orientation  .021 -1 0 1.447
+	description	"Inside Sphere"
+}
+
+ DEF v16 Viewpoint {
+    position -20 52 -2   
+    orientation  -.011 -1 -.018 4.75
+	description	"Back Out Sphere"
+}
+
+
+DEF v17 Viewpoint {
+    position -120 60 -4
+    orientation -.011 -1 -.018 4.75
+	description	"Back to Top Middle Room"
+}
+#left wall
+Transform {
+      translation -300 100 0
+      rotation 1 0 0 1.6 
+
+  children DEF background1 Shape {	  
+  appearance Appearance {
+	 
+	#  material Material	{ diffuseColor 0 1 1}
+    texture ImageTexture {url ["sky2.jpg"] } 
+  }
+  geometry Box {size .5  600 300}
+  
+}
+	
+}
+
+#right wall
+Transform {
+      translation 300 100 0
+      rotation 1 0 0 1.6 
+
+  children [ USE background1] 
+  }
+
+      DirectionalLight {
+            ambientIntensity 0.7
+           
+            direction -3.0 2.0 -1.0
+        }
+        PointLight {
+            ambientIntensity 0.3
+            
+            location 14.0 10.0 14.0
+        }
+
+        PointLight {
+            ambientIntensity 0.3
+           
+            location 14.0 -10.0 14.0
+        }
+ 
+		DirectionalLight {
+            ambientIntensity 0.7
+           
+            direction 0.0 -10.0 -1.0
+        }
+
+#back wall
+Transform {
+      translation 0 110 -300
+      rotation 1 0 0 1.6 
+
+  children DEF background Shape {	  
+  appearance Appearance {
+	 
+	 # material Material	{ diffuseColor 0 1 1}
+    texture ImageTexture {url ["sky2.jpg"] } 
+  }
+  geometry Box {size   600 .5 300}
+  
+}
+	
+}
+
+#front wall
+Transform {
+      translation 0 90 300
+      rotation 1 0 0 1.6 
+
+  children [ USE background] 
+  }
+
+      DirectionalLight {
+            ambientIntensity 0.7
+           
+            direction -3.0 2.0 -1.0
+        }
+        PointLight {
+            ambientIntensity 0.3
+            
+            location 14.0 10.0 14.0
+        }
+
+        PointLight {
+            ambientIntensity 0.3
+           
+            location 14.0 -10.0 14.0
+        }
+ 
+		DirectionalLight {
+            ambientIntensity 0.7
+           
+            direction 0.0 -10.0 -1.0
+        }
+
+#  Floor
+#
+        Shape {
+            appearance Appearance {
+                material Material {
+                    ambientIntensity 0.7
+                    diffuseColor 0.8 0.8 0.8
+                }
+				 texture ImageTexture {url ["sky2.jpg"] } 
+               
+            }
+            geometry IndexedFaceSet {
+                coord Coordinate {
+                    point [
+                        -300.0 -10.0  300.0,
+                         300.0 -10.0  300.0,
+                         300.0 -10.0 -300.0,
+                        -300.0 -10.0 -300.0,
+                    ]
+                }
+                coordIndex [ 0, 1, 2, 3, -1, ]
+                solid FALSE
+            }
+		   
+        }
+ 
+# Entrance Room 
+ Transform {
+  translation -265 50 -2
+  scale 1 1.061 1.061
+  children [ Inline	{ url "FunHouse2.wrl"}  ]  }
+
+ # door in entrance room
+Transform {
+      translation -265 56 9
+      rotation 1 0 0 1.6
+
+	  children [ 
+	Anchor { children [
+ 
+    Shape {	  #left-right door
+  appearance Appearance {
+    texture ImageTexture {url ["step11.jpg"] } 
+  } 
+
+  geometry Box { size 4  .5  3.5  } } ]
+url "Lobby.wrl" 
+	    description "Treasure Room"}  
+		TouchSensor	{}
+
+] 
+}
+
+ # door in entrance room
+Transform {
+      translation -265 52 9
+      rotation 1 0 0 1.6
+
+	  children [ 
+	Anchor { children [
+ 
+    Shape {	  #left-right door
+  appearance Appearance {
+    texture ImageTexture {url ["step11.jpg"] } 
+  } 
+
+  geometry Box { size 4  .5  3.5  } } ]
+url "MainHall8.wrl" 
+	    description "Lobby"}  
+		TouchSensor	{}
+
+] 
+}
+
+# Background change -- Entrance Room -- box for touch sensor objects to change background image
+ Transform {
+      translation -260 50 -10		 #-192
+      rotation 1 0 0 3.15
+
+  children Shape {
+  appearance Appearance {
+    texture ImageTexture {url ["BENEDETI.jpg"] } 
+  } 
+
+  geometry Box { size 2 2 2
+  } } }
+
+ 
+
+ Transform {
+      translation -192 50 -2		 #-192
+      rotation 1 0 0 3.15
+
+  children DEF landing Shape {
+  appearance Appearance {
+    texture ImageTexture {url ["BENEDETI.jpg"] } 
+  } 
+
+  geometry Box { size 6 .5 10
+  } } }
+
+  
+Transform {
+      translation -248 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -234 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -227 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+DEF chld2 Transform {
+      translation -220 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF TIMER2 TimeSensor {
+  cycleInterval 6  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate2 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    .25
+    .5
+    .75
+    1
+	1.25
+  ] 
+
+  keyValue [
+	1 0 0 6.28
+    1 0 0 4.71
+    1 0 0 4.71
+    1 0 0 3.14
+	1 0 0 3.14
+    1 0 0 1.57
+
+
+
+  ]
+} 
+
+ROUTE TIMER2.fraction_changed TO rotate2.set_fraction
+ROUTE rotate2.value_changed TO chld2.rotation
+
+Transform {
+      translation -213 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -206 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -199 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }  
+
+
+DEF chld3 Transform {
+      translation -241 50 -2	
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF PI PositionInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ] 
+  keyValue [ -241 50 -2 -241 50 -6, -241 50 -8, -241 50 -4, -241 50 -2, -241 50 2, -241 50 4, -241 50 0, -241 50 -2  ] 
+}
+
+                            
+DEF TIMER3 TimeSensor { 
+  loop TRUE 
+  cycleInterval 9 
+} 
+
+ROUTE TIMER3.fraction_changed TO PI.set_fraction 
+ROUTE PI.value_changed      TO chld3.set_translation
+
+
+ Transform {
+      translation -185 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+Transform {
+      translation -178 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -171 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+DEF chld5 Transform {
+      translation -164 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF TIMER5 TimeSensor { 
+  loop TRUE 
+  cycleInterval 9 
+} 
+
+
+DEF PI2 PositionInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ] 
+  keyValue [ -164 50 -2 -164 48 -2, -164 46 -2, -164 48 -2 -164 50 -2, -164 52 -2, -164 54 -2, -164 52 -2, -164 50 -2  ] 
+}
+
+
+ROUTE TIMER5.fraction_changed TO PI2.set_fraction 
+ROUTE PI2.value_changed      TO chld5.set_translation
+
+
+Transform {
+      translation -157 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -150 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF chld1 Transform {
+      translation -143 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+DEF TIMER1 TimeSensor {
+  cycleInterval 6  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate1 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    .25
+    .5
+    .75
+    1
+	1.25
+  ] 
+
+  keyValue [
+	0 0 1 6.28
+    0 0 1 4.71
+    0 0 1 4.71
+    0 0 1 3.14
+	0 0 1 3.14
+    0 0 1 1.57
+
+
+
+  ]
+} 
+
+ROUTE TIMER1.fraction_changed TO rotate1.set_fraction
+ROUTE rotate1.value_changed TO chld1.rotation
+
+
+Transform {
+      translation -136 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+# center 1st rotating room
+  DEF chld4 Transform {
+  translation -119 50 -2
+  scale 1 1.061 1.061
+  children [ Inline	{ url "FunHouse2.wrl"}  ]}
+  
+  DEF TIMER4 TimeSensor {
+  cycleInterval 3
+  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate4 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    1.0
+	2.0
+   ] 
+
+  keyValue [		   # if 1 in z location flips -- do it
+   0 1 0 0
+   0 1 0 3.14
+   0 1 0 6.28
+   ]
+} 
+
+ROUTE TIMER4.fraction_changed TO rotate4.set_fraction
+ROUTE rotate4.value_changed TO chld4.rotation
+ 
+# right path from revolving room
+ DEF chld6 Transform {
+      translation -120 50 15		
+      rotation 1 0 0 3.15
+
+  children DEF landingRL Shape {
+  appearance Appearance {
+    texture ImageTexture {url ["BENEDETI.jpg"] } 
+  } 
+
+  geometry Box { size 10 .5 6
+  } } }
+
+Transform {
+      translation -120 50.5 23
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 51 31
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+
+Transform {
+      translation -120 51.5 39
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 52 47 
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+Transform {
+      translation -120 52.5 55
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 53 63
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+
+Transform {
+      translation -120 53.5 71
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 54 79
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+# left path from revolving room	  
+Transform {
+      translation -120 50 -19
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 50.5 -27
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 51 -35
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+
+Transform {
+      translation -120 51.5 -43
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 52 -51 
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+Transform {
+      translation -120 52.5 -59
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 53 -67
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+
+Transform {
+      translation -120 53.5 -75
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
+
+Transform {
+      translation -120 54 -83
+      rotation 1 0 0 3.15
+      children USE landingRL  }
+
+#right 1st rotating room
+  DEF chld7 Transform {
+  translation -120 54  97
+  scale 1 1.061 1.061
+ # rotation 1 0 1 3.14
+  children [ Inline	{ url "FunHouse2.wrl"} ]}
+
+  DEF TIMER7 TimeSensor {
+  cycleInterval 3
+  enabled TRUE
+  loop TRUE	 }   
+ 
+DEF rotate7 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    1.0
+	2.0
+   ] 
+
+  keyValue [		   # if 1 in z location flips -- do it
+   0 1 0 0
+   0 1 0 3.14
+   0 1 0 6.28
+   ]
+} 
+
+ROUTE TIMER7.fraction_changed TO rotate7.set_fraction
+ROUTE rotate7.value_changed TO chld7.rotation
+ 
+DEF chld8 Transform {
+ translation -120 53 -51 
+      rotation 1 0 0 3.15
+
+	  children [ Shape {	  
+  appearance Appearance {
+	 
+	#  material Material	{ diffuseColor 0 1 1}
+    texture ImageTexture {url ["BENEDETI.jpg"] } 
+  }
+  geometry Cone {
+ 
+  bottomRadius  5   
+  height  2       
+  bottom  TRUE      
+  side    TRUE              
+  } } 
+ DEF ps PlaneSensor{
+      enabled TRUE
+	  #maxPosition       3 3
+	  #minPosition       -3 -3
+
+
+    } # end planeSensor
+
+]
+}
+ROUTE ps.translation_changed TO chld8.translation
+
+ 
+#left topless cylinder
+DEF chld10 Transform {
+  translation -120 54 -100
+  children [ Inline  { url "solidTop.wrl"} ] }
+
+DEF TIMER10 TimeSensor {
+  cycleInterval 3
+  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate10 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    .75
+    1.5
+   ] 
+
+  keyValue [		   # if 1 in z location flips -- do it
+    0 1 0 0
+	0 1 0 3.14
+	0 1 0 6.28
+  ]
+} 
+
+ROUTE TIMER10.fraction_changed TO rotate10.set_fraction
+ROUTE rotate10.value_changed TO chld10.rotation
+
+ # rotating sphere
+ DEF chld11 Transform {
+  translation  28 48 0
+
+  children [   Inline {url "sphere.wrl"} ] }
+
+DEF rotate11 OrientationInterpolator {	  # interpolator 2
+  key [
+    0 
+	.5
+	1
+	1.5
+	2
+	2.5
+	3
+ 
+  	
+
+  ] 
+
+  keyValue [		   # if 1 in z location flips -- do it
+    
+	0 1 0 0
+	0 1 0 3.14
+	0 1 0 6.28
+	0 1 0 0
+	0 1 0 0
+	0 1 0 0
+	0 1 0 0
+
+
+  ]
+} 
+
+DEF TIMER11 TimeSensor {
+  cycleInterval  7
+  enabled TRUE
+  loop TRUE	 } 
+ROUTE TIMER11.fraction_changed TO rotate11.set_fraction
+ROUTE rotate11.value_changed TO chld11.rotation
+
+
+Transform {
+      translation -248 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -234 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -227 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+DEF chld12 Transform {
+      translation -220 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF TIMER12 TimeSensor {
+  cycleInterval 6  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate12 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    .25
+    .5
+    .75
+    1
+	1.25
+  ] 
+
+  keyValue [
+	1 0 0 6.28
+    1 0 0 4.71
+    1 0 0 4.71
+    1 0 0 3.14
+	1 0 0 3.14
+    1 0 0 1.57
+
+
+
+  ]
+} 
+
+ROUTE TIMER12.fraction_changed TO rotate12.set_fraction
+ROUTE rotate12.value_changed TO chld12.rotation
+# middle path after 1st room
+Transform {
+      translation -101 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -94 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -87 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }  
+
+
+DEF chld13 Transform {
+      translation -80 50 -2	#	-241
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF PI13 PositionInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ] 
+  keyValue [ -80 50 -2 -80 50 -6, -80 50 -8, -80 50 -4, -80 50 -2, -80 50 2, -80 50 4, -80 50 0, -80 50 -2  ] 
+}
+
+                            
+DEF TIMER13 TimeSensor { 
+  loop TRUE 
+  cycleInterval 9 
+} 
+
+ROUTE TIMER13.fraction_changed TO PI13.set_fraction 
+ROUTE PI13.value_changed      TO chld13.set_translation
+
+
+ Transform {
+      translation -73 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+Transform {
+      translation -65 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -58 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+DEF chld15 Transform {
+      translation -51 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF TIMER15 TimeSensor { 
+  loop TRUE 
+  cycleInterval 9 
+} 
+
+
+DEF PI15 PositionInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ] 
+  keyValue [ -51 50 -2 -51 48 -2, -51 46 -2, -51 48 -2 -51 50 -2, -51 52 -2, -51 54 -2, -51 52 -2, -51 50 -2  ] 
+}
+
+
+ROUTE TIMER15.fraction_changed TO PI15.set_fraction 
+ROUTE PI15.value_changed      TO chld15.set_translation
+
+
+Transform {
+      translation -44 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+Transform {
+      translation -37 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+DEF chld16 Transform {
+      translation -30 50 -2 
+      rotation 1 0 0 3.15
+      children USE landing  }
+
+
+
+DEF TIMER16 TimeSensor {
+  cycleInterval 6  enabled TRUE
+  loop TRUE	 } 
+
+DEF rotate16 OrientationInterpolator {	  # interpolator 2
+  key [
+    0
+    .25
+    .5
+    .75
+    1
+	1.25
+  ] 
+
+  keyValue [
+	0 0 1 6.28
+    0 0 1 4.71
+    0 0 1 4.71
+    0 0 1 3.14
+	0 0 1 3.14
+    0 0 1 1.57
+
+
+
+  ]
+} 
+
+ROUTE TIMER16.fraction_changed TO rotate16.set_fraction
+ROUTE rotate16.value_changed TO chld16.rotation
+
+
+Transform {
+      translation -23 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+Transform {
+      translation -16 50 -2 
+      rotation 1 0 0 3.15
+	  children	USE landing  }
+
+
+#1st Topless Rotating Room -- you lose message
+Transform {
+      translation -120 47  -110
+
+     # rotation 1 0 0 3.15
+	  children	  
+	Shape {
+   appearance Appearance {
+                 material Material { diffuseColor 1 0 0 }
+   }
+   geometry Text {
+               string ["You lose.", "Try again."]
+               fontStyle FontStyle {
+                            family  "SANS"
+                            style   "BOLD"
+                            size    1
+                            justify "MIDDLE"
+                         }
+            }
+}
+
+}
+
+ # Topless Rotating Room anchor for Entrance Room
+Transform {
+      translation  -120 49 -110
+	    scale .5 .5 .25
+      #rotation 1 0 0 1.6
+
+	  children [ 
+	Anchor { children [
+		    Shape {
+                    appearance Appearance {
+                        material Material {
+                            diffuseColor 1.0 0.3 0.3
+                        }
+                    }
+                    geometry Sphere { }
+                }]
+url "Obstacle5-5.wrl" 
+	    description "Entrance Room -- Obstacle"}  
+		TouchSensor	{}
+
+] 
+}
+
+
+#Entrance Room -- welcome message
+  Transform {
+      translation -266 54 -11
+     # rotation 1 0 0 3.15
+	  children	  
+	Shape {
+   appearance Appearance {
+                 material Material { diffuseColor 1 0 0 }
+   }
+   geometry Text {
+               string ["Welcome to the obstacle course.",
+                       "Good luck!!!", " ","Exits are behind you"]
+               fontStyle FontStyle {
+                            family  "SANS"
+                            style   "BOLD"
+                            size    1
+                            justify "MIDDLE"
+                         }
+            }
+}
+
+}
+#Exit signs 
+Transform {
+      translation -265 56 8
+     rotation   0 1 0 3.15
+	  children	  
+	Shape {
+   appearance Appearance {
+                 material Material { diffuseColor 1 0 0 }
+   }
+   geometry Text {
+               string [" ", " ","Lobby",
+                       "", " "," ", " ", " "," ","Treasure Room"]
+               fontStyle FontStyle {
+                            family  "SANS"
+                            style   "BOLD"
+                            size    .4
+                            justify "MIDDLE"
+                         }
+            }
+}
+
+}
+
+# Background Change -- Entrance Room -- Message and code to change background until /Background
+
+Transform {
+      translation -260 52 -8.75
+     # rotation 1 0 0 3.15
+	  children	  
+	Shape {
+   appearance Appearance {
+                 material Material { diffuseColor 1 0 0 }
+   }
+   geometry Text {
+               string ["Change background above", "room.  Look outside."]
+               fontStyle FontStyle {
+                            family  "SANS"
+                            style   "BOLD"
+                            size    0.2
+                            justify "MIDDLE"
+                         }
+            }
+}
+
+}
+
+Group {	
+	children [
+    DEF B1 Background {
+    skyColor    [ 0.3922      0.5843     0.9294]
+    skyAngle    [ 0 0  ]
+    groundColor [ 0 0 0]
+    groundAngle [ 0 0  ]
+    },
+    DEF B2 Background {
+    skyColor    [ 0 0 0 ]
+    skyAngle    [ 0 0 ]
+    groundColor [ 0 0 0]
+    groundAngle [ 0 0  ]
+        	},
+   	DEF B3 Background {
+    skyColor    [ 1 1 1]
+    skyAngle    [ 0 0 0 ]
+    groundColor [0 0 0 ]
+    groundAngle [ 0 0  ]
+        	},
+    
+    Transform { translation -260.5 51.5 -10
+	   scale .1 .1 .1
+       children [ Shape {
+          appearance Appearance {
+          material Material {
+          diffuseColor 0.0 0.5 0.8
+          }
+    }
+          geometry Box { }
+          },
+          DEF b1 TouchSensor { }
+          ]
+   },
+   
+   Transform {	  translation	-259.5 51.5 -10
+       scale .1 .1 .1
+       children [  Shape {
+         appearance Appearance {
+         material Material {
+         diffuseColor 1.0 0.3 0.3
+         }
+   }
+        geometry Sphere { }
+   },
+        DEF b2 TouchSensor { }
+      	]
+   },
+  
+   Transform { translation -260 51.5 -10
+     scale .1 .1 .1
+     children [ Shape {
+       appearance Appearance {
+       material Material {
+       diffuseColor 0.2 0.2 0.8
+       }
+     }
+       geometry Cone { }
+   },
+       DEF b3 TouchSensor { }
+   ]
+ },
+    
+ DEF Change1 Script {url "javascript: function set_boolean( bool, eventTime ) {  if ( bool == true ) { true_changed  = true; }  else { false_changed = true; } }"
+    eventIn  SFBool set_boolean
+    eventOut SFBool true_changed
+    eventOut SFBool false_changed
+ },
+ DEF Change2 Script {url "javascript: function set_boolean( bool, eventTime ) {  if ( bool == true ) { true_changed  = true; }  else { false_changed = true; } }"
+     eventIn  SFBool set_boolean
+     eventOut SFBool true_changed
+     eventOut SFBool false_changed
+ },
+ DEF Change3 Script {url "javascript: function set_boolean( bool, eventTime ) {  if ( bool == true ) { true_changed  = true; }  else { false_changed = true; } }"
+    eventIn  SFBool set_boolean
+    eventOut SFBool true_changed
+    eventOut SFBool false_changed
+ },
+ ]
+}
+ROUTE b1.isActive TO Change1.set_boolean
+ROUTE b2.isActive TO Change2.set_boolean
+ROUTE b3.isActive TO Change3.set_boolean
+ROUTE Change1.true_changed TO B1.set_bind
+ROUTE Change2.true_changed TO B2.set_bind
+ROUTE Change3.true_changed TO B3.set_bind
+
+
+#butterfly obstacle
+DEF chld22 Transform {
+	  translation -120 54 63
+	  scale	2 2 2
+	  rotation 0 .883 -.401 3.045
+	 
+      children [ Inline	{ url "bfly.wrl"} 
+	  DEF chld22TS TouchSensor {}] 
+ }
+
+DEF PI22 PositionInterpolator { 
+  key [ 0, 0.25, .5, .75, 1] 
+  keyValue [ -120 54 63, -120 58 63, -120 62 63, -120 58 63, -120 54 63 ] 
+}
+DEF chld22TiS TimeSensor { cycleInterval 1.0 }
+
+ ROUTE PI22.value_changed TO chld22.translation
+ ROUTE chld22TS.touchTime TO chld22TiS.startTime
+ ROUTE chld22TiS.fraction_changed TO PI22.set_fraction
+ 
+
+
+ #ROUTE TS.isActive TO EViewpoint.bind	   binding viewpoint
+  #speed           1.0     for navigation
+
+
+
+ DEF chld23 Transform {
+	  translation -120 52 97
+	  #scale	.1 .1 .1
+	  #rotation 0 .883 -.401 3.045
+	 
+      children [ Inline	{ url "sunflower.wrl"} 
+	  ] 
+ }
+
+ #butterfly
+DEF chld24 Transform {
+	  translation -120 54 97 
+     # rotation -.244 .883 -.401 3.045
+	  scale	.5 .5 .5
+      children [ Inline	{ url "bfly.wrl"}  ]  }
+  DEF TIMER24 TimeSensor { 
+  loop TRUE 
+  cycleInterval 9 
+} 
+
+
+DEF PI24 PositionInterpolator { 
+  key [ 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ] 
+  keyValue [ -120 56 97,-120 56 97. -120 56 97, -120 56 97, -120 56 97, -120 56 97, -120 56 97, -120 56 97, -120 56 97  ] 
+}
+
+ROUTE TIMER24.fraction_changed TO PI24.set_fraction 
+ROUTE PI24.value_changed      TO chld24.set_translation	 
+
+ Transform {
+      translation -105 49 63
+      rotation 1 0 0 3.15
+	  children	USE landingRL  }
