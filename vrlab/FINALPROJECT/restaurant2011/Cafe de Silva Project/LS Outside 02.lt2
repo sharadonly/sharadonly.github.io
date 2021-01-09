@@ -1,0 +1,6190 @@
+{
+
+version
+	{
+	number 5
+	}
+camera SHADOW_CAM_LITE 4
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 1
+	{
+	storageOffset 0 0 0
+	objFileGeom 0 0 :Runtime:geometries:lights:spotLite.obj
+	}
+camera SHADOW_CAM_LITE 5
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 2
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+camera SHADOW_CAM_LITE 6
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 3
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+camera SHADOW_CAM_LITE 7
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 4
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+camera SHADOW_CAM_LITE 8
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 5
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+camera SHADOW_CAM_LITE 9
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 6
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+camera SHADOW_CAM_LITE 10
+	{
+	storageOffset 0 0.3487 0
+	objFileGeom 0 0 :Runtime:geometries:Camera:Camera.obj
+	}
+light spotLight 7
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	}
+
+camera SHADOW_CAM_LITE 4
+	{
+	name    GetStringRes(1025,18)
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 1
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 25.4
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  12.7
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  12.7
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 1
+	{
+	storageOffset 0 0 0
+	objFileGeom 0 0 :Runtime:geometries:lights:spotLite.obj
+	lightType 1 
+	name    SPOT
+	on
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				parmNode Preview_Light_0_R
+				parmNode Preview_Light_0_G
+				parmNode Preview_Light_0_B
+				parmNode Preview_Light_1
+				parmNode lampFlaps_Light_0_R
+				parmNode lampFlaps_Light_0_G
+				parmNode lampFlaps_Light_0_B
+				parmNode lampFlaps_Light_1
+				parmNode lampBase_Light_0_R
+				parmNode lampBase_Light_0_G
+				parmNode lampBase_Light_0_B
+				parmNode lampBase_Light_1
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 0
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 0
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  160
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.93
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  1024
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -22
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -82.1198
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -31
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 0.619989
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.619959
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 0.668116
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.668086
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 0.720729
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.720699
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue -1.8484
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  -3.18481
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 1.98025
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  1.33241
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0.255536
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  1.72113
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 0.8
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.8
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 0.8
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.8
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  2
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_R
+			{
+			name lampFlaps_Light_0_R
+			initValue 0.619989
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.619989
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_G
+			{
+			name lampFlaps_Light_0_G
+			initValue 0.668116
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.668116
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_B
+			{
+			name lampFlaps_Light_0_B
+			initValue 0.720729
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.720729
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_1
+			{
+			name lampFlaps_Light_1
+			initValue 2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  2
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_R
+			{
+			name lampBase_Light_0_R
+			initValue 0.619989
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.619989
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_G
+			{
+			name lampBase_Light_0_G
+			initValue 0.668116
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.668116
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_B
+			{
+			name lampBase_Light_0_B
+			initValue 0.720729
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.720729
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_1
+			{
+			name lampBase_Light_1
+			initValue 2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.0310678 0.0984832 0.987579 1 
+		KaColor 0 0 0 1 
+		KsColor 0.182653 0.0514908 0.132237 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.8 0.8 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.619989 0.668116 0.720729
+					parmR "lampFlaps_Light_0_R"
+					parmG "lampFlaps_Light_0_G"
+					parmB "lampFlaps_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 2 -10 10
+					parmR "lampFlaps_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.619959 0.668086 0.720699 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.619989 0.668116 0.720729
+					parmR "lampBase_Light_0_R"
+					parmG "lampBase_Light_0_G"
+					parmB "lampBase_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 2 -10 10
+					parmR "lampBase_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0
+	smoothPolys 1
+	depthMapSize 1024 
+	depthCamera SHADOW_CAM_LITE 4 
+	doShadow 1 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 1
+	shadowBiasMin 0.000000
+	}
+
+camera SHADOW_CAM_LITE 5
+	{
+	name    Shadow Cam Lite 5
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 2
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  28.5333
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -1.6879
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  3.8455
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 2
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    side 1
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  90
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -82.5465
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -90
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 0.829999
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 0.799985
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 0.573388
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.133915 0.921934 0.12299 1 
+		KaColor 0 0 0 1 
+		KsColor 0.0370495 0.0839015 0.140245 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.829999 0.799985 0.573388
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.829999 0.799985 0.573388 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.829999 0.799985 0.573388
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 5 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+
+camera SHADOW_CAM_LITE 6
+	{
+	name    Shadow Cam Lite 6
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 3
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  35.9359
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -5.08785
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  3.8455
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 3
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    up
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  90
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -86.368
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 0.581338
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 0.612467
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 0.714015
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.12302 0.179205 0.595813 1 
+		KaColor 0 0 0 1 
+		KsColor 0.155528 0.175237 0.0663289 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.581338 0.612467 0.714015
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.581338 0.612467 0.714015 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 0.581338 0.612467 0.714015
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 6 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+
+camera SHADOW_CAM_LITE 7
+	{
+	name    Shadow Cam Lite 7
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 4
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  35.9359
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  5.08785
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1.6879
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 4
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    side 2
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -119.187
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  180
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00262146
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00262146
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00262146
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.219947 0.270852 0.146031 1 
+		KaColor 0 0 0 1 
+		KsColor 0.146678 0.188745 0.0126102 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.5 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.975708 0.777142 0.709865 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.5 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 7 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+
+camera SHADOW_CAM_LITE 8
+	{
+	name    Shadow Cam Lite 8
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 5
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  35.9359
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -5.08785
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -3.8455
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 5
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    down
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -90
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -66.993
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.45
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00210013
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00210013
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00210013
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.45
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.45
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.899899 0.301584 0.00979644 1 
+		KaColor 0 0 0 1 
+		KsColor 0.0543596 0.0893033 0.0356822 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.45 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.45 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.650019 0.613382 0.670283 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.45 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 8 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+
+camera SHADOW_CAM_LITE 9
+	{
+	name    Shadow Cam Lite 9
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 6
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  35.9359
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  100
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -5.08785
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1.6879
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 6
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    side 3
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -79.8419
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.353862 0.101077 0.316141 1 
+		KaColor 0 0 0 1 
+		KsColor 0.0342845 0.19845 0.0410596 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.766659 0.583276 0.678767 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 9 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+
+camera SHADOW_CAM_LITE 10
+	{
+	name    Shadow Cam Lite 10
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		0
+	parent spotLight 7
+	channels
+		{
+		focal focal
+			{
+			name GetStringRes(1028,15)
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 100000
+			trackingScale 0.1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		hither hither
+			{
+			name hither
+			initValue 0.0156
+			hidden 0
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  0.0156
+				}
+			interpStyleLocked 0
+			}
+		camAutoScale autoScale
+			{
+			name autoScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  28.5333
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterX autoX
+			{
+			name autoX
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -1.6879
+				}
+			interpStyleLocked 0
+			}
+		camAutoCenterY autoY
+			{
+			name autoY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  -3.8455
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		camAutoFocal AutoFocal
+			{
+			name AutoFocal
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 1 0
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode WIREFRAME
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	cameraModel depth
+	}
+
+light spotLight 7
+	{
+	storageOffset 0 0.3487 0
+	geomResource 7  
+	lightType 0 
+	name    side 4
+	on
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	parent UNIVERSE
+	channels
+		{
+		groups
+			{
+			groupNode Spotlight
+				{
+				parmNode Angle Start
+				parmNode Angle End
+				parmNode Dist Start
+				parmNode Dist End
+				}
+			groupNode Other
+				{
+				parmNode shadowStrength
+				parmNode depthMapSize
+				parmNode KdRed
+				parmNode KdGreen
+				parmNode KdBlue
+				parmNode KdIntensity
+				}
+			groupNode Transform
+				{
+				parmNode xrot
+				parmNode yrot
+				parmNode zrot
+				parmNode scale
+				parmNode xtran
+				parmNode ytran
+				parmNode ztran
+				}
+			groupNode ShaderNode
+				{
+				}
+			}
+		liteFalloffStart Angle Start
+			{
+			name Angle Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteFalloffEnd Angle End
+			{
+			name Angle End
+			initValue 70
+			hidden 1
+			forceLimits 4
+			min 0
+			max 160
+			trackingScale 0.25
+			keys
+				{
+				static  0
+				k  0  70
+				}
+			interpStyleLocked 0
+			}
+		liteAttenStart Dist Start
+			{
+			name Dist Start
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		liteAttenEnd Dist End
+			{
+			name Dist End
+			initValue 0
+			hidden 1
+			forceLimits 4
+			min 0
+			max 1e+006
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		depthMapStrength shadowStrength
+			{
+			name GetStringRes(1028,28)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		depthMapSize depthMapSize
+			{
+			name GetStringRes(1028,29)
+			initValue 256
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  256
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue -42
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -90
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue -111.218
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  -90
+				}
+			interpStyleLocked 0
+			}
+		scale scale
+			{
+			name GetStringRes(1028,5)
+			initValue 0.55
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.55
+				}
+			interpStyleLocked 0
+			}
+		kdRed KdRed
+			{
+			name GetStringRes(1028,19)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdGreen KdGreen
+			{
+			name GetStringRes(1028,20)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdBlue KdBlue
+			{
+			name GetStringRes(1028,21)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		kdIntensity KdIntensity
+			{
+			name GetStringRes(1028,22)
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min -10
+			max 10
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name GetStringRes(1028,12)
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00130048
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name GetStringRes(1028,13)
+			initValue 0.375
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00130048
+			keys
+				{
+				static  0
+				k  0  0.375
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name GetStringRes(1028,14)
+			initValue -100
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.00130048
+			keys
+				{
+				static  0
+				k  0  -100
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_R
+			{
+			name Preview_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_G
+			{
+			name Preview_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_0_B
+			{
+			name Preview_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm Preview_Light_1
+			{
+			name Preview_Light_1
+			initValue 0.2
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_R
+			{
+			name lampFlaps_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_G
+			{
+			name lampFlaps_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_0_B
+			{
+			name lampFlaps_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampFlaps_Light_1
+			{
+			name lampFlaps_Light_1
+			initValue 0.05
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_R
+			{
+			name lampBase_Light_0_R
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_G
+			{
+			name lampBase_Light_0_G
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_0_B
+			{
+			name lampBase_Light_0_B
+			initValue 1
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.005
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		shaderNodeParm lampBase_Light_1
+			{
+			name lampBase_Light_1
+			initValue 0.05
+			hidden 0
+			forceLimits 4
+			min -10
+			max 10
+			trackingScale 0.01
+			keys
+				{
+				static  0
+				k  0  0.2
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 0.07
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.714194 0.862911 0.727775 1 
+		KaColor 0 0 0 1 
+		KsColor 0.0336985 0.0671163 0.0161687 1 
+		TextureColor 1 1 1 1 
+		NsExponent 60 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "Preview_Light_0_R"
+					parmG "Preview_Light_0_G"
+					parmB "Preview_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "Preview_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampFlaps
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0.2 0.2 0.2 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "lampFlaps_Light_0_R"
+					parmG "lampFlaps_Light_0_G"
+					parmB "lampFlaps_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "lampFlaps_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material lampBase
+		{
+		KdColor 0.731106 0.947829 0.537545 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 1 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "light" "Light"
+				{
+				name "Light"
+				pos 10 10
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR "lampBase_Light_0_R"
+					parmG "lampBase_Light_0_G"
+					parmB "lampBase_Light_0_B"
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Intensity"
+					{
+					name "Intensity"
+					value 0.2 -10 10
+					parmR "lampBase_Light_1"
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleStart"
+					{
+					name "Angle_Start"
+					value 0 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleEnd"
+					{
+					name "Angle_End"
+					value 90 0 180
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AngleExpo"
+					{
+					name "Angle_Expo"
+					value 1 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	depthMapSize 256 
+	depthCamera SHADOW_CAM_LITE 10 
+	doShadow 0 
+	lightOn 1 
+	rayTraceShadows 0
+	depthMapShadows 1
+	shadowBlurRadius 2
+	shadowBiasMin 0.800000
+	}
+}
