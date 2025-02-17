@@ -12129,7 +12129,7 @@ a.hero-cta-alt:active,a.hero-cta-alt:focus,a.hero-cta-alt:hover {
 .people-widget .avatar {
     width: 80%;
     max-width: 150px;
-    height: auto
+    height: 150px;
 }
 
 @media(min-width: 576px) {
