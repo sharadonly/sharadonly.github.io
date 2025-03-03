@@ -226,6 +226,48 @@
     }
   });
 
+  function loadContent(url, selector) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status}`);
+        }
+        document.querySelector('#modal-error').innerHTML = 'Error';
+      })
+      .then(html => {
+        console.log('html', html);
+        const container = document.querySelector(selector);
+        console.log('container', container);
+          if (container) {
+            container.innerHTML = html;
+          } else {
+            console.error(`Element with selector "${selector}" not found.`);
+          }
+        document.querySelector('.js-download-cite').setAttribute('href', url);
+      })
+      .catch(error => {
+        console.error('There was a problem fetching the content:', error);
+      });
+  }
+  
+  // Example usage:
+  // loadContent('content.html', '#content-area');
+
+  window.addEventListener('DOMContentLoaded', function(event) {
+    const modalCite = document.querySelectorAll('.js-cite-modal');
+    modalCite.forEach(function(ele) {
+      ele.onclick = function(event) {
+        event.preventDefault();
+        console.log('this', this);
+        const filename = this.getAttribute('data-filename');
+        console.log('filename', filename);
+        const modalContainer = document.getElementById('modal');
+        console.log('modalContainer', modalContainer);
+        loadContent(filename, modalContainer);
+      }
+    })
+  })
+
   /**
    * Animation on scroll
    */
