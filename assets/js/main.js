@@ -226,47 +226,70 @@
     }
   });
 
-  function loadContent(url, selector) {
+  function loadContent(url, containerEl) {
     fetch(url)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.status}`);
         }
-        document.querySelector('#modal-error').innerHTML = 'Error';
+        return response.text();
       })
-      .then(html => {
-        console.log('html', html);
-        const container = document.querySelector(selector);
-        console.log('container', container);
-          if (container) {
-            container.innerHTML = html;
-          } else {
-            console.error(`Element with selector "${selector}" not found.`);
-          }
-        document.querySelector('.js-download-cite').setAttribute('href', url);
+      .then(text => {
+        // Insert text into the modal’s code block
+        const codeBlock = containerEl.querySelector('.modal-body code');
+        if (codeBlock) {
+          codeBlock.textContent = text;
+        }
+        // Set up "Download" button
+        const downloadBtn = containerEl.querySelector('.js-download-cite');
+        if (downloadBtn) {
+          downloadBtn.setAttribute('href', url);
+        }
       })
       .catch(error => {
         console.error('There was a problem fetching the content:', error);
+        const errorEl = containerEl.querySelector('#modal-error');
+        if (errorEl) {
+          errorEl.textContent = 'Failed to load citation.';
+        }
       });
   }
   
   // Example usage:
   // loadContent('content.html', '#content-area');
 
-  window.addEventListener('DOMContentLoaded', function(event) {
-    const modalCite = document.querySelectorAll('.js-cite-modal');
-    modalCite.forEach(function(ele) {
-      ele.onclick = function(event) {
+  window.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal');
+  
+    // Find all "Cite" buttons
+    const citeButtons = document.querySelectorAll('.js-cite-modal');
+    citeButtons.forEach(btn => {
+      btn.addEventListener('click', event => {
         event.preventDefault();
-        console.log('this', this);
-        const filename = this.getAttribute('data-filename');
-        console.log('filename', filename);
-        const modalContainer = document.getElementById('modal');
-        console.log('modalContainer', modalContainer);
-        loadContent(filename, modalContainer);
-      }
-    })
-  })
+        const filename = btn.getAttribute('data-filename');
+  
+        // Load the citation text into the modal
+        loadContent(filename, modal);
+  
+        // Show the modal (Bootstrap 5 way)
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+      });
+    });
+
+    document.querySelector('.js-copy-cite').addEventListener('click', e => {
+      e.preventDefault();
+      const codeBlock = modal.querySelector('.modal-body code');
+      if (!codeBlock) return;
+      navigator.clipboard.writeText(codeBlock.textContent)
+        .then(() => {
+          alert('Citation copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy citation:', err);
+        });
+    });
+  });
 
   /**
    * Animation on scroll

@@ -15,13 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetch(form.action, {
             method: "POST",
+            headers: { "Accept": "application/json" },
             body: formData
         })
         .then(response => response.json()) // Expecting JSON from contact.php
         .then(data => {
+            console.log("Response data:", data);
             loadingDiv.style.display = "none"; // Hide loading
 
-            if (data.status === "success") {
+            if (data.ok) {
                 successDiv.style.display = "block"; // Show success message
                 form.reset(); // Clear form fields
             } else {
